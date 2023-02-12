@@ -65,7 +65,7 @@ public partial class FireComponent : ElementComponent
     {
         // _wait here guards against a race condition whereby getting the first node returns
         // null even though the fire component has been added through a deferred call.
-        if (_wait) return;
+        if (_wait || !Enabled) return;
 
         var fireComponent = body.GetFirstNodeOfType<FireComponent>();
 
@@ -87,12 +87,16 @@ public partial class FireComponent : ElementComponent
 
     public override float AddEnergy(float factor, bool emitSignals = true)
     {
+        if (!Enabled) return Energy;
+
         var oldEnergy = SetEnergy(Energy + factor, emitSignals);
         return oldEnergy;
     }
 
     public override float SetEnergy(float energy, bool emitSignals = true)
     {
+        if (!Enabled) return Energy;
+
         var result = base.SetEnergy(energy, emitSignals);
 
         _UpdateVisuals();
@@ -145,5 +149,12 @@ public partial class FireComponent : ElementComponent
         node.AddChild(this.InstantiateFromResources<ExplosionComponent>());
 
         DisableCatchFire = true;
+    }
+
+    protected override void _EnabledPostProcess()
+    {
+        base._EnabledPostProcess();
+        if (Enabled) DepletionTimer.Start();
+        else DepletionTimer.Stop();
     }
 }

@@ -73,6 +73,8 @@ public partial class VelocityComponent : BaseComponent
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!Enabled) return;
+        
         MoveAndCollide(ContinuousProcess, delta);
         Falling = Gravity.LengthSquared() > 0.0f;
     }
@@ -84,6 +86,8 @@ public partial class VelocityComponent : BaseComponent
 
     public KinematicCollision2D MoveAndCollide(PhysicsBody2D node, double delta)
     {
+        if (!Enabled) return null;
+        
         Velocity += Gravity;
         
         var collision2D = _CalculateSpeed(() => node.MoveAndCollide(Velocity * (float)delta));
@@ -96,6 +100,8 @@ public partial class VelocityComponent : BaseComponent
 
     public void MoveAndSlide(CharacterBody2D node)
     {
+        if (!Enabled) return;
+        
         Velocity += Gravity;
         node.Velocity = Velocity;
         var collided = _CalculateSpeed(node.MoveAndSlide);
