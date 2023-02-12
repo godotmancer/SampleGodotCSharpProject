@@ -37,17 +37,17 @@ project/assembly_name="SampleGodotCSharpProject"
 
 script/templates_search_path="res://ScriptTemplates"
 movie_writer/mjpeg_quality=1.0
-movie_writer/movie_file="Movies"
+movie_writer/movie_file="./Movies/sample.avi"
 movie_writer/fps=30
 naming/scene_name_casing=1
 
 [physics]
 
-common/physics_ticks_per_second=30
-common/max_physics_steps_per_frame=3
-common/enable_object_picking=false
+2d/run_on_separate_thread=true
 
 [rendering]
 
-anti_aliasing/quality/msaa_2d=2
-viewport/transparent_background=true
+shader_compiler/shader_cache/strip_debug=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

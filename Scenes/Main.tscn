@@ -10,7 +10,6 @@
 
 [sub_resource type="Environment" id="Environment_otope"]
 background_mode = 3
-background_canvas_max_layer = 1
 tonemap_mode = 3
 glow_enabled = true
 glow_levels/1 = 1.0
