@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://pha677g0a1rr"]
+
+[ext_resource type="Script" path="res://Game/Component/Element/FireComponent.cs" id="1_8js25"]
+[ext_resource type="Texture2D" uid="uid://b36bsoiftptpr" path="res://Assets/Fire.png" id="2_50gvw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4wc2"]
+radius = 103.005
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5hltt"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_uwwdf"]
+_data = [Vector2(0, 0), 0.0, 3.54088, 0, 0, Vector2(0.554841, 1), -0.518227, -0.518227, 0, 0, Vector2(1, 0), -0.150039, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_5gb4x"]
+offsets = PackedFloat32Array(0, 0.404826, 0.55496, 0.801609, 1)
+colors = PackedColorArray(3, 0, 0, 1, 1.4, 0, 0.03, 1, 2.6, 2.8, 0, 1, 0.201299, 0.119869, 0.0404145, 1, 0.2, 0.12, 0.04, 0.17)
+
+[node name="FireComponent" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_8js25")
+EnergyTransferPercent = 50.0
+EnergyLossPercent = -5.0
+
+[node name="DepletionTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="CatchFireZone" type="Area2D" parent="."]
+collision_layer = 8
+monitorable = false
+
+[node name="CatchFireZoneCollision" type="CollisionShape2D" parent="CatchFireZone"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_r4wc2")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="FireParticles" type="CPUParticles2D" parent="Visuals"]
+unique_name_in_owner = true
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_5hltt")
+position = Vector2(0, -32)
+amount = 24
+randomness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("2_50gvw")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+direction = Vector2(0, 1)
+spread = 180.0
+gravity = Vector2(0, -300)
+initial_velocity_max = 5.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+angle_min = -5.0
+angle_max = 5.0
+scale_amount_min = 0.0
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_uwwdf")
+color_ramp = SubResource("Gradient_5gb4x")
+anim_speed_min = 1.0
+anim_speed_max = 7.0
+
+[node name="Label" type="Label" parent="Visuals"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 47.0
+offset_right = 58.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "1234"
+horizontal_alignment = 1

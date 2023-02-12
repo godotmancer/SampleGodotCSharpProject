@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5koicly7djf5"]
+
+[ext_resource type="Script" path="res://Game/Component/FollowPlayerComponent.cs" id="1_jhe5b"]
+
+[node name="FollowPlayerComponent" type="Node2D"]
+script = ExtResource("1_jhe5b")

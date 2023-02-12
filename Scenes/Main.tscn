@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://cuasmas3jt4l5"]
+
+[ext_resource type="Script" path="res://Game/Main.cs" id="1_mma13"]
+[ext_resource type="PackedScene" uid="uid://iaay7x8ajuwv" path="res://Game/Entity/Enemy.tscn" id="2_dt3er"]
+[ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/EffectsManager.tscn" id="3_0w13c"]
+[ext_resource type="PackedScene" path="res://UI/Fps.tscn" id="4_biaco"]
+[ext_resource type="PackedScene" uid="uid://cqjjl78og3k1m" path="res://Game/Entity/Fireball.tscn" id="4_nhapj"]
+[ext_resource type="Script" path="res://UI/Score.cs" id="5_x5k03"]
+[ext_resource type="Script" path="res://UI/EnemyCounter.cs" id="7_0wojj"]
+
+[sub_resource type="Environment" id="Environment_otope"]
+background_mode = 3
+background_canvas_max_layer = 1
+tonemap_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_normalized = true
+glow_intensity = 8.0
+glow_bloom = 0.02
+glow_blend_mode = 0
+glow_hdr_threshold = 0.0
+
+[sub_resource type="SystemFont" id="SystemFont_8kl1n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7gb6r"]
+font = SubResource("SystemFont_8kl1n")
+font_size = 30
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f5cu4"]
+font = SubResource("SystemFont_8kl1n")
+font_size = 30
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_mma13")
+EnemyScene = ExtResource("2_dt3er")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_otope")
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["Camera2D"]]
+position = Vector2(576, 324)
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.6
+drag_top_margin = 0.6
+drag_right_margin = 0.6
+drag_bottom_margin = 0.6
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="EffectsManager" parent="." instance=ExtResource("3_0w13c")]
+
+[node name="FireBall" parent="." instance=ExtResource("4_nhapj")]
+position = Vector2(576, 324)
+
+[node name="RemoteTransform2D" parent="FireBall" index="0"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Enemies" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="FPS" parent="HUD" instance=ExtResource("4_biaco")]
+label_settings = SubResource("LabelSettings_7gb6r")
+
+[node name="Score" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+size_flags_vertical = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_f5cu4")
+horizontal_alignment = 2
+script = ExtResource("5_x5k03")
+
+[node name="EnemyCounter" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -113.0
+offset_top = 32.0
+offset_bottom = 77.0
+grow_horizontal = 0
+size_flags_vertical = 2
+text = "Enemies: 0"
+label_settings = SubResource("LabelSettings_f5cu4")
+horizontal_alignment = 2
+script = ExtResource("7_0wojj")
+
+[editable path="FireBall"]

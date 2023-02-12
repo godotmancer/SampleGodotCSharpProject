@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://UI/Fps.cs" id="1_nj1k4"]
+
+[sub_resource type="SystemFont" id="SystemFont_8kl1n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4xv5"]
+font = SubResource("SystemFont_8kl1n")
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="FPS" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "120 FPS"
+label_settings = SubResource("LabelSettings_c4xv5")
+script = ExtResource("1_nj1k4")

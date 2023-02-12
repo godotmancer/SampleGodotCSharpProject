@@ -1,0 +1,20 @@
+<Project Sdk="Godot.NET.Sdk/4.0.0-rc">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Update="Godot.SourceGenerators" Version="4.0.0-beta.16" />
+    <PackageReference Update="GodotSharp" Version="4.0.0-beta.16" />
+    <PackageReference Update="GodotSharpEditor" Version="4.0.0-beta.16" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Entity" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Screenshots\.gdignore" />
+    <Content Include="Screenshots\game-screenshot.png" />
+    <Content Include="Screenshots\splash-screen.png" />
+  </ItemGroup>
+</Project>

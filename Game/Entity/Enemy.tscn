@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://iaay7x8ajuwv"]
+
+[ext_resource type="Script" path="res://Game/Entity/Enemy.cs" id="1_5qyi1"]
+[ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_ycq8m"]
+[ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="3_ogfd5"]
+[ext_resource type="PackedScene" uid="uid://b5koicly7djf5" path="res://Game/Component/FollowPlayerComponent.tscn" id="4_vkukj"]
+[ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Assets/Zombie/1.png" id="5_pcwf8"]
+[ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Assets/Zombie/2.png" id="6_ald1i"]
+
+[sub_resource type="Animation" id="Animation_fn3rh"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_njubs"]
+resource_name = "burnt"
+length = 3.0
+
+[sub_resource type="Animation" id="Animation_mxrn4"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_j717y"]
+resource_name = "seeking"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ythur"]
+_data = {
+"RESET": SubResource("Animation_fn3rh"),
+"burnt": SubResource("Animation_njubs"),
+"idle": SubResource("Animation_mxrn4"),
+"seeking": SubResource("Animation_j717y")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gbfpe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_pcwf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ald1i")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7l1wo"]
+radius = 64.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_mask = 3
+motion_mode = 1
+platform_wall_layers = 1
+safe_margin = 0.001
+script = ExtResource("1_5qyi1")
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ythur")
+}
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("CollisionShape2D") instance=ExtResource("1_ycq8m")]
+CollisionShape2D = NodePath("../CollisionShape2D")
+
+[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToFace", "VelocityComponent") instance=ExtResource("3_ogfd5")]
+Node2DToFace = NodePath("../Visuals")
+VelocityComponent = NodePath("../VelocityComponent")
+
+[node name="FollowPlayerComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("4_vkukj")]
+VelocityComponent = NodePath("../VelocityComponent")
+
+[node name="Visuals" type="Node2D" parent="."]
+scale = Vector2(0.3, 0.3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+unique_name_in_owner = true
+scale = Vector2(5.422, 5.422)
+sprite_frames = SubResource("SpriteFrames_gbfpe")
+animation = &"walk"
+autoplay = "walk"
+frame = 1
+frame_progress = 0.0185504
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("CircleShape2D_7l1wo")
