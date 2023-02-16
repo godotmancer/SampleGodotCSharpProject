@@ -13,13 +13,13 @@ public partial class GameEvents : Node
     public delegate void ElementIntensityDepletedEventHandler(ElementComponent element);
 
     [Signal]
-    public delegate void EnemyKilledEventHandler(Zombie zombie);
+    public delegate void ZombieKilledEventHandler(Zombie zombie);
 
     [Signal]
     public delegate void CollisionEventHandler(KinematicCollision2D collision2D);
 
     [Signal]
-    public delegate void EnemySpawnedEventHandler(Zombie zombie);
+    public delegate void ZombieSpawnedEventHandler(Zombie zombie);
     
     public static GameEvents Instance { get; private set; }
 
@@ -37,9 +37,9 @@ public partial class GameEvents : Node
         Instance.EmitSignal(SignalName.ElementIntensityDepleted, element);
     }
 
-    public static void EmitEnemyKilled(Zombie zombie)
+    public static void EmitZombieKilled(Zombie zombie)
     {
-        Instance.EmitSignal(SignalName.EnemyKilled, zombie);
+        Instance.EmitSignal(SignalName.ZombieKilled, zombie);
     }
 
     public static void EmitCollision(KinematicCollision2D collision2D)
@@ -47,8 +47,8 @@ public partial class GameEvents : Node
         Instance.EmitSignal(SignalName.Collision, collision2D);
     }
 
-    public static void EmitSpawnEnemy(Zombie zombie)
+    public static void EmitSpawnZombie(Zombie zombie)
     {
-        Instance.EmitSignal(SignalName.EnemySpawned, zombie);
+        Instance.EmitSignal(SignalName.ZombieSpawned, zombie);
     }
 }

@@ -43,32 +43,32 @@ public partial class Main : Node2D
             500,
             200);
 
-        _CreateEnemies();
+        _CreateZombies();
 
-        GameEvents.Instance.EnemyKilled += _ =>
+        GameEvents.Instance.ZombieKilled += _ =>
         {
             _killedZombies++;
             if (_killedZombies % _random.RandiRange(2, 6) == 0)
             {
-                _CreateEnemy(_pointGenerator.GeneratePoint());
+                _CreateZombies(_pointGenerator.GeneratePoint());
             }
         };
     }
 
-    private void _CreateEnemies()
+    private void _CreateZombies()
     {
         var points = _pointGenerator.GeneratePoints(TotalZombies);
         foreach (var point in points)
         {
-            _CreateEnemy(point);
+            _CreateZombies(point);
         }
     }
 
-    private void _CreateEnemy(Vector2 point)
+    private void _CreateZombies(Vector2 point)
     {
-        var enemy = ZombieScene.Instantiate<Zombie>();
-        enemy.GlobalPosition = point;
+        var zombie = ZombieScene.Instantiate<Zombie>();
+        zombie.GlobalPosition = point;
 
-        Zombies.AddChild(enemy);
+        Zombies.AddChild(zombie);
     }
 }

@@ -101,4 +101,5 @@ hue_variation_max = 1.0
 
 [node name="Skull" type="Sprite2D" parent="Visuals"]
 unique_name_in_owner = true
+scale = Vector2(1.3, 1.3)
 texture = ExtResource("4_k274p")

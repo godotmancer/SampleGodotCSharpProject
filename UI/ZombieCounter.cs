@@ -9,7 +9,7 @@ public partial class ZombieCounter : Label
 	
 	public override void _Ready()
 	{
-		GameEvents.Instance.EnemySpawned += _ =>
+		GameEvents.Instance.ZombieSpawned += _ =>
 		{
 			_totalZombies += 1;
 			Text = $"Zombies: {_totalZombies}";

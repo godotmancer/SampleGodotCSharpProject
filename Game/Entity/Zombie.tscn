@@ -47,7 +47,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7l1wo"]
 radius = 64.0
 
-[node name="Zombie" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Zombie" type="CharacterBody2D" groups=["Zombie"]]
 collision_mask = 3
 motion_mode = 1
 platform_wall_layers = 1

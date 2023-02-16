@@ -9,7 +9,7 @@ public partial class Score : Label
 	
 	public override void _Ready()
 	{
-		GameEvents.Instance.EnemyKilled += _ =>
+		GameEvents.Instance.ZombieKilled += _ =>
 		{
 			_totalScore += 1;
 			Text = $"Score: {_totalScore}";

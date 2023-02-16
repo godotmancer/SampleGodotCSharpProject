@@ -44,7 +44,7 @@ public partial class Zombie : CharacterBody2D
         _stateMachine.AddStates(StateStopped, EnterStateStopped);
         _stateMachine.SetInitialState(StateIdle);
         
-        GameEvents.EmitSpawnEnemy(this);
+        GameEvents.EmitSpawnZombie(this);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -73,7 +73,7 @@ public partial class Zombie : CharacterBody2D
 
         if (!(VelocityComponent.Velocity.Y > 1000.0f)) return;
 
-        GameEvents.EmitEnemyKilled(this);
+        GameEvents.EmitZombieKilled(this);
         QueueFree();
 
     }
