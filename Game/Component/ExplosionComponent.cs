@@ -25,7 +25,7 @@ public partial class ExplosionComponent : BaseComponent
      
         Visuals.Rotation = (float)GD.Randfn(Mathf.Pi*2, Mathf.Pi);
 
-        if (GetParent() is Enemy node)
+        if (GetParent() is Zombie node)
         {
             node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
             node.GetFirstNodeOfType<FacingComponent>()?.SetEnabled(false);
