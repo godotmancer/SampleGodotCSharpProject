@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqjjl78og3k1m"]
+[gd_scene load_steps=11 format=3 uid="uid://cqjjl78og3k1m"]
 
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_athld"]
 [ext_resource type="Script" path="res://Game/Entity/Fireball.cs" id="1_wsqe4"]
 [ext_resource type="PackedScene" uid="uid://cd5pq55pjfs8y" path="res://Game/Component/FollowMouseComponent.tscn" id="2_iv1x6"]
+[ext_resource type="Texture2D" uid="uid://cwij8uosa6pc7" path="res://Assets/Midjourney/skull_burning64x101.png" id="4_k274p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hc3n0"]
 radius = 74.0608
@@ -61,8 +62,9 @@ autostart = true
 [node name="TrailingParticles" type="CPUParticles2D" parent="Visuals"]
 amount = 100
 randomness = 1.0
+lifetime_randomness = 0.5
 emission_shape = 2
-emission_sphere_radius = 32.0
+emission_sphere_radius = 64.0
 direction = Vector2(2.08165e-12, 2.08165e-12)
 spread = 180.0
 gravity = Vector2(2.08165e-12, 2.08165e-12)
@@ -96,3 +98,7 @@ color = Color(2.5, 2, 2, 1)
 color_ramp = SubResource("Gradient_hh4dq")
 hue_variation_min = -0.36
 hue_variation_max = 1.0
+
+[node name="Skull" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+texture = ExtResource("4_k274p")

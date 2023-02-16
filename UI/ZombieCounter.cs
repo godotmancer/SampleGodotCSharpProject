@@ -3,16 +3,16 @@ using SampleGodotCSharpProject.Game.Autoload;
 
 namespace SampleGodotCSharpProject.UI;
 
-public partial class EnemyCounter : Label
+public partial class ZombieCounter : Label
 {
-	private int _totalEnemies;
+	private int _totalZombies;
 	
 	public override void _Ready()
 	{
 		GameEvents.Instance.EnemySpawned += _ =>
 		{
-			_totalEnemies += 1;
-			Text = $"Enemies: {_totalEnemies}";
+			_totalZombies += 1;
+			Text = $"Zombies: {_totalZombies}";
 		};
 	}
 

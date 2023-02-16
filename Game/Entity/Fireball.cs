@@ -24,6 +24,9 @@ public partial class Fireball : StaticBody2D
     [Node]
     public Timer Timer;
 
+    [Node]
+    public Sprite2D Skull;
+
     private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
     private Vector2 _screenSize;
 

@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://iaay7x8ajuwv"]
+[gd_scene load_steps=14 format=3 uid="uid://blsep5yr0s04n"]
 
-[ext_resource type="Script" path="res://Game/Entity/Enemy.cs" id="1_5qyi1"]
-[ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_ycq8m"]
-[ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="3_ogfd5"]
-[ext_resource type="PackedScene" uid="uid://b5koicly7djf5" path="res://Game/Component/FollowPlayerComponent.tscn" id="4_vkukj"]
-[ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Assets/Zombie/1.png" id="5_pcwf8"]
-[ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Assets/Zombie/2.png" id="6_ald1i"]
+[ext_resource type="Script" path="res://Game/Entity/Zombie.cs" id="1_2ej0a"]
+[ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="2_vadyw"]
+[ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="3_fpwxo"]
+[ext_resource type="PackedScene" uid="uid://b5koicly7djf5" path="res://Game/Component/FollowPlayerComponent.tscn" id="4_mxp2h"]
+[ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Assets/Zombie/1.png" id="5_j87wh"]
+[ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Assets/Zombie/2.png" id="6_ujebs"]
 
 [sub_resource type="Animation" id="Animation_fn3rh"]
 length = 0.001
@@ -34,10 +34,10 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_pcwf8")
+"texture": ExtResource("5_j87wh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ald1i")
+"texture": ExtResource("6_ujebs")
 }],
 "loop": true,
 "name": &"walk",
@@ -47,12 +47,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7l1wo"]
 radius = 64.0
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Zombie" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 3
 motion_mode = 1
 platform_wall_layers = 1
 safe_margin = 0.001
-script = ExtResource("1_5qyi1")
+script = ExtResource("1_2ej0a")
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -60,14 +60,14 @@ libraries = {
 "": SubResource("AnimationLibrary_ythur")
 }
 
-[node name="VelocityComponent" parent="." node_paths=PackedStringArray("CollisionShape2D") instance=ExtResource("1_ycq8m")]
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("CollisionShape2D") instance=ExtResource("2_vadyw")]
 CollisionShape2D = NodePath("../CollisionShape2D")
 
-[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToFace", "VelocityComponent") instance=ExtResource("3_ogfd5")]
+[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToFace", "VelocityComponent") instance=ExtResource("3_fpwxo")]
 Node2DToFace = NodePath("../Visuals")
 VelocityComponent = NodePath("../VelocityComponent")
 
-[node name="FollowPlayerComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("4_vkukj")]
+[node name="FollowPlayerComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("4_mxp2h")]
 VelocityComponent = NodePath("../VelocityComponent")
 
 [node name="Visuals" type="Node2D" parent="."]

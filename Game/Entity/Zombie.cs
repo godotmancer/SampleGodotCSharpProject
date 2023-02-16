@@ -6,7 +6,7 @@ using SampleGodotCSharpProject.Game.Component;
 
 namespace SampleGodotCSharpProject.Game.Entity;
 
-public partial class Enemy : CharacterBody2D
+public partial class Zombie : CharacterBody2D
 {
     [Node]
     public VelocityComponent VelocityComponent;

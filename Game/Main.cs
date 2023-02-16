@@ -9,21 +9,21 @@ namespace SampleGodotCSharpProject.Game;
 public partial class Main : Node2D
 {
     [Export]
-    public int TotalEnemies = 500;
+    public int TotalZombies = 500;
 
     [Export]
-    public PackedScene EnemyScene;
+    public PackedScene ZombieScene;
 
     [Node]
     public Node2D Fireball;
 
     [Node]
-    public CanvasGroup Enemies;
+    public CanvasGroup Zombies;
 
     private RandomNumberGenerator _random = new();
     private Rect2 _rect;
     private Vector2 _screenSize;
-    private int _killedEnemies;
+    private int _killedZombies;
     private PointGenerator _pointGenerator;
 
     public override void _EnterTree()
@@ -47,8 +47,8 @@ public partial class Main : Node2D
 
         GameEvents.Instance.EnemyKilled += _ =>
         {
-            _killedEnemies++;
-            if (_killedEnemies % _random.RandiRange(2, 6) == 0)
+            _killedZombies++;
+            if (_killedZombies % _random.RandiRange(2, 6) == 0)
             {
                 _CreateEnemy(_pointGenerator.GeneratePoint());
             }
@@ -57,7 +57,7 @@ public partial class Main : Node2D
 
     private void _CreateEnemies()
     {
-        var points = _pointGenerator.GeneratePoints(TotalEnemies);
+        var points = _pointGenerator.GeneratePoints(TotalZombies);
         foreach (var point in points)
         {
             _CreateEnemy(point);
@@ -66,9 +66,9 @@ public partial class Main : Node2D
 
     private void _CreateEnemy(Vector2 point)
     {
-        var enemy = EnemyScene.Instantiate<Enemy>();
+        var enemy = ZombieScene.Instantiate<Zombie>();
         enemy.GlobalPosition = point;
 
-        Enemies.AddChild(enemy);
+        Zombies.AddChild(enemy);
     }
 }
