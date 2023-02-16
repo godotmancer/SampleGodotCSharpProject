@@ -64,6 +64,7 @@ remote_path = NodePath("../../Camera2D")
 y_sort_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 2
 
 [node name="FPS" parent="HUD" instance=ExtResource("4_biaco")]

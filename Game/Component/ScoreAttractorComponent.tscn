@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgvrlux56u8r"]
+
+[ext_resource type="Script" path="res://Game/Component/ScoreAttractorComponent.cs" id="1_topu5"]
+
+[node name="ScoreAttractorComponent" type="Node2D"]
+script = ExtResource("1_topu5")

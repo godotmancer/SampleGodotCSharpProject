@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Entity" />
+    <Folder Include="Scenes" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Screenshots\.gdignore" />
