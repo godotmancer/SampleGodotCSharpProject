@@ -3,6 +3,7 @@ using GodotUtilities;
 using SampleGodotCSharpProject.Game.Entity;
 using SampleGodotCSharpProject.Game.Manager;
 using SampleGodotCSharpProject.Game.Extension;
+using Zombie = SampleGodotCSharpProject.Game.Entity.Enemy.Zombie;
 
 namespace SampleGodotCSharpProject.Game.Component;
 

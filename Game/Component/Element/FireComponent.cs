@@ -72,7 +72,7 @@ public partial class FireComponent : ElementComponent
         if (fireComponent == null)
         {
             _wait = true;
-            body.InstantiateChildDeferredWithAction<FireComponent>((fc) =>
+            body.AddChildDeferredWithAction<FireComponent>((fc) =>
             {
                 fc.SetEnergy(Energy * EnergyTransferPercent / 100f, false);
                 _wait = false;

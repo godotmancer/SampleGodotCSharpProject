@@ -4,9 +4,9 @@ using GodotUtilities.Logic;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Component;
 
-namespace SampleGodotCSharpProject.Game.Entity;
+namespace SampleGodotCSharpProject.Game.Entity.Enemy;
 
-public partial class Zombie : CharacterBody2D
+public partial class Zombie : BaseEnemy
 {
     [Node]
     public VelocityComponent VelocityComponent;

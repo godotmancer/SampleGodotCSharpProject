@@ -22,7 +22,7 @@ public static class NodeExtension
         return result;
     }
 
-    public static async void InstantiateChildDeferredWithAction<T>(this Node node, Action<T> action) where T : Node
+    public static async void AddChildDeferredWithAction<T>(this Node node, Action<T> action) where T : Node
     {
         T child = node.InstantiateFromResources<T>();
         node.CallDeferred("add_child", child);

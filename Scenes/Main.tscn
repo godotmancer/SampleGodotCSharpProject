@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cuasmas3jt4l5"]
+[gd_scene load_steps=12 format=3 uid="uid://biscj6wekpke8"]
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_mma13"]
-[ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Zombie.tscn" id="2_bgd7c"]
+[ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_dnb71"]
 [ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/EffectsManager.tscn" id="3_0w13c"]
 [ext_resource type="PackedScene" path="res://UI/Fps.tscn" id="4_biaco"]
 [ext_resource type="PackedScene" uid="uid://cqjjl78og3k1m" path="res://Game/Entity/Fireball.tscn" id="4_nhapj"]
@@ -35,7 +35,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mma13")
-ZombieScene = ExtResource("2_bgd7c")
+ZombieScene = ExtResource("2_dnb71")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_otope")
