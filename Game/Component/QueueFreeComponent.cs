@@ -28,7 +28,7 @@ public partial class QueueFreeComponent : BaseComponent
             _exitCount--;
             if (_exitCount <= 0)
             {
-                QueueFree();
+                _parent.QueueFree();
             }
         }
     }
