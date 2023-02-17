@@ -1,13 +1,14 @@
 using System;
 using Godot;
 using GodotUtilities;
+using SampleGodotCSharpProject.Game.Component;
 
 namespace SampleGodotCSharpProject.Game.Extension;
 
 public static class NodeExtension
 {
     private static ResourcePreloader _preloader;
-    
+
     public static T InstantiateFromResources<T>(this Node node) where T : Node
     {
         _preloader ??= node.GetNode<ResourcePreloader>("/root/RsPreloader");
@@ -22,12 +23,33 @@ public static class NodeExtension
         return result;
     }
 
-    public static async void AddChildDeferredWithAction<T>(this Node node, Action<T> action) where T : Node
+    public static T AddResourceDeferred<T>(this Node node) where T : Node
     {
         T child = node.InstantiateFromResources<T>();
         node.CallDeferred("add_child", child);
-        await child.ToSignal(node, Node.SignalName.TreeEntered);
+        return child;
+    }
+
+    public static async void AddResourceDeferredWithAction<T>(this Node node, Action<T> action) where T : Node
+    {
+        var child = node.AddResourceDeferred<T>();
+        await child.ToSignal(child, Node.SignalName.TreeEntered);
         action(child);
     }
 
+    public static void AddNodeToQueueFreeComponent(this Node node, Node nodeToAdd)
+    {
+        var queueFreeComponent = node.GetFirstNodeOfType<QueueFreeComponent>();
+        if (queueFreeComponent == null)
+        {
+            return;
+        }
+
+        queueFreeComponent.AddWaitForNodeExit(nodeToAdd);
+    }
+    
+    public static void AddResourceAndQueueFree<T>(this Node node) where T : Node
+    {
+        node.AddResourceDeferredWithAction<T>(node.AddNodeToQueueFreeComponent);
+    }
 }

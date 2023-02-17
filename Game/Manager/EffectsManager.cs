@@ -4,7 +4,7 @@ using GodotUtilities;
 
 namespace SampleGodotCSharpProject.Game.Manager;
 
-public partial class EffectsManager : Node2D
+public partial class EffectsManager : Node
 {
     private int _currentShakePriority;
     private readonly Random _random = new();

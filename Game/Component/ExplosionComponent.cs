@@ -1,6 +1,5 @@
 using Godot;
 using GodotUtilities;
-using SampleGodotCSharpProject.Game.Entity;
 using SampleGodotCSharpProject.Game.Manager;
 using SampleGodotCSharpProject.Game.Extension;
 using Zombie = SampleGodotCSharpProject.Game.Entity.Enemy.Zombie;
@@ -35,7 +34,7 @@ public partial class ExplosionComponent : BaseComponent
             if (velocityComponent != null)
             {
                 velocityComponent.DisableCollisionCheck(true);
-                velocityComponent.ApplyGravity(node, new Vector2(0, 9.8f));
+                // velocityComponent.ApplyGravity(node, new Vector2(0, 9.8f));
             }
         }
         

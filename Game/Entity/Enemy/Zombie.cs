@@ -3,111 +3,110 @@ using GodotUtilities;
 using GodotUtilities.Logic;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Component;
+using SampleGodotCSharpProject.Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Entity.Enemy;
-
-public partial class Zombie : BaseEnemy
+namespace SampleGodotCSharpProject.Game.Entity.Enemy
 {
-    [Node]
-    public VelocityComponent VelocityComponent;
-
-    [Node]
-    public FollowPlayerComponent FollowPlayerComponent;
-
-    [Node]
-    public AnimationPlayer AnimationPlayer;
-
-    [Node]
-    public CollisionShape2D CollisionShape2D;
-
-    [Node]
-    public Node2D Visuals;
-
-    [Node]
-    public AnimatedSprite2D AnimatedSprite2D;
-
-    private DelegateStateMachine _stateMachine = new();
-
-    public override void _EnterTree()
+    public partial class Zombie : BaseEnemy
     {
-        this.WireNodes();
-    }
+        private DelegateStateMachine _stateMachine = new();
 
-    public override void _Ready()
-    {
-        // Entity Initialisations
-        Scale *= (float)GD.RandRange(0.1, 0.4);
+        [Node]
+        public AnimatedSprite2D AnimatedSprite2D;
 
-        // State Machine States
-        _stateMachine.AddStates(StateIdle, EnterStateIdle);
-        _stateMachine.AddStates(StateWalk, EnterStateWalk);
-        _stateMachine.AddStates(StateStopped, EnterStateStopped);
-        _stateMachine.SetInitialState(StateIdle);
-        
-        GameEvents.EmitSpawnZombie(this);
-    }
+        [Node]
+        public CollisionShape2D CollisionShape2D;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        _stateMachine.Update();
-    }
+        [Node]
+        public FollowPlayerComponent FollowPlayerComponent;
 
-    private void _CheckSpeed()
-    {
-        var speed = VelocityComponent.Speed;
-        if (speed <= 0.1f)
+        [Node]
+        public HealthComponent HealthComponent;
+
+        [Node]
+        public VelocityComponent VelocityComponent;
+
+        [Node]
+        public Node2D Visuals;
+
+        public override void _EnterTree()
         {
-            if (_stateMachine.GetCurrentState() != StateIdle)
-            {
-                _stateMachine.ChangeState(StateIdle);
-                return;
-            }
+            this.WireNodes();
         }
-        else
+
+        public override void _Ready()
         {
-            if (_stateMachine.GetCurrentState() != StateWalk)
+            // Entity Initialisations
+            Scale *= (float)GD.RandRange(0.1, 0.4);
+
+            // State Machine States
+            _stateMachine.AddStates(StateIdle, EnterStateIdle);
+            _stateMachine.AddStates(StateWalk, EnterStateWalk);
+            _stateMachine.SetInitialState(StateIdle);
+
+            GameEvents.EmitSpawnZombie(this);
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            _stateMachine.Update();
+        }
+
+        private void _CheckHealth()
+        {
+            if (HealthComponent?.Health <= 0.0f && !IsDead)
             {
-                _stateMachine.ChangeState(StateWalk);
+                IsDead = true;
+
+                this.AddResourceAndQueueFree<ExplosionComponent>();
+                this.AddResourceAndQueueFree<ScoreAttractorComponent>();
+
+                GameEvents.EmitZombieKilled(this);
             }
         }
 
-        if (!(VelocityComponent.Velocity.Y > 1000.0f)) return;
+        private void _CheckSpeed()
+        {
+            var speed = VelocityComponent.Speed;
+            if (speed <= 0.1f)
+            {
+                if (_stateMachine.GetCurrentState() != StateIdle)
+                {
+                    _stateMachine.ChangeState(StateIdle);
+                }
+            }
+            else
+            {
+                if (_stateMachine.GetCurrentState() != StateWalk)
+                {
+                    _stateMachine.ChangeState(StateWalk);
+                }
+            }
+        }
 
-        GameEvents.EmitZombieKilled(this);
-        QueueFree();
+        private void EnterStateIdle()
+        {
+            AnimatedSprite2D.Pause();
+        }
 
-    }
+        private void StateIdle()
+        {
+            FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
 
-    private void EnterStateIdle()
-    {
-        AnimatedSprite2D.Pause();
-    }
+            _CheckHealth();
+            _CheckSpeed();
+        }
 
-    private void StateIdle()
-    {
-        FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
-        _CheckSpeed();
-    }
+        private void EnterStateWalk()
+        {
+            AnimatedSprite2D.Play("walk");
+        }
 
-    private void EnterStateWalk()
-    {
-        AnimatedSprite2D.Play("walk");
-    }
-
-    private void StateWalk()
-    {
-        FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
-        _CheckSpeed();
-    }
-
-    private void EnterStateStopped()
-    {
-        AnimationPlayer.Play("RESET");
-    }
-
-    private void StateStopped()
-    {
-        VelocityComponent.MoveAndCollide(this, GetPhysicsProcessDeltaTime());
-        _CheckSpeed();
+        private void StateWalk()
+        {
+            FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
+            _CheckHealth();
+            _CheckSpeed();
+        }
     }
 }

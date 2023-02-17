@@ -45,7 +45,7 @@ public partial class Fireball : StaticBody2D
 
         await ToSignal(GetTree(), "process_frame");
 
-        Input.WarpMouse(_screenSize/2.0f);
+        Input.WarpMouse(_screenSize / 2.0f);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -55,13 +55,8 @@ public partial class Fireball : StaticBody2D
 
     private void _EnteredHotZone(Node2D body)
     {
-        var fireComponent = body.GetFirstNodeOfType<FireComponent>();
+        var fireComponent = body.GetFirstNodeOfType<FireComponent>() ?? body.AddResourceDeferred<FireComponent>();
 
-        if (fireComponent == null)
-        {
-            fireComponent = this.InstantiateFromResources<FireComponent>();
-            body.AddChildDeferred(fireComponent);
-        }
         _nodesInsideHotZone.Add(body.Name, fireComponent);
     }
 

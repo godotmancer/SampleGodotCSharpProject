@@ -1,75 +1,84 @@
 using Godot;
 using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Entity;
+using SampleGodotCSharpProject.Game.Entity.Enemy;
 using SampleGodotCSharpProject.Helpers;
-using Zombie = SampleGodotCSharpProject.Game.Entity.Enemy.Zombie;
 
-namespace SampleGodotCSharpProject.Game;
-
-public partial class Main : Node2D
+namespace SampleGodotCSharpProject.Game
 {
-    [Export]
-    public int TotalZombies = 500;
-
-    [Export]
-    public PackedScene ZombieScene;
-
-    [Node]
-    public Node2D Fireball;
-
-    [Node]
-    public CanvasGroup Zombies;
-
-    private RandomNumberGenerator _random = new();
-    private Rect2 _rect;
-    private Vector2 _screenSize;
-    private int _killedZombies;
-    private PointGenerator _pointGenerator;
-
-    public override void _EnterTree()
+    public partial class Main : Node2D
     {
-        this.WireNodes();
-    }
+        [Export]
+        public int TotalZombies = 500;
 
-    public override void _Ready()
-    {
-        _random.Seed = 1234L;
-        _screenSize = GetViewportRect().Size;
+        [Export]
+        public PackedScene ZombieScene;
 
-        Fireball.GlobalPosition = _screenSize / 2;
-        
-        _pointGenerator = new PointGenerator(
-            _screenSize / 2.0f,
-            500,
-            200);
+        [Node]
+        public Node2D Fireball;
 
-        _CreateZombies();
+        [Node]
+        public CanvasLayer Hud;
 
-        GameEvents.Instance.ZombieKilled += _ =>
+        [Node]
+        public CanvasGroup Zombies;
+
+        [Node]
+        public Camera2D Camera2D;
+
+        private int _killedZombies;
+        private PointGenerator _pointGenerator;
+        private RandomNumberGenerator _random = new();
+        private Rect2 _rect;
+        private Vector2 _screenSize;
+
+        public override void _EnterTree()
         {
-            _killedZombies++;
-            if (_killedZombies % _random.RandiRange(2, 6) == 0)
-            {
-                _CreateZombies(_pointGenerator.GeneratePoint());
-            }
-        };
-    }
-
-    private void _CreateZombies()
-    {
-        var points = _pointGenerator.GeneratePoints(TotalZombies);
-        foreach (var point in points)
-        {
-            _CreateZombies(point);
+            this.WireNodes();
         }
-    }
 
-    private void _CreateZombies(Vector2 point)
-    {
-        var zombie = ZombieScene.Instantiate<Zombie>();
-        zombie.GlobalPosition = point;
+        public override void _Ready()
+        {
+            Global.Instance.Hud = Hud;
+            Global.Instance.Camera2D = Camera2D;
 
-        Zombies.AddChild(zombie);
+            _random.Seed = 1234L;
+            _screenSize = GetViewportRect().Size;
+
+            Fireball.GlobalPosition = _screenSize / 2;
+
+            _pointGenerator = new PointGenerator(
+                _screenSize / 2.0f,
+                500,
+                200);
+
+            _CreateZombies();
+
+            GameEvents.Instance.ZombieKilled += _ =>
+            {
+                _killedZombies++;
+                if (_killedZombies % _random.RandiRange(2, 6) == 0)
+                {
+                    _CreateZombies(_pointGenerator.GeneratePoint());
+                }
+            };
+        }
+
+        private void _CreateZombies()
+        {
+            var points = _pointGenerator.GeneratePoints(TotalZombies);
+            foreach (var point in points)
+            {
+                _CreateZombies(point);
+            }
+        }
+
+        private void _CreateZombies(Vector2 point)
+        {
+            var zombie = ZombieScene.Instantiate<Zombie>();
+            zombie.GlobalPosition = point;
+
+            Zombies.AddChild(zombie);
+        }
     }
 }
