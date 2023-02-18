@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3hrcsnedu5rb"]
+[gd_scene load_steps=13 format=3 uid="uid://b3hrcsnedu5rb"]
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_0nkbe"]
 [ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_i664h"]
 [ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/EffectsManager.tscn" id="3_pj0ra"]
+[ext_resource type="PackedScene" uid="uid://ckdhfy8knydeo" path="res://Game/Manager/SoundManager.tscn" id="4_dxf5a"]
 [ext_resource type="PackedScene" uid="uid://cqjjl78og3k1m" path="res://Game/Entity/Fireball.tscn" id="4_r0htc"]
 [ext_resource type="PackedScene" path="res://UI/Fps.tscn" id="5_l4iuv"]
 [ext_resource type="Script" path="res://UI/Score.cs" id="6_4yv7v"]
@@ -51,6 +52,8 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="EffectsManager" parent="." instance=ExtResource("3_pj0ra")]
+
+[node name="SoundManager" parent="." instance=ExtResource("4_dxf5a")]
 
 [node name="FireBall" parent="." instance=ExtResource("4_r0htc")]
 position = Vector2(576, 324)

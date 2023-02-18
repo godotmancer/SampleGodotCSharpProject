@@ -22,7 +22,7 @@ namespace SampleGodotCSharpProject.Game.Autoload
         public delegate void ZombieSpawnedEventHandler(Zombie zombie);
 
         [Signal]
-        public delegate void PlayerHitEventHandler();
+        public delegate void PlayerHitEventHandler(Node2D player);
 
         public static GameEvents Instance { get; private set; }
 
@@ -55,9 +55,9 @@ namespace SampleGodotCSharpProject.Game.Autoload
         {
             Instance.EmitSignal(SignalName.ZombieSpawned, zombie);
         }
-        public static void EmitPlayerHit()
+        public static void EmitPlayerHit(Node2D player)
         {
-            Instance.EmitSignal(SignalName.PlayerHit);
+            Instance.EmitSignal(SignalName.PlayerHit, player);
         }
     }
 }

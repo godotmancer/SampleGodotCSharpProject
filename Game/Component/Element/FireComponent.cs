@@ -78,13 +78,13 @@ namespace SampleGodotCSharpProject.Game.Component.Element
                 _wait = true;
                 body.AddResourceDeferredWithAction<FireComponent>(fc =>
                 {
-                    fc.SetEnergy(Energy * EnergyTransferPercent / 100f, false);
+                    fc.SetEnergy(Energy * EnergyTransferPercent / 100f);
                     _wait = false;
                 });
             }
             else
             {
-                fireComponent.AddEnergy(EnergyTransferPercent / 100f, false);
+                fireComponent.AddEnergy(EnergyTransferPercent / 100f);
                 AddEnergy(EnergyLossPercent / 100f);
             }
         }
@@ -163,6 +163,16 @@ namespace SampleGodotCSharpProject.Game.Component.Element
                 _healthComponent ??= _parent.GetFirstNodeOfType<HealthComponent>();
                 _healthComponent?.DecreaseHealth(MaxHealthDamage * Energy);
             }
+        }
+
+        public override void _ExitTree()
+        {
+            if (Enabled)
+            {
+                EmitSignal(ElementComponent.SignalName.IntensityDepleted, null);
+                GameEvents.EmitElementIntensityDepleted(null);
+            }
+
         }
     }
 }

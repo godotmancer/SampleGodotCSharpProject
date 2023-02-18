@@ -55,7 +55,8 @@ namespace SampleGodotCSharpProject.Game.Component
                 .From(Vector2.One * 1.2f)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
-            tween.Parallel().TweenCallback(Callable.From(GameEvents.EmitPlayerHit));
+            tween.Parallel().TweenCallback(
+                Callable.From(() => GameEvents.EmitPlayerHit(_fireball)));
 
             tween.TweenCallback(Callable.From(QueueFree));
         }
