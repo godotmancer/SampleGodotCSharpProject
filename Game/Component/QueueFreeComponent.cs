@@ -1,34 +1,35 @@
 using Godot;
 
-namespace SampleGodotCSharpProject.Game.Component;
-
-public partial class QueueFreeComponent : BaseComponent
+namespace SampleGodotCSharpProject.Game.Component
 {
-    private Node _parent;
-    private int _exitCount;
-
-    public override void _Ready()
+    public partial class QueueFreeComponent : BaseComponent
     {
-        _parent = GetParent();
-    }
+        private int _exitCount;
+        private Node _parent;
 
-    public void AddWaitForNodeExit(Node node)
-    {
-        if (Enabled)
+        public override void _Ready()
         {
-            _exitCount++;
-            node.TreeExited += _NodeExitedTree;
+            _parent = GetParent();
         }
-    }
 
-    public void _NodeExitedTree()
-    {
-        if (Enabled)
+        public void AddWaitForNodeExit(Node node)
         {
-            _exitCount--;
-            if (_exitCount <= 0)
+            if (Enabled)
             {
-                _parent.QueueFree();
+                _exitCount++;
+                node.TreeExited += _NodeExitedTree;
+            }
+        }
+
+        public void _NodeExitedTree()
+        {
+            if (Enabled)
+            {
+                _exitCount--;
+                if (_exitCount <= 0)
+                {
+                    _parent.QueueFree();
+                }
             }
         }
     }

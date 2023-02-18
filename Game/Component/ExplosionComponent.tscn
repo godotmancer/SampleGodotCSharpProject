@@ -256,7 +256,6 @@ scale = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 unique_name_in_owner = true
-y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_iu2w2")
 animation = &"particle"
 autoplay = "particle"

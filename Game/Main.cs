@@ -8,11 +8,14 @@ namespace SampleGodotCSharpProject.Game
 {
     public partial class Main : Node2D
     {
-        [Export]
-        public int TotalZombies = 500;
+        private int _killedZombies;
+        private PointGenerator _pointGenerator;
+        private RandomNumberGenerator _random = new();
+        private Rect2 _rect;
+        private Vector2 _screenSize;
 
-        [Export]
-        public PackedScene ZombieScene;
+        [Node]
+        public Camera2D Camera2D;
 
         [Node]
         public Node2D Fireball;
@@ -20,17 +23,14 @@ namespace SampleGodotCSharpProject.Game
         [Node]
         public CanvasLayer Hud;
 
+        [Export]
+        public int TotalZombies = 500;
+
         [Node]
         public CanvasGroup Zombies;
 
-        [Node]
-        public Camera2D Camera2D;
-
-        private int _killedZombies;
-        private PointGenerator _pointGenerator;
-        private RandomNumberGenerator _random = new();
-        private Rect2 _rect;
-        private Vector2 _screenSize;
+        [Export]
+        public PackedScene ZombieScene;
 
         public override void _EnterTree()
         {

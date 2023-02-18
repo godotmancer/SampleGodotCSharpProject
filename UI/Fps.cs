@@ -1,11 +1,12 @@
 using Godot;
 
-namespace SampleGodotCSharpProject.UI;
-
-public partial class Fps : Label
+namespace SampleGodotCSharpProject.UI
 {
-    public override void _Process(double delta)
+    public partial class Fps : Label
     {
-        Text = $"{Engine.GetFramesPerSecond()}/s";
+        public override void _Process(double delta)
+        {
+            Text = $"{Engine.GetFramesPerSecond()}/s";
+        }
     }
 }

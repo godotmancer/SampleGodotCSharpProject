@@ -1,53 +1,50 @@
 using Godot;
 using GodotUtilities;
-using SampleGodotCSharpProject.Game.Manager;
+using SampleGodotCSharpProject.Game.Entity.Enemy;
 using SampleGodotCSharpProject.Game.Extension;
-using Zombie = SampleGodotCSharpProject.Game.Entity.Enemy.Zombie;
+using SampleGodotCSharpProject.Game.Manager;
 
-namespace SampleGodotCSharpProject.Game.Component;
-
-public partial class ExplosionComponent : BaseComponent
+namespace SampleGodotCSharpProject.Game.Component
 {
-    [Node]
-    public AnimatedSprite2D AnimatedSprite2D;
-
-    [Node]
-    public Node2D Visuals;
-
-    public override void _EnterTree()
+    public partial class ExplosionComponent : BaseComponent
     {
-        this.WireNodes();
-    }
+        [Node]
+        public AnimatedSprite2D AnimatedSprite2D;
 
-    public override void _Ready()
-    {
-        AnimatedSprite2D.AnimationFinished += QueueFree;
-     
-        Visuals.Rotation = (float)GD.Randfn(Mathf.Pi*2, Mathf.Pi);
+        [Node]
+        public Node2D Visuals;
 
-        if (GetParent() is Zombie node)
+        public override void _EnterTree()
         {
-            node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
-            node.GetFirstNodeOfType<FacingComponent>()?.SetEnabled(false);
-            node.GetFirstNodeOfType<FollowPlayerComponent>()?.SetEnabled(false);
-            var velocityComponent = node.GetFirstNodeOfType<VelocityComponent>();
-            if (velocityComponent != null)
-            {
-                velocityComponent.DisableCollisionCheck(true);
-                // velocityComponent.ApplyGravity(node, new Vector2(0, 9.8f));
-            }
+            this.WireNodes();
         }
-        
-        var shakeIntensity = _CalcShakeIntensity();
-        if (shakeIntensity <= float.Epsilon) return;
-        
-        EffectsManager.ShakeScreen(1f, 5*shakeIntensity);
-    }
 
-    private float _CalcShakeIntensity()
-    {
-        var camera = GetTree().GetFirstNodeInGroup<Camera2D>();
-        var shakeIntensity = Mathf.Remap(GlobalPosition.DistanceTo(camera.GlobalPosition), 0, 500f, 1.0f, 0.0f);
-        return shakeIntensity;
+        public override void _Ready()
+        {
+            AnimatedSprite2D.AnimationFinished += QueueFree;
+
+            Visuals.Rotation = (float)GD.Randfn(Mathf.Pi * 2, Mathf.Pi);
+
+            if (GetParent() is Zombie node)
+            {
+                node.MoveToFront();
+                node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
+                node.GetFirstNodeOfType<FacingComponent>()?.SetEnabled(false);
+                node.GetFirstNodeOfType<FollowPlayerComponent>()?.SetEnabled(false);
+                node.GetFirstNodeOfType<VelocityComponent>()?.SetEnabled(false);
+            }
+
+            var shakeIntensity = _CalcShakeIntensity();
+            if (shakeIntensity <= float.Epsilon) return;
+
+            EffectsManager.ShakeScreen(1f, 5 * shakeIntensity);
+        }
+
+        private float _CalcShakeIntensity()
+        {
+            var camera = GetTree().GetFirstNodeInGroup<Camera2D>();
+            var shakeIntensity = Mathf.Remap(GlobalPosition.DistanceTo(camera.GlobalPosition), 0, 500f, 1.0f, 0.0f);
+            return shakeIntensity;
+        }
     }
 }

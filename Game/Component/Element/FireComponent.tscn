@@ -22,10 +22,9 @@ offsets = PackedFloat32Array(0, 0.404826, 0.55496, 0.801609, 1)
 colors = PackedColorArray(3, 0, 0, 1, 1.4, 0, 0.03, 1, 2.6, 2.8, 0, 1, 0.201299, 0.119869, 0.0404145, 1, 0.2, 0.12, 0.04, 0.17)
 
 [node name="FireComponent" type="Node2D"]
-y_sort_enabled = true
 script = ExtResource("1_8js25")
-EnergyTransferPercent = 30.0
 EnergyLossPercent = -5.0
+EnergyTransferPercent = 30.0
 
 [node name="DepletionTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -48,7 +47,6 @@ disabled = true
 
 [node name="FireParticles" type="CPUParticles2D" parent="Visuals"]
 unique_name_in_owner = true
-y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_5hltt")
 position = Vector2(0, -32)
 amount = 24

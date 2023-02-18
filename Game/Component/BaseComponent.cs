@@ -1,25 +1,26 @@
 using Godot;
 
-namespace SampleGodotCSharpProject.Game.Component;
-
-public partial class BaseComponent : Node2D
+namespace SampleGodotCSharpProject.Game.Component
 {
-    [Export]
-    public bool Enabled
+    public partial class BaseComponent : Node2D
     {
-        set => SetEnabled(value);
-        get => _enabled;
-    }
+        private bool _enabled = true;
 
-    private bool _enabled = true;
+        [Export]
+        public bool Enabled
+        {
+            set => SetEnabled(value);
+            get => _enabled;
+        }
 
-    protected virtual void _EnabledPostProcess()
-    {
-    }
+        protected virtual void _EnabledPostProcess()
+        {
+        }
 
-    public void SetEnabled(bool enabled)
-    {
-        _enabled = enabled;
-        _EnabledPostProcess();
+        public void SetEnabled(bool enabled)
+        {
+            _enabled = enabled;
+            _EnabledPostProcess();
+        }
     }
 }

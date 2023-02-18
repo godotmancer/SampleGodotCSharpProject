@@ -40,8 +40,8 @@ update_scale = false
 [node name="VelocityComponent" parent="." instance=ExtResource("1_athld")]
 
 [node name="FollowMouseComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("2_iv1x6")]
-VelocityComponent = NodePath("../VelocityComponent")
 Speed = 4.0
+VelocityComponent = NodePath("../VelocityComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hc3n0")

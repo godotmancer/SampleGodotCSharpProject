@@ -5,72 +5,73 @@ using SampleGodotCSharpProject.Game.Component;
 using SampleGodotCSharpProject.Game.Component.Element;
 using SampleGodotCSharpProject.Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Entity;
-
-public partial class Fireball : StaticBody2D
+namespace SampleGodotCSharpProject.Game.Entity
 {
-    [Export]
-    public bool HeatUpTouching = true;
-
-    [Export]
-    public float HeatUpEnergyRate = 0.075f;
-
-    [Node]
-    public FollowMouseComponent FollowMouseComponent;
-
-    [Node]
-    public Area2D HotZone;
-
-    [Node]
-    public Timer Timer;
-
-    [Node]
-    public Sprite2D Skull;
-
-    private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
-    private Vector2 _screenSize;
-
-    public override void _EnterTree()
+    public partial class Fireball : StaticBody2D
     {
-        this.WireNodes();
-    }
+        private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
+        private Vector2 _screenSize;
 
-    public override async void _Ready()
-    {
-        _screenSize = GetViewportRect().Size;
+        [Node]
+        public FollowMouseComponent FollowMouseComponent;
 
-        HotZone.BodyEntered += _EnteredHotZone;
-        HotZone.BodyExited += _ExitedHotZone;
-        Timer.Timeout += _HeatUpHotZone;
+        [Export]
+        public float HeatUpEnergyRate = 0.075f;
 
-        await ToSignal(GetTree(), "process_frame");
+        [Export]
+        public bool HeatUpTouching = true;
 
-        Input.WarpMouse(_screenSize / 2.0f);
-    }
+        [Node]
+        public Area2D HotZone;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        FollowMouseComponent.Follow(delta);
-    }
+        [Node]
+        public Sprite2D Skull;
 
-    private void _EnteredHotZone(Node2D body)
-    {
-        var fireComponent = body.GetFirstNodeOfType<FireComponent>() ?? body.AddResourceDeferred<FireComponent>();
+        [Node]
+        public Timer Timer;
 
-        _nodesInsideHotZone.Add(body.Name, fireComponent);
-    }
-
-    private void _ExitedHotZone(Node2D body)
-    {
-        _nodesInsideHotZone.Remove(body.Name);
-    }
-
-    private void _HeatUpHotZone()
-    {
-        if (!HeatUpTouching) return;
-        foreach (var fireComponent in _nodesInsideHotZone.Values)
+        public override void _EnterTree()
         {
-            fireComponent.AddEnergy(HeatUpEnergyRate);
+            this.WireNodes();
+        }
+
+        public override async void _Ready()
+        {
+            _screenSize = GetViewportRect().Size;
+
+            HotZone.BodyEntered += _EnteredHotZone;
+            HotZone.BodyExited += _ExitedHotZone;
+            Timer.Timeout += _HeatUpHotZone;
+
+            await ToSignal(GetTree(), "process_frame");
+
+            Input.WarpMouse(_screenSize / 2.0f);
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            FollowMouseComponent.Follow(delta);
+        }
+
+        private void _EnteredHotZone(Node2D body)
+        {
+            var fireComponent = body.GetFirstNodeOfType<FireComponent>() ?? body.AddResourceDeferred<FireComponent>();
+
+            _nodesInsideHotZone.Add(body.Name, fireComponent);
+        }
+
+        private void _ExitedHotZone(Node2D body)
+        {
+            _nodesInsideHotZone.Remove(body.Name);
+        }
+
+        private void _HeatUpHotZone()
+        {
+            if (!HeatUpTouching) return;
+            foreach (var fireComponent in _nodesInsideHotZone.Values)
+            {
+                fireComponent.AddEnergy(HeatUpEnergyRate);
+            }
         }
     }
 }

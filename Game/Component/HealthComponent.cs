@@ -1,53 +1,54 @@
 using Godot;
 using GodotUtilities;
 
-namespace SampleGodotCSharpProject.Game.Component;
-
-public partial class HealthComponent : BaseComponent
+namespace SampleGodotCSharpProject.Game.Component
 {
-    [Export]
-    public float Health;
-
-    [Node]
-    public Label Label;
-
-    public override void _EnterTree()
+    public partial class HealthComponent : BaseComponent
     {
-        this.WireNodes();
-    }
+        [Export]
+        public float Health;
 
-    public override void _Ready()
-    {
-        _UpdateVisuals();
-    }
+        [Node]
+        public Label Label;
 
-    private void _UpdateVisuals()
-    {
-        if (Label.Visible)
-            Label.Text = $"{Health}";
-    }
+        public override void _EnterTree()
+        {
+            this.WireNodes();
+        }
 
-    public float DecreaseHealth(float damage)
-    {
-        var oldHealth = Health;
-        Health -= damage;
-        _UpdateVisuals();
+        public override void _Ready()
+        {
+            _UpdateVisuals();
+        }
 
-        return oldHealth;
-    }
+        private void _UpdateVisuals()
+        {
+            if (Label.Visible)
+                Label.Text = $"{Health}";
+        }
 
-    public float IncreaseHealth(float damage)
-    {
-        var oldHealth = Health;
-        Health += damage;
-        _UpdateVisuals();
+        public float DecreaseHealth(float damage)
+        {
+            var oldHealth = Health;
+            Health -= damage;
+            _UpdateVisuals();
 
-        return oldHealth;
-    }
+            return oldHealth;
+        }
 
-    public void SetHealth(float health)
-    {
-        Health = health;
-        _UpdateVisuals();
+        public float IncreaseHealth(float damage)
+        {
+            var oldHealth = Health;
+            Health += damage;
+            _UpdateVisuals();
+
+            return oldHealth;
+        }
+
+        public void SetHealth(float health)
+        {
+            Health = health;
+            _UpdateVisuals();
+        }
     }
 }

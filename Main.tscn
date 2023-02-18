@@ -49,7 +49,6 @@ position = Vector2(576, 324)
 remote_path = NodePath("../../Camera2D")
 
 [node name="Zombies" type="CanvasGroup" parent="."]
-y_sort_enabled = true
 
 [node name="Hud" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
