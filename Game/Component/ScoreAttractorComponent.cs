@@ -1,11 +1,17 @@
 using Godot;
 using GodotUtilities;
+using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Entity;
+using SampleGodotCSharpProject.Game.Extension;
+using SampleGodotCSharpProject.Game.Manager;
 
 namespace SampleGodotCSharpProject.Game.Component
 {
     public partial class ScoreAttractorComponent : BaseComponent
     {
+        [Export]
+        public float Duration = 2.0f;
+
         private Node2D _fireball;
         private Node2D _node;
         private Vector2 _nodeInitialGlobalPos;
@@ -22,16 +28,35 @@ namespace SampleGodotCSharpProject.Game.Component
                     this,
                     nameof(Amount),
                     1.0f,
-                    1.5f)
-                .SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.In);
-            tween.Parallel()
-                .TweenProperty(
+                    Duration)
+                .SetTrans(Tween.TransitionType.Back)
+                .SetEase(Tween.EaseType.In);
+            tween.Parallel().TweenProperty(
                     _node,
-                    "modulate",
-                    Colors.Transparent,
-                    2.5f)
+                    "rotation",
+                    Mathf.Pi * 7.0,
+                    Duration)
                 .SetTrans(Tween.TransitionType.Expo)
                 .SetEase(Tween.EaseType.In);
+
+            tween.TweenProperty(
+                    _fireball,
+                    "modulate",
+                    Colors.White,
+                    0.25f)
+                .From(this.IntensifyColor(Colors.Magenta, 2.3f))
+                .SetTrans(Tween.TransitionType.Linear)
+                .SetEase(Tween.EaseType.In);
+            tween.Parallel().TweenProperty(
+                    _fireball,
+                    "scale",
+                    Vector2.One,
+                    0.25f)
+                .From(Vector2.One * 1.2f)
+                .SetTrans(Tween.TransitionType.Linear)
+                .SetEase(Tween.EaseType.In);
+            tween.Parallel().TweenCallback(Callable.From(GameEvents.EmitPlayerHit));
+
             tween.TweenCallback(Callable.From(QueueFree));
         }
 

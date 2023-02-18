@@ -27,7 +27,7 @@ namespace SampleGodotCSharpProject.Game.Component
 
             if (GetParent() is Zombie node)
             {
-                node.MoveToFront();
+                node.ZIndex = 2;
                 node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
                 node.GetFirstNodeOfType<FacingComponent>()?.SetEnabled(false);
                 node.GetFirstNodeOfType<FollowPlayerComponent>()?.SetEnabled(false);

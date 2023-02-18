@@ -14,6 +14,12 @@ namespace SampleGodotCSharpProject.UI
                 _totalZombies += 1;
                 Text = $"Zombies: {_totalZombies}";
             };
+            
+            GameEvents.Instance.ZombieKilled += _ =>
+            {
+                _totalZombies -= 1;
+                Text = $"Zombies: {_totalZombies}";
+            };
         }
     }
 }

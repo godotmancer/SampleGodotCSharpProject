@@ -14,7 +14,6 @@ config/name="SampleGodotCSharpProject"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 boot_splash/image="res://Assets/fireball-logo-7.png"
-boot_splash/use_filter=false
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=500
 

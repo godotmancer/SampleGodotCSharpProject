@@ -40,6 +40,16 @@ ZombieScene = ExtResource("2_i664h")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_otope")
 
+[node name="Camera2D" type="Camera2D" parent="." groups=["Camera2D"]]
+position = Vector2(576, 324)
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
 [node name="EffectsManager" parent="." instance=ExtResource("3_pj0ra")]
 
 [node name="FireBall" parent="." instance=ExtResource("4_r0htc")]
@@ -85,17 +95,5 @@ text = "Zombies: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 script = ExtResource("7_ojfmy")
-
-[node name="Camera2D" type="Camera2D" parent="." groups=["Camera2D"]]
-position = Vector2(576, 324)
-limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.6
-drag_top_margin = 0.6
-drag_right_margin = 0.6
-drag_bottom_margin = 0.6
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [editable path="FireBall"]
