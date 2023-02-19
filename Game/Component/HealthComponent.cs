@@ -8,6 +8,9 @@ namespace SampleGodotCSharpProject.Game.Component
         [Export]
         public float Health;
 
+        [Export]
+        public Gradient HealthGradient;
+
         [Node]
         public Label Label;
 

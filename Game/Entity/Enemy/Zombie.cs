@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using GodotUtilities;
 using GodotUtilities.Logic;
@@ -9,8 +10,6 @@ namespace SampleGodotCSharpProject.Game.Entity.Enemy
 {
     public partial class Zombie : BaseEnemy
     {
-        private DelegateStateMachine _stateMachine = new();
-
         [Node]
         public AnimatedSprite2D AnimatedSprite2D;
 
@@ -28,6 +27,9 @@ namespace SampleGodotCSharpProject.Game.Entity.Enemy
 
         [Node]
         public Node2D Visuals;
+
+        private DelegateStateMachine _stateMachine = new();
+        private float _oldHealth;
 
         public override void _EnterTree()
         {
@@ -54,14 +56,22 @@ namespace SampleGodotCSharpProject.Game.Entity.Enemy
 
         private void _CheckHealth()
         {
-            if (HealthComponent?.Health <= 0.0f && !IsDead)
+            if (HealthComponent != null)
             {
-                IsDead = true;
+                if (HealthComponent.Health <= 0.0f && !IsDead)
+                {
+                    IsDead = true;
 
-                this.AddResourceAndQueueFree<ExplosionComponent>();
-                this.AddResourceAndQueueFree<ScoreAttractorComponent>();
+                    this.AddResourceAndQueueFree<ExplosionComponent>();
+                    this.AddResourceAndQueueFree<ScoreAttractorComponent>();
 
-                GameEvents.EmitZombieKilled(this);
+                    GameEvents.EmitZombieKilled(this);
+                }
+                else if (Math.Abs(HealthComponent.Health - _oldHealth) > 0.001f)
+                {
+                    _oldHealth = HealthComponent.Health;
+                    Visuals.Modulate = HealthComponent.HealthGradient.Sample(1.0f - _oldHealth);
+                }
             }
         }
 
