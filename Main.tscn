@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3hrcsnedu5rb"]
+[gd_scene load_steps=14 format=3 uid="uid://b3hrcsnedu5rb"]
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_0nkbe"]
 [ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_i664h"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://UI/Fps.tscn" id="5_l4iuv"]
 [ext_resource type="Script" path="res://UI/Score.cs" id="6_4yv7v"]
 [ext_resource type="Script" path="res://UI/ZombieCounter.cs" id="7_ojfmy"]
+[ext_resource type="Script" path="res://UI/Rate.cs" id="9_cltbk"]
 
 [sub_resource type="Environment" id="Environment_otope"]
 background_mode = 3
@@ -98,5 +99,23 @@ text = "Zombies: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 script = ExtResource("7_ojfmy")
+
+[node name="Rate" type="Label" parent="Hud"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -193.0
+offset_top = 65.0
+offset_bottom = 110.0
+grow_horizontal = 0
+size_flags_vertical = 2
+text = "Hits: 0"
+label_settings = SubResource("LabelSettings_f5cu4")
+horizontal_alignment = 2
+script = ExtResource("9_cltbk")
+
+[node name="Timer" type="Timer" parent="Hud/Rate"]
+autostart = true
 
 [editable path="FireBall"]
