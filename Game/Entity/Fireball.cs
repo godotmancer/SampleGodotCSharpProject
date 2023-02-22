@@ -26,10 +26,12 @@ namespace SampleGodotCSharpProject.Game.Entity
         public Area2D HotZone;
 
         [Node]
-        public Node2D Visuals;
+        public Sprite2D Skull;
 
         [Node]
         public Timer Timer;
+
+        private Vector2 _skullScale;
 
         public override void _EnterTree()
         {
@@ -45,9 +47,13 @@ namespace SampleGodotCSharpProject.Game.Entity
             Timer.Timeout += _HeatUpHotZone;
             GameEvents.Instance.PlayerHit += _hit;
 
+            _skullScale = Skull.Scale;
+            
             await ToSignal(GetTree(), "process_frame");
 
             Input.WarpMouse(_screenSize / 2.0f);
+            
+            
         }
 
         public override void _PhysicsProcess(double delta)
@@ -80,7 +86,7 @@ namespace SampleGodotCSharpProject.Game.Entity
         {
             var tween = CreateTween();
             tween.TweenProperty(
-                    Visuals,
+                    Skull,
                     "modulate",
                     Colors.White,
                     0.25f)
@@ -88,11 +94,11 @@ namespace SampleGodotCSharpProject.Game.Entity
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
             tween.Parallel().TweenProperty(
-                    Visuals,
+                    Skull,
                     "scale",
-                    Vector2.One,
+                    _skullScale,
                     0.25f)
-                .From(Vector2.One * 1.3f)
+                .From(_skullScale * 1.3f)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
 
