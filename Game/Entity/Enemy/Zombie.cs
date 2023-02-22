@@ -63,7 +63,12 @@ namespace SampleGodotCSharpProject.Game.Entity.Enemy
                     IsDead = true;
 
                     this.AddResourceAndQueueFree<ExplosionComponent>();
-                    this.AddResourceAndQueueFree<ScoreAttractorComponent>();
+                    
+                    // TODO: a little verbose - maybe create an extension method???
+                    var scoreAttractorComponent = this.InstantiateFromResources<ScoreAttractorComponent>();
+                    scoreAttractorComponent.AttractorNode = GetTree().GetFirstNodeInGroup<Fireball>();
+                    this.AddNodeToQueueFreeComponent(scoreAttractorComponent);
+                    this.AddChildDeferred(scoreAttractorComponent);
 
                     GameEvents.EmitZombieKilled(this);
                 }

@@ -49,7 +49,7 @@ namespace SampleGodotCSharpProject.Game.Component.Element
         {
             this.WireNodes();
         }
-
+        
         public override void _Ready()
         {
             DepletionTimer.Timeout += () => { AddEnergy(DepletionRate); };

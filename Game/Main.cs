@@ -57,7 +57,7 @@ namespace SampleGodotCSharpProject.Game
             GameEvents.Instance.ZombieKilled += _ =>
             {
                 _killedZombies++;
-                if (_killedZombies % _random.RandiRange(2, 6) == 0)
+                if (_killedZombies % _random.RandiRange(1, 2) == 0)
                 {
                     _CreateZombies(_pointGenerator.GeneratePoint());
                 }

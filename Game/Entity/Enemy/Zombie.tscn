@@ -29,7 +29,6 @@ radius = 64.0
 [node name="Zombie" type="CharacterBody2D" groups=["Zombie"]]
 collision_mask = 3
 motion_mode = 1
-platform_wall_layers = 1
 safe_margin = 0.001
 script = ExtResource("1_uyh6b")
 metadata/_edit_group_ = true

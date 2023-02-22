@@ -41,7 +41,7 @@ namespace SampleGodotCSharpProject.Game.Manager
                 Explosion.PlayWithPitch((float)GD.RandRange(0.6f,1.4f));
             };
 
-            GameEvents.Instance.ElementIntensityDepleted += element =>
+            GameEvents.Instance.ElementIntensityDepleted += _ =>
             {
                 if (!Enabled) return;
                 _fireIntensity = Mathf.Max(_fireIntensity - 1.0f, 0.0f);
@@ -52,12 +52,11 @@ namespace SampleGodotCSharpProject.Game.Manager
 
             };
             
-            GameEvents.Instance.ElementIntensityMaxed += element =>
+            GameEvents.Instance.ElementIntensityMaxed += _ =>
             {
                 if (!Enabled) return;
                 _fireIntensity += 1.0f;
                 if (!Fire.Playing) Fire.Play();
-
             };
 
         }

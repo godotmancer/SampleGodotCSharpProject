@@ -25,8 +25,10 @@ Global="*res://Game/Autoload/Global.tscn"
 
 [display]
 
+window/size/viewport_height=640
 window/size/always_on_top=true
 window/dpi/allow_hidpi=false
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -43,9 +45,13 @@ naming/scene_name_casing=1
 [physics]
 
 2d/run_on_separate_thread=true
+common/physics_ticks_per_second=30
+common/max_physics_steps_per_frame=4
+common/enable_object_picking=false
 
 [rendering]
 
+driver/threads/thread_model=0
 shader_compiler/shader_cache/strip_debug=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true

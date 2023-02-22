@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Manager/SoundManager.cs" id="1_i4nu1"]
 [ext_resource type="AudioStream" uid="uid://b0q7v0wqeeyyc" path="res://Assets/Sounds/SND36351.wav" id="2_spsuy"]
-[ext_resource type="AudioStream" uid="uid://c3gkjdo7y6l4j" path="res://Assets/Sounds/Hit_HardStone_03.wav" id="3_tsq4s"]
+[ext_resource type="AudioStream" uid="uid://ckd4h7y5t3hih" path="res://Assets/Sounds/chipsHandle3.ogg" id="3_5xuw2"]
 [ext_resource type="AudioStream" uid="uid://cfwubuk035v58" path="res://Assets/Sounds/Ambience_Bonfire_Loop.wav" id="4_x825c"]
 
 [node name="SoundManager" type="Node"]
@@ -10,11 +10,14 @@ script = ExtResource("1_i4nu1")
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_spsuy")
+volume_db = -10.0
 bus = &"Explosion"
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_tsq4s")
+stream = ExtResource("3_5xuw2")
+volume_db = -5.0
 bus = &"PlayerHit"
 
 [node name="Fire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x825c")
+volume_db = -10.0

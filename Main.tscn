@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3hrcsnedu5rb"]
+[gd_scene load_steps=15 format=3 uid="uid://b3hrcsnedu5rb"]
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_0nkbe"]
 [ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_i664h"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" path="res://UI/Fps.tscn" id="5_l4iuv"]
 [ext_resource type="Script" path="res://UI/Score.cs" id="6_4yv7v"]
 [ext_resource type="Script" path="res://UI/ZombieCounter.cs" id="7_ojfmy"]
-[ext_resource type="Script" path="res://UI/Rate.cs" id="9_cltbk"]
+[ext_resource type="Script" path="res://UI/RateStats.cs" id="9_x0qm4"]
+[ext_resource type="Texture2D" uid="uid://cuehy241ukjr1" path="res://Assets/leonardoai/Leonardo_Creative_grid_of_bones_and_shadows_representing_dead_zombies_black_an_1.jpg" id="10_lv5m8"]
 
 [sub_resource type="Environment" id="Environment_otope"]
 background_mode = 3
@@ -73,11 +74,9 @@ label_settings = SubResource("LabelSettings_7gb6r")
 
 [node name="Score" type="Label" parent="Hud"]
 unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = 988.0
+offset_right = 1152.0
+offset_bottom = 45.0
 grow_horizontal = 0
 size_flags_vertical = 2
 text = "Score: 0"
@@ -100,22 +99,44 @@ label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 script = ExtResource("7_ojfmy")
 
-[node name="Rate" type="Label" parent="Hud"]
-unique_name_in_owner = true
+[node name="RateStats" type="VBoxContainer" parent="Hud"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -193.0
-offset_top = 65.0
-offset_bottom = 110.0
+offset_left = -91.0
+offset_top = 64.0
+offset_bottom = 109.0
 grow_horizontal = 0
+theme_override_constants/separation = -13
+script = ExtResource("9_x0qm4")
+
+[node name="Timer" type="Timer" parent="Hud/RateStats"]
+autostart = true
+
+[node name="HitRate" type="Label" parent="Hud/RateStats"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_vertical = 2
 text = "Hits: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
-script = ExtResource("9_cltbk")
 
-[node name="Timer" type="Timer" parent="Hud/Rate"]
-autostart = true
+[node name="MaxRate" type="Label" parent="Hud/RateStats"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+text = "Max: 0"
+label_settings = SubResource("LabelSettings_f5cu4")
+horizontal_alignment = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 640)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.0235294, 0.176471, 0.25098, 0.858824)
+texture = ExtResource("10_lv5m8")
+centered = false
 
 [editable path="FireBall"]

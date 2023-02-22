@@ -1,25 +1,24 @@
 using Godot;
 using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Entity;
 using SampleGodotCSharpProject.Game.Extension;
-using SampleGodotCSharpProject.Game.Manager;
 
 namespace SampleGodotCSharpProject.Game.Component
 {
     public partial class ScoreAttractorComponent : BaseComponent
     {
         [Export]
+        public Node2D AttractorNode;
+
+        [Export]
         public float Duration = 2.0f;
 
-        private Node2D _fireball;
         private Node2D _node;
         private Vector2 _nodeInitialGlobalPos;
         private float Amount { get; set; }
 
         public override void _Ready()
         {
-            _fireball = GetTree().GetFirstNodeInGroup<Fireball>();
             _node = (Node2D)GetParent();
             _nodeInitialGlobalPos = _node.GlobalPosition;
 
@@ -31,6 +30,7 @@ namespace SampleGodotCSharpProject.Game.Component
                     Duration)
                 .SetTrans(Tween.TransitionType.Back)
                 .SetEase(Tween.EaseType.In);
+
             tween.Parallel().TweenProperty(
                     _node,
                     "rotation",
@@ -40,7 +40,7 @@ namespace SampleGodotCSharpProject.Game.Component
                 .SetEase(Tween.EaseType.In);
 
             tween.TweenProperty(
-                    _fireball,
+                    AttractorNode,
                     "modulate",
                     Colors.White,
                     0.25f)
@@ -48,22 +48,23 @@ namespace SampleGodotCSharpProject.Game.Component
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
             tween.Parallel().TweenProperty(
-                    _fireball,
+                    AttractorNode,
                     "scale",
                     Vector2.One,
                     0.25f)
-                .From(Vector2.One * 1.2f)
+                .From(Vector2.One * 1.3f)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
+
             tween.Parallel().TweenCallback(
-                Callable.From(() => GameEvents.EmitPlayerHit(_fireball)));
+                Callable.From(() => GameEvents.EmitPlayerHit(AttractorNode)));
 
             tween.TweenCallback(Callable.From(QueueFree));
         }
 
         public override void _PhysicsProcess(double delta)
         {
-            var fireballPos = _fireball.GlobalPosition;
+            var fireballPos = AttractorNode.GlobalPosition;
             _node.GlobalPosition = _nodeInitialGlobalPos
                 .MoveToward(
                     fireballPos,
