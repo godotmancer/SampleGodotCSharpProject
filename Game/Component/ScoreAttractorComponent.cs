@@ -1,7 +1,9 @@
+using System.Numerics;
 using Godot;
 using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Extension;
+using Vector2 = Godot.Vector2;
 
 namespace SampleGodotCSharpProject.Game.Component
 {
@@ -13,9 +15,10 @@ namespace SampleGodotCSharpProject.Game.Component
         [Export]
         public float Duration = 2.0f;
 
+        private float Amount { get; set; }
+
         private Node2D _node;
         private Vector2 _nodeInitialGlobalPos;
-        private float Amount { get; set; }
 
         public override void _Ready()
         {
@@ -38,9 +41,14 @@ namespace SampleGodotCSharpProject.Game.Component
                     Duration)
                 .SetTrans(Tween.TransitionType.Expo)
                 .SetEase(Tween.EaseType.In);
-            
+
             tween.TweenCallback(
-                Callable.From(() => GameEvents.EmitPlayerHit(AttractorNode)));
+                Callable.From(() =>
+                {
+                    var hitDirection = AttractorNode.GlobalPosition.DirectionTo(_node.GlobalPosition);
+                    var hitAngle = AttractorNode.GlobalPosition.AngleToPoint(_node.GlobalPosition);
+                    GameEvents.EmitPlayerHit(AttractorNode, hitAngle, hitDirection);
+                }));
 
             tween.TweenCallback(Callable.From(QueueFree));
         }
@@ -48,10 +56,8 @@ namespace SampleGodotCSharpProject.Game.Component
         public override void _PhysicsProcess(double delta)
         {
             var fireballPos = AttractorNode.GlobalPosition;
-            _node.GlobalPosition = _nodeInitialGlobalPos
-                .MoveToward(
-                    fireballPos,
-                    _nodeInitialGlobalPos.DistanceTo(fireballPos) * Amount);
+            var distance = _nodeInitialGlobalPos.DistanceTo(fireballPos) * Amount;
+            _node.GlobalPosition = _nodeInitialGlobalPos.MoveToward(fireballPos, distance);
         }
     }
 }

@@ -32,7 +32,7 @@ namespace SampleGodotCSharpProject.UI
                 _counter = 0;
                 HitRate.Text = $"Hits: {_rate:D0}/s";
             };
-            GameEvents.Instance.PlayerHit += _ =>
+            GameEvents.Instance.PlayerHit += (_, _, _) =>
             {
                 _counter += 1;
                 if (_maxRate <= _counter)

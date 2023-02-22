@@ -8,7 +8,7 @@ namespace SampleGodotCSharpProject.Game.Manager
     {
         [Export]
         public bool Enabled = true;
-        
+
         [Node]
         public AudioStreamPlayer2D Explosion;
 
@@ -19,7 +19,7 @@ namespace SampleGodotCSharpProject.Game.Manager
         public AudioStreamPlayer Fire;
 
         private float _fireIntensity;
-        
+
         public override void _EnterTree()
         {
             this.WireNodes();
@@ -27,18 +27,18 @@ namespace SampleGodotCSharpProject.Game.Manager
 
         public override void _Ready()
         {
-            GameEvents.Instance.PlayerHit += player =>
+            GameEvents.Instance.PlayerHit += (player, _, _) =>
             {
                 if (!Enabled) return;
                 PlayerHit.GlobalPosition = player.GlobalPosition;
-                PlayerHit.PlayWithPitch((float)GD.RandRange(0.8f,1.1f));
+                PlayerHit.PlayWithPitch((float)GD.RandRange(0.8f, 1.1f));
             };
-            
+
             GameEvents.Instance.ZombieKilled += zombie =>
             {
                 if (!Enabled) return;
                 Explosion.GlobalPosition = zombie.GlobalPosition;
-                Explosion.PlayWithPitch((float)GD.RandRange(0.6f,1.4f));
+                Explosion.PlayWithPitch((float)GD.RandRange(0.6f, 1.4f));
             };
 
             GameEvents.Instance.ElementIntensityDepleted += _ =>
@@ -49,16 +49,14 @@ namespace SampleGodotCSharpProject.Game.Manager
                 {
                     if (Fire.Playing) Fire.Stop();
                 }
-
             };
-            
+
             GameEvents.Instance.ElementIntensityMaxed += _ =>
             {
                 if (!Enabled) return;
                 _fireIntensity += 1.0f;
                 if (!Fire.Playing) Fire.Play();
             };
-
         }
     }
 }
