@@ -10,15 +10,15 @@ Try to make the development experience as satisfying and consistent as possible.
 * Component based Scene Tree (Composition)
 * Use of global signals (Game Events)
 * Managers (Sound, Effects, Bonus) - subscribe to Game Events
-* Godot Classes extentions (adds missing helper methods)
+* Godot Classes extensions (adds missing helper methods)
 
 This project will also serve as a 'light' benchmark of the current `master` branch of Godot 4.
 
 ## How to build/run
 
-Checkout **FireBelley's** awesome [Godot 4 Branch of GodotUtilities](https://github.com/firebelley/GodotUtilities/tree/godot-4) project and soft-link the `GodotUtilities/src` folder to `GodotUtilities` in the root of this project.
-
 Make sure you are using latest **Godot 4** version (I build **Godot 4** from source nearly every day and will try to keep this repo up-to-date accordingly).
+
+I will try to keep the `GodotUtilities` folder from @firebelley in-sync with this project.
 
 Look around, improve and feedback welcome.
 
