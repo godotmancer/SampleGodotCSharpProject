@@ -22,22 +22,23 @@ public partial class RateStats : Control
 		this.WireNodes();
 	}
 
-	public override void _Ready()
-	{
-		Timer.Timeout += () =>
-		{
-			_rate = _counter;
-			_counter = 0;
-			HitRate.Text = $"Hits: {_rate:D0}/s";
-		};
-		GameEvents.Instance.PlayerHit += _ =>
-		{
-			_counter += 1;
-			if (_maxRate <= _counter)
-			{
-				_maxRate = _counter;
-				MaxRate.Text = $"Max: {_maxRate:D0}";
-			}
-		};
-	}
+        public override void _Ready()
+        {
+            Timer.Timeout += () =>
+            {
+                _rate = _counter;
+                _counter = 0;
+                HitRate.Text = $"Hits: {_rate:D0}/s";
+            };
+            GameEvents.Instance.PlayerHit += (_, _, _) =>
+            {
+                _counter += 1;
+                if (_maxRate <= _counter)
+                {
+                    _maxRate = _counter;
+                    MaxRate.Text = $"Max: {_maxRate:D0}";
+                }
+            };
+        }
+    }
 }
