@@ -11,6 +11,7 @@ data_*/
 .godot/
 
 .vscode/
+.vs/
 .idea/
 #GodotUtilities - include Firebelley's code into this project for easier consumption.
 *.editorconfig

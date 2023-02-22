@@ -1,9 +1,8 @@
 using Godot;
 
-namespace SampleGodotCSharpProject.Game.Entity.Enemy
+namespace SampleGodotCSharpProject.Game.Entity.Enemy;
+
+public partial class BaseEnemy : CharacterBody2D
 {
-    public partial class BaseEnemy : CharacterBody2D
-    {
-        public bool IsDead;
-    }
+	public bool IsDead;
 }

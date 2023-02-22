@@ -3,176 +3,174 @@ using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Component.Element
+namespace SampleGodotCSharpProject.Game.Component.Element;
+
+public partial class FireComponent : ElementComponent
 {
-    public partial class FireComponent : ElementComponent
-    {
-        private HealthComponent _healthComponent;
-        private Node2D _parent;
+	private HealthComponent _healthComponent;
+	private Node2D _parent;
 
-        private bool _wait;
+	private bool _wait;
 
-        [Node]
-        public Area2D CatchFireZone;
+	[Node]
+	public Area2D CatchFireZone;
 
-        [Node]
-        public CollisionShape2D CatchFireZoneCollision;
+	[Node]
+	public CollisionShape2D CatchFireZoneCollision;
 
-        [Export]
-        public float DepletionRate = -0.03f;
+	[Export]
+	public float DepletionRate = -0.03f;
 
-        [Node]
-        public Timer DepletionTimer;
+	[Node]
+	public Timer DepletionTimer;
 
-        [Export]
-        public float EnergyLossPercent = -10.0f;
+	[Export]
+	public float EnergyLossPercent = -10.0f;
 
-        [Export]
-        public float EnergyTransferPercent = 10.0f;
+	[Export]
+	public float EnergyTransferPercent = 10.0f;
 
-        [Node]
-        public CpuParticles2D FireParticles;
+	[Node]
+	public CpuParticles2D FireParticles;
 
-        [Node]
-        public Timer HealthDamageTimer;
+	[Node]
+	public Timer HealthDamageTimer;
 
-        [Node]
-        public Label Label;
+	[Node]
+	public Label Label;
 
-        [Export]
-        public float MaxHealthDamage = 0.05f;
+	[Export]
+	public float MaxHealthDamage = 0.05f;
 
-        [Node]
-        public Node2D Visuals;
+	[Node]
+	public Node2D Visuals;
 
-        public override void _EnterTree()
-        {
-            this.WireNodes();
-        }
-        
-        public override void _Ready()
-        {
-            DepletionTimer.Timeout += () => { AddEnergy(DepletionRate); };
-            HealthDamageTimer.Timeout += _InflictDamage;
+	public override void _EnterTree()
+	{
+		this.WireNodes();
+	}
 
-            CatchFireZone.BodyEntered += _EnteredCatchFireZone;
+	public override void _Ready()
+	{
+		DepletionTimer.Timeout += () => { AddEnergy(DepletionRate); };
+		HealthDamageTimer.Timeout += _InflictDamage;
 
-            _parent = GetParent() as Node2D;
-        }
+		CatchFireZone.BodyEntered += _EnteredCatchFireZone;
 
-        private void _EnteredCatchFireZone(Node2D body)
-        {
-            _ApplyFire(body);
-        }
+		_parent = GetParent() as Node2D;
+	}
 
-        private void _ApplyFire(Node body)
-        {
-            // _wait here guards against a race condition whereby getting the first node returns
-            // null even though the fire component has been added through a deferred call.
-            if (_wait || !Enabled) return;
+	private void _EnteredCatchFireZone(Node2D body)
+	{
+		_ApplyFire(body);
+	}
 
-            var fireComponent = body.GetFirstNodeOfType<FireComponent>();
+	private void _ApplyFire(Node body)
+	{
+		// _wait here guards against a race condition whereby getting the first node returns
+		// null even though the fire component has been added through a deferred call.
+		if (_wait || !Enabled) return;
 
-            if (fireComponent == null)
-            {
-                _wait = true;
-                body.AddResourceDeferredWithAction<FireComponent>(fc =>
-                {
-                    fc.SetEnergy(Energy * EnergyTransferPercent / 100f);
-                    _wait = false;
-                });
-            }
-            else
-            {
-                fireComponent.AddEnergy(EnergyTransferPercent / 100f);
-                AddEnergy(EnergyLossPercent / 100f);
-            }
-        }
+		var fireComponent = body.GetFirstNodeOfType<FireComponent>();
 
-        public override float AddEnergy(float factor, bool emitSignals = true)
-        {
-            if (!Enabled) return Energy;
+		if (fireComponent == null)
+		{
+			_wait = true;
+			body.AddResourceDeferredWithAction<FireComponent>(fc =>
+			{
+				fc.SetEnergy(Energy * EnergyTransferPercent / 100f);
+				_wait = false;
+			});
+		}
+		else
+		{
+			fireComponent.AddEnergy(EnergyTransferPercent / 100f);
+			AddEnergy(EnergyLossPercent / 100f);
+		}
+	}
 
-            var oldEnergy = SetEnergy(Energy + factor, emitSignals);
-            return oldEnergy;
-        }
+	public override float AddEnergy(float factor, bool emitSignals = true)
+	{
+		if (!Enabled) return Energy;
 
-        public override float SetEnergy(float energy, bool emitSignals = true)
-        {
-            if (!Enabled) return Energy;
+		var oldEnergy = SetEnergy(Energy + factor, emitSignals);
+		return oldEnergy;
+	}
 
-            var result = base.SetEnergy(energy, emitSignals);
+	public override float SetEnergy(float energy, bool emitSignals = true)
+	{
+		if (!Enabled) return Energy;
 
-            _UpdateVisuals();
+		var result = base.SetEnergy(energy, emitSignals);
 
-            _CheckAndNotify(emitSignals);
+		_UpdateVisuals();
 
-            return result;
-        }
+		_CheckAndNotify(emitSignals);
 
-        private void _UpdateVisuals()
-        {
-            if (Label.Visible)
-                Label.Text = $"{Energy}";
-            Visuals.Modulate = new Color(3.0f * Energy, 2.0f * Energy, 2.0f * Energy);
-        }
+		return result;
+	}
 
-        private void _CheckAndNotify(bool emitSignals)
-        {
-            if (Energy > 0.0f)
-            {
-                if (DepletionTimer.IsInsideTree())
-                {
-                    DepletionTimer.Start();
-                    FireParticles.Emitting = true;
-                    FireParticles.Lifetime = Energy;
-                }
-            }
-            else
-            {
-                if (DepletionTimer.IsInsideTree())
-                {
-                    DepletionTimer.Stop();
-                    FireParticles.Emitting = false;
-                    if (emitSignals)
-                    {
-                        EmitSignal(ElementComponent.SignalName.IntensityDepleted, this);
-                        GameEvents.EmitElementIntensityDepleted(this);
-                    }
-                }
-            }
+	private void _UpdateVisuals()
+	{
+		if (Label.Visible)
+			Label.Text = $"{Energy}";
+		Visuals.Modulate = new Color(3.0f * Energy, 2.0f * Energy, 2.0f * Energy);
+	}
 
-            if (!(Energy >= 1.0f)) return;
+	private void _CheckAndNotify(bool emitSignals)
+	{
+		if (Energy > 0.0f)
+		{
+			if (DepletionTimer.IsInsideTree())
+			{
+				DepletionTimer.Start();
+				FireParticles.Emitting = true;
+				FireParticles.Lifetime = Energy;
+			}
+		}
+		else
+		{
+			if (DepletionTimer.IsInsideTree())
+			{
+				DepletionTimer.Stop();
+				FireParticles.Emitting = false;
+				if (emitSignals)
+				{
+					EmitSignal(ElementComponent.SignalName.IntensityDepleted, this);
+					GameEvents.EmitElementIntensityDepleted(this);
+				}
+			}
+		}
 
-            if (!emitSignals) return;
-            EmitSignal(ElementComponent.SignalName.IntensityMaxed, this);
-            GameEvents.EmitElementIntensityMaxed(this);
-        }
+		if (!(Energy >= 1.0f)) return;
 
-        protected override void _EnabledPostProcess()
-        {
-            base._EnabledPostProcess();
-            if (Enabled) DepletionTimer.Start();
-            else DepletionTimer.Stop();
-        }
+		if (!emitSignals) return;
+		EmitSignal(ElementComponent.SignalName.IntensityMaxed, this);
+		GameEvents.EmitElementIntensityMaxed(this);
+	}
 
-        private void _InflictDamage()
-        {
-            if (Energy > 0.0f)
-            {
-                _healthComponent ??= _parent.GetFirstNodeOfType<HealthComponent>();
-                _healthComponent?.DecreaseHealth(MaxHealthDamage * Energy);
-            }
-        }
+	protected override void _EnabledPostProcess()
+	{
+		base._EnabledPostProcess();
+		if (Enabled) DepletionTimer.Start();
+		else DepletionTimer.Stop();
+	}
 
-        public override void _ExitTree()
-        {
-            if (Enabled)
-            {
-                EmitSignal(ElementComponent.SignalName.IntensityDepleted, null);
-                GameEvents.EmitElementIntensityDepleted(null);
-            }
+	private void _InflictDamage()
+	{
+		if (Energy > 0.0f)
+		{
+			_healthComponent ??= _parent.GetFirstNodeOfType<HealthComponent>();
+			_healthComponent?.DecreaseHealth(MaxHealthDamage * Energy);
+		}
+	}
 
-        }
-    }
+	public override void _ExitTree()
+	{
+		if (Enabled)
+		{
+			EmitSignal(ElementComponent.SignalName.IntensityDepleted, null);
+			GameEvents.EmitElementIntensityDepleted(null);
+		}
+	}
 }

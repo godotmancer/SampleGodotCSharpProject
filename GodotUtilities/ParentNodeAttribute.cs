@@ -1,10 +1,10 @@
 using System;
 
-namespace GodotUtilities
+namespace GodotUtilities;
+
+[AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
+public class ParentAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
-    public class ParentAttribute : Attribute
-    {
-        public ParentAttribute() { }
-    }
+	public ParentAttribute()
+	{ }
 }
