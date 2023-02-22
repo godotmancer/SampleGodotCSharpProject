@@ -60,6 +60,7 @@ autostart = true
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="TrailingParticles" type="CPUParticles2D" parent="Visuals"]
+unique_name_in_owner = true
 amount = 100
 randomness = 1.0
 lifetime_randomness = 0.5
@@ -77,6 +78,7 @@ color_ramp = SubResource("Gradient_5rrxe")
 hue_variation_max = 1.0
 
 [node name="SwirlingParticles" type="CPUParticles2D" parent="Visuals"]
+unique_name_in_owner = true
 amount = 450
 randomness = 1.0
 local_coords = true

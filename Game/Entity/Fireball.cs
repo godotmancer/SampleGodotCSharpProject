@@ -31,6 +31,12 @@ namespace SampleGodotCSharpProject.Game.Entity
         [Node]
         public Timer Timer;
 
+        [Node]
+        public CpuParticles2D TrailingParticles;
+
+        [Node]
+        public CpuParticles2D SwirlingParticles;
+
         private Vector2 _skullScale;
 
         public override void _EnterTree()
@@ -48,12 +54,10 @@ namespace SampleGodotCSharpProject.Game.Entity
             GameEvents.Instance.PlayerHit += _hit;
 
             _skullScale = Skull.Scale;
-            
+
             await ToSignal(GetTree(), "process_frame");
 
             Input.WarpMouse(_screenSize / 2.0f);
-            
-            
         }
 
         public override void _PhysicsProcess(double delta)
@@ -82,12 +86,12 @@ namespace SampleGodotCSharpProject.Game.Entity
             }
         }
 
-        private void _hit(Node2D player)
+        private void _hit(Node2D player, float angle, Vector2 direction)
         {
             var tween = CreateTween();
             tween.TweenProperty(
                     Skull,
-                    "modulate",
+                    CanvasItem.PropertyName.Modulate.ToString(),
                     Colors.White,
                     0.25f)
                 .From(this.IntensifyColor(Colors.Magenta, 2.3f))
@@ -95,13 +99,19 @@ namespace SampleGodotCSharpProject.Game.Entity
                 .SetEase(Tween.EaseType.In);
             tween.Parallel().TweenProperty(
                     Skull,
-                    "scale",
+                    Node2D.PropertyName.Scale.ToString(),
                     _skullScale,
                     0.25f)
                 .From(_skullScale * 1.3f)
                 .SetTrans(Tween.TransitionType.Linear)
                 .SetEase(Tween.EaseType.In);
 
+            tween.Parallel().TweenProperty(
+                    SwirlingParticles,
+                    CpuParticles2D.PropertyName.Gravity.ToString(),
+                    Vector2.Zero,
+                    0.25f)
+                .From(Vector2.One * direction * 2500.0f);
         }
     }
 }
