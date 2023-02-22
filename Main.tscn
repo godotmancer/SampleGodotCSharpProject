@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://UI/Score.cs" id="6_4yv7v"]
 [ext_resource type="Script" path="res://UI/ZombieCounter.cs" id="7_ojfmy"]
 [ext_resource type="Script" path="res://UI/RateStats.cs" id="9_x0qm4"]
-[ext_resource type="Texture2D" uid="uid://cuehy241ukjr1" path="res://Assets/leonardoai/Leonardo_Creative_grid_of_bones_and_shadows_representing_dead_zombies_black_an_1.jpg" id="10_lv5m8"]
+[ext_resource type="Texture2D" uid="uid://svwfcdg34ls3" path="res://Assets/leonardoai/Leonardo_Creative_grid_of_bones_and_shadows_representing_dead_zombies_black_an_1.jpg" id="10_lv5m8"]
 
 [sub_resource type="Environment" id="Environment_otope"]
 background_mode = 3
@@ -72,48 +72,38 @@ layer = 2
 [node name="FPS" parent="Hud" instance=ExtResource("5_l4iuv")]
 label_settings = SubResource("LabelSettings_7gb6r")
 
-[node name="Score" type="Label" parent="Hud"]
-unique_name_in_owner = true
-offset_left = 988.0
-offset_right = 1152.0
-offset_bottom = 45.0
+[node name="Top Right" type="VBoxContainer" parent="Hud"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -156.0
+offset_bottom = 141.0
 grow_horizontal = 0
+theme_override_constants/separation = -13
+script = ExtResource("9_x0qm4")
+
+[node name="Timer" type="Timer" parent="Hud/Top Right"]
+autostart = true
+
+[node name="Score" type="Label" parent="Hud/Top Right"]
+unique_name_in_owner = true
+layout_mode = 2
 size_flags_vertical = 2
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 script = ExtResource("6_4yv7v")
 
-[node name="ZombieCounter" type="Label" parent="Hud"]
+[node name="ZombieCounter" type="Label" parent="Hud/Top Right"]
 unique_name_in_owner = true
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -113.0
-offset_top = 32.0
-offset_bottom = 77.0
-grow_horizontal = 0
+layout_mode = 2
 size_flags_vertical = 2
 text = "Zombies: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 script = ExtResource("7_ojfmy")
 
-[node name="RateStats" type="VBoxContainer" parent="Hud"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -91.0
-offset_top = 64.0
-offset_bottom = 109.0
-grow_horizontal = 0
-theme_override_constants/separation = -13
-script = ExtResource("9_x0qm4")
-
-[node name="Timer" type="Timer" parent="Hud/RateStats"]
-autostart = true
-
-[node name="HitRate" type="Label" parent="Hud/RateStats"]
+[node name="HitRate" type="Label" parent="Hud/Top Right"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 2
@@ -121,7 +111,7 @@ text = "Hits: 0"
 label_settings = SubResource("LabelSettings_f5cu4")
 horizontal_alignment = 2
 
-[node name="MaxRate" type="Label" parent="Hud/RateStats"]
+[node name="MaxRate" type="Label" parent="Hud/Top Right"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 2
