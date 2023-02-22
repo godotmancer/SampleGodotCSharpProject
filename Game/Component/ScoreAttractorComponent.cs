@@ -38,25 +38,8 @@ namespace SampleGodotCSharpProject.Game.Component
                     Duration)
                 .SetTrans(Tween.TransitionType.Expo)
                 .SetEase(Tween.EaseType.In);
-
-            tween.TweenProperty(
-                    AttractorNode,
-                    "modulate",
-                    Colors.White,
-                    0.25f)
-                .From(this.IntensifyColor(Colors.Magenta, 2.3f))
-                .SetTrans(Tween.TransitionType.Linear)
-                .SetEase(Tween.EaseType.In);
-            tween.Parallel().TweenProperty(
-                    AttractorNode,
-                    "scale",
-                    Vector2.One,
-                    0.25f)
-                .From(Vector2.One * 1.3f)
-                .SetTrans(Tween.TransitionType.Linear)
-                .SetEase(Tween.EaseType.In);
-
-            tween.Parallel().TweenCallback(
+            
+            tween.TweenCallback(
                 Callable.From(() => GameEvents.EmitPlayerHit(AttractorNode)));
 
             tween.TweenCallback(Callable.From(QueueFree));

@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using GodotUtilities;
+using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Component;
 using SampleGodotCSharpProject.Game.Component.Element;
 using SampleGodotCSharpProject.Game.Extension;
@@ -25,7 +26,7 @@ namespace SampleGodotCSharpProject.Game.Entity
         public Area2D HotZone;
 
         [Node]
-        public Sprite2D Skull;
+        public Node2D Visuals;
 
         [Node]
         public Timer Timer;
@@ -42,6 +43,7 @@ namespace SampleGodotCSharpProject.Game.Entity
             HotZone.BodyEntered += _EnteredHotZone;
             HotZone.BodyExited += _ExitedHotZone;
             Timer.Timeout += _HeatUpHotZone;
+            GameEvents.Instance.PlayerHit += _hit;
 
             await ToSignal(GetTree(), "process_frame");
 
@@ -72,6 +74,28 @@ namespace SampleGodotCSharpProject.Game.Entity
             {
                 fireComponent.AddEnergy(HeatUpEnergyRate);
             }
+        }
+
+        private void _hit(Node2D player)
+        {
+            var tween = CreateTween();
+            tween.TweenProperty(
+                    Visuals,
+                    "modulate",
+                    Colors.White,
+                    0.25f)
+                .From(this.IntensifyColor(Colors.Magenta, 2.3f))
+                .SetTrans(Tween.TransitionType.Linear)
+                .SetEase(Tween.EaseType.In);
+            tween.Parallel().TweenProperty(
+                    Visuals,
+                    "scale",
+                    Vector2.One,
+                    0.25f)
+                .From(Vector2.One * 1.3f)
+                .SetTrans(Tween.TransitionType.Linear)
+                .SetEase(Tween.EaseType.In);
+
         }
     }
 }
