@@ -1,5 +1,3 @@
-using Godot;
-
 namespace SampleGodotCSharpProject.Helpers;
 
 internal class PointGenerator

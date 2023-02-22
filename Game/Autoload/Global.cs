@@ -1,4 +1,7 @@
-using Godot;
+global using Godot;
+global using GodotUtilities;
+global using GodotUtilities.Logic;
+global using System;
 
 namespace SampleGodotCSharpProject.Game.Autoload;
 

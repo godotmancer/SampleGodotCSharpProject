@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 namespace GodotUtilities;
 
 public static class PackedSceneExtension

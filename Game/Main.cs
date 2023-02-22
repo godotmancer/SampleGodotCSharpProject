@@ -1,5 +1,3 @@
-using Godot;
-using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Entity.Enemy;
 using SampleGodotCSharpProject.Helpers;

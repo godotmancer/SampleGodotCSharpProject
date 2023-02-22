@@ -1,6 +1,3 @@
-using Godot;
-using GodotUtilities;
-
 namespace SampleGodotCSharpProject.Game.Component;
 
 public partial class FollowMouseComponent : BaseComponent

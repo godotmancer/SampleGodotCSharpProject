@@ -1,5 +1,3 @@
-using System;
-
 namespace GodotUtilities;
 
 [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]

@@ -1,5 +1,3 @@
-using Godot;
-
 namespace SampleGodotCSharpProject.Game.Component;
 
 public partial class BaseComponent : Node2D

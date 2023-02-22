@@ -1,7 +1,3 @@
-using Godot;
-using GodotUtilities;
-using System;
-
 namespace SampleGodotCSharpProject.Game.Manager;
 
 public partial class EffectsManager : Node

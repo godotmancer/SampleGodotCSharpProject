@@ -1,4 +1,3 @@
-using Godot;
 using SampleGodotCSharpProject.Game.Autoload;
 
 namespace SampleGodotCSharpProject.UI;

@@ -1,10 +1,6 @@
-using Godot;
-using GodotUtilities;
-using GodotUtilities.Logic;
 using SampleGodotCSharpProject.Game.Autoload;
 using SampleGodotCSharpProject.Game.Component;
 using SampleGodotCSharpProject.Game.Extension;
-using System;
 
 namespace SampleGodotCSharpProject.Game.Entity.Enemy;
 

@@ -1,5 +1,3 @@
-using Godot;
-
 namespace SampleGodotCSharpProject.Game.Component.Element;
 
 public partial class ElementComponent : BaseComponent

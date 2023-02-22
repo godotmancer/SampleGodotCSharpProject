@@ -1,5 +1,3 @@
-using Godot;
-
 namespace SampleGodotCSharpProject.UI;
 
 public partial class Fps : Label

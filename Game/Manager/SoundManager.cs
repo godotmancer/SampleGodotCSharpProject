@@ -1,5 +1,3 @@
-using Godot;
-using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
 
 namespace SampleGodotCSharpProject.Game.Manager;

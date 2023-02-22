@@ -1,4 +1,3 @@
-using Godot;
 using SampleGodotCSharpProject.Game.Component.Element;
 using SampleGodotCSharpProject.Game.Entity.Enemy;
 
