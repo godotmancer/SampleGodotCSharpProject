@@ -85,32 +85,31 @@ public partial class Fireball : StaticBody2D
 		}
 	}
 
-        private void _hit(Node2D player, float angle, Vector2 direction)
-        {
-            var tween = CreateTween();
-            tween.TweenProperty(
-                    Skull,
-                    CanvasItem.PropertyName.Modulate.ToString(),
-                    Colors.White,
-                    0.25f)
-                .From(this.IntensifyColor(Colors.Magenta, 2.3f))
-                .SetTrans(Tween.TransitionType.Linear)
-                .SetEase(Tween.EaseType.In);
-            tween.Parallel().TweenProperty(
-                    Skull,
-                    Node2D.PropertyName.Scale.ToString(),
-                    _skullScale,
-                    0.25f)
-                .From(_skullScale * 1.3f)
-                .SetTrans(Tween.TransitionType.Linear)
-                .SetEase(Tween.EaseType.In);
+    private void _hit(Node2D player, float angle, Vector2 direction)
+    {
+        var tween = CreateTween();
+        tween.TweenProperty(
+                Skull,
+                CanvasItem.PropertyName.Modulate.ToString(),
+                Colors.White,
+                0.25f)
+            .From(this.IntensifyColor(Colors.Magenta, 2.3f))
+            .SetTrans(Tween.TransitionType.Linear)
+            .SetEase(Tween.EaseType.In);
+        tween.Parallel().TweenProperty(
+                Skull,
+                Node2D.PropertyName.Scale.ToString(),
+                _skullScale,
+                0.25f)
+            .From(_skullScale * 1.3f)
+            .SetTrans(Tween.TransitionType.Linear)
+            .SetEase(Tween.EaseType.In);
 
-            tween.Parallel().TweenProperty(
-                    SwirlingParticles,
-                    CpuParticles2D.PropertyName.Gravity.ToString(),
-                    Vector2.Zero,
-                    0.25f)
-                .From(Vector2.One * direction * 2500.0f);
-        }
+        tween.Parallel().TweenProperty(
+                SwirlingParticles,
+                CpuParticles2D.PropertyName.Gravity.ToString(),
+                Vector2.Zero,
+                0.25f)
+            .From(Vector2.One * direction * 2500.0f);
     }
 }

@@ -2,7 +2,7 @@ using System.Numerics;
 using Godot;
 using GodotUtilities;
 using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Extension;
+using SampleGodotCSharpProject.Game.Component;
 using Vector2 = Godot.Vector2;
 
 public partial class ScoreAttractorComponent : BaseComponent
@@ -13,10 +13,10 @@ public partial class ScoreAttractorComponent : BaseComponent
 	[Export]
 	public float Duration = 2.0f;
 
-        private float Amount { get; set; }
+    private float Amount { get; set; }
 
-        private Node2D _node;
-        private Vector2 _nodeInitialGlobalPos;
+    private Node2D _node;
+    private Vector2 _nodeInitialGlobalPos;
 
 	public override void _Ready()
 	{
@@ -51,11 +51,10 @@ public partial class ScoreAttractorComponent : BaseComponent
 		tween.TweenCallback(Callable.From(QueueFree));
 	}
 
-        public override void _PhysicsProcess(double delta)
-        {
-            var fireballPos = AttractorNode.GlobalPosition;
-            var distance = _nodeInitialGlobalPos.DistanceTo(fireballPos) * Amount;
-            _node.GlobalPosition = _nodeInitialGlobalPos.MoveToward(fireballPos, distance);
-        }
+    public override void _PhysicsProcess(double delta)
+    {
+        var fireballPos = AttractorNode.GlobalPosition;
+        var distance = _nodeInitialGlobalPos.DistanceTo(fireballPos) * Amount;
+        _node.GlobalPosition = _nodeInitialGlobalPos.MoveToward(fireballPos, distance);
     }
 }
