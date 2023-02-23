@@ -1,57 +1,53 @@
-using Godot;
-using GodotUtilities;
+namespace SampleGodotCSharpProject.Game.Component;
 
-namespace SampleGodotCSharpProject.Game.Component
+public partial class HealthComponent : BaseComponent
 {
-    public partial class HealthComponent : BaseComponent
-    {
-        [Export]
-        public float Health;
+	[Export]
+	public float Health;
 
-        [Export]
-        public Gradient HealthGradient;
+	[Export]
+	public Gradient HealthGradient;
 
-        [Node]
-        public Label Label;
+	[Node]
+	public Label Label;
 
-        public override void _EnterTree()
-        {
-            this.WireNodes();
-        }
+	public override void _EnterTree()
+	{
+		this.WireNodes();
+	}
 
-        public override void _Ready()
-        {
-            _UpdateVisuals();
-        }
+	public override void _Ready()
+	{
+		_UpdateVisuals();
+	}
 
-        private void _UpdateVisuals()
-        {
-            if (Label.Visible)
-                Label.Text = $"{Health}";
-        }
+	private void _UpdateVisuals()
+	{
+		if (Label.Visible)
+			Label.Text = $"{Health}";
+	}
 
-        public float DecreaseHealth(float damage)
-        {
-            var oldHealth = Health;
-            Health -= damage;
-            _UpdateVisuals();
+	public float DecreaseHealth(float damage)
+	{
+		var oldHealth = Health;
+		Health -= damage;
+		_UpdateVisuals();
 
-            return oldHealth;
-        }
+		return oldHealth;
+	}
 
-        public float IncreaseHealth(float damage)
-        {
-            var oldHealth = Health;
-            Health += damage;
-            _UpdateVisuals();
+	public float IncreaseHealth(float damage)
+	{
+		var oldHealth = Health;
+		Health += damage;
+		_UpdateVisuals();
 
-            return oldHealth;
-        }
+		return oldHealth;
+	}
 
-        public void SetHealth(float health)
-        {
-            Health = health;
-            _UpdateVisuals();
-        }
-    }
+	public void SetHealth(float health)
+	{
+		Health = health;
+		_UpdateVisuals();
+	}
 }

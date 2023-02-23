@@ -1,18 +1,20 @@
-using Godot;
+global using Godot;
+global using GodotUtilities;
+global using GodotUtilities.Logic;
+global using System;
 
-namespace SampleGodotCSharpProject.Game.Autoload
+namespace SampleGodotCSharpProject.Game.Autoload;
+
+public partial class Global : Node
 {
-    public partial class Global : Node
-    {
-        public Camera2D Camera2D;
-        public CanvasLayer Hud;
-        public Marker2D ScorePosition;
+	public Camera2D Camera2D;
+	public CanvasLayer Hud;
+	public Marker2D ScorePosition;
 
-        public static Global Instance { get; private set; }
+	public static Global Instance { get; private set; }
 
-        public override void _Notification(int what)
-        {
-            if (what == NotificationEnterTree) Instance = this;
-        }
-    }
+	public override void _Notification(int what)
+	{
+		if (what == NotificationEnterTree) Instance = this;
+	}
 }
