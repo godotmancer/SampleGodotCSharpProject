@@ -20,8 +20,8 @@ public partial class GameEvents : Node
 	[Signal]
 	public delegate void ZombieSpawnedEventHandler(Zombie zombie);
 
-    [Signal]
-    public delegate void PlayerHitEventHandler(Node2D player, float angle, Vector2 direction);
+	[Signal]
+	public delegate void PlayerHitEventHandler(Node2D player, float angle, Vector2 direction);
 
 	public static GameEvents Instance { get; private set; }
 
@@ -50,12 +50,13 @@ public partial class GameEvents : Node
 		Instance.EmitSignal(SignalName.Collision, collision2D);
 	}
 
-    public static void EmitSpawnZombie(Zombie zombie)
-    {
-        Instance.EmitSignal(SignalName.ZombieSpawned, zombie);
-    }
-    public static void EmitPlayerHit(Node2D player, float angle, Vector2 direction)
-    {
-        Instance.EmitSignal(SignalName.PlayerHit, player, angle, direction);
-    }
+	public static void EmitSpawnZombie(Zombie zombie)
+	{
+		Instance.EmitSignal(SignalName.ZombieSpawned, zombie);
+	}
+
+	public static void EmitPlayerHit(Node2D player, float angle, Vector2 direction)
+	{
+		Instance.EmitSignal(SignalName.PlayerHit, player, angle, direction);
+	}
 }
