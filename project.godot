@@ -51,7 +51,6 @@ common/enable_object_picking=false
 
 [rendering]
 
-driver/threads/thread_model=0
 shader_compiler/shader_cache/strip_debug=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
