@@ -1,24 +1,21 @@
 using Game.Autoload;
 using Game.Component;
 using Game.Component.Element;
-using Godot.Collections;
 using Game.Extension;
+using Godot.Collections;
 
 namespace Game.Entity;
 
 public partial class Fireball : StaticBody2D
 {
-	private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
-	private Vector2 _screenSize;
-
-	[Node]
-	public FollowMouseComponent FollowMouseComponent;
-
 	[Export]
 	public float HeatUpEnergyRate = 0.075f;
 
 	[Export]
 	public bool HeatUpTouching = true;
+
+	[Node]
+	public FollowMouseComponent FollowMouseComponent;
 
 	[Node]
 	public Area2D HotZone;
@@ -35,6 +32,8 @@ public partial class Fireball : StaticBody2D
 	[Node]
 	public CpuParticles2D SwirlingParticles;
 
+	private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
+	private Vector2 _screenSize;
 	private Vector2 _skullScale;
 
 	public override void _EnterTree()

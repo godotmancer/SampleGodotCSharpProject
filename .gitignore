@@ -10,7 +10,6 @@ data_*/
 # Godot 4+ specific ignores
 .godot/
 
-.vscode/
 .vs/
 .idea/
 #GodotUtilities - include Firebelley's code into this project for easier consumption.

@@ -15,6 +15,7 @@
   <ItemGroup>
     <Content Include="Screenshots\.gdignore" />
     <Content Include="Screenshots\game-screenshot.png" />
+    <Content Include="Screenshots\vscode-formatting-settings.png" />
     <Content Include="Screenshots\splash-screen.png" />
   </ItemGroup>
 </Project>

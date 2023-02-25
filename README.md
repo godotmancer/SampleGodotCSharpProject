@@ -4,7 +4,7 @@ A work-in-progress example Godot 4 project written in C# (with .Net 6.0), making
 
 ## Purpose of this project
 
-Develop game mechanics and patterns for Godot 4 using C#. 
+Develop game mechanics and patterns for Godot 4 using C#.
 Try to make the development experience as satisfying and consistent as possible.
 
 * Component based Scene Tree (Composition)
@@ -21,6 +21,22 @@ Make sure you are using latest **Godot 4** version (I build **Godot 4** from sou
 I will try to keep the `GodotUtilities` folder from @firebelley in-sync with this project.
 
 Look around, improve and feedback welcome.
+
+## Editor formatting and plugins
+
+In order to keep the source formatting consistent between IntelliJ Rider and VSCode please make sure your VSCode OmniSharp settings are configured as shown below:
+
+![vscode-formatting-settings.png](Screenshots%2Fvscode-formatting-settings.png)
+
+
+Install the following VSCode plugins for a better experience:
+
+[Godot Tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)
+
+[C# Tools for Godot](https://marketplace.visualstudio.com/items?itemName=neikeq.godot-csharp-vscode)
+
+[EditorConfig Support](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+
 
 ## Screenshots
 

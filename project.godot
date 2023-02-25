@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SampleGodotCSharpProject"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Game/Main.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 boot_splash/image="res://Game/Assets/fireball-logo-8.png"
 config/icon="res://icon.svg"

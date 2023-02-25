@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs17q84kh26q8"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://UI/Fps.cs" id="1_nj1k4"]
+[ext_resource type="Script" path="res://Game/UI/Fps.cs" id="1_nj1k4"]
 
 [sub_resource type="SystemFont" id="SystemFont_8kl1n"]
 subpixel_positioning = 0
