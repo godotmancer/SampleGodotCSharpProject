@@ -4,6 +4,6 @@ public partial class Fps : Label
 {
 	public override void _Process(double delta)
 	{
-		Text = $"{Engine.GetFramesPerSecond()}/s";
+		Text = $"{Engine.GetFramesPerSecond().ToString()}/s";
 	}
 }

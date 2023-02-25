@@ -35,7 +35,7 @@ public partial class Zombie : BaseEnemy
 	public override void _Ready()
 	{
 		// Entity Initialisations
-		Scale *= (float)GD.RandRange(0.1, 0.4);
+		Scale *= (float)GD.RandRange(0.15, 0.45);
 
 		// State Machine States
 		_stateMachine.AddStates(StateIdle, EnterStateIdle);

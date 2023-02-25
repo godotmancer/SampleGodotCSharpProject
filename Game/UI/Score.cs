@@ -14,7 +14,7 @@ public partial class Score : Label
 		GameEvents.Instance.PlayerHit += (_, _, _) =>
 		{
 			_totalScore += 1;
-			Text = $"Score: {_totalScore}";
+			Text = $"Score: {_totalScore.ToString()}";
 
 			_pivot.X = Size.X;
 			PivotOffset = _pivot;
