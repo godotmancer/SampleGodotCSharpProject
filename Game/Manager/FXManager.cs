@@ -1,10 +1,16 @@
 namespace Game.Manager;
 
-public partial class EffectsManager : Node
+public partial class FxManager : Node
 {
+	public static FxManager Instance { get; private set; }
+
 	private readonly Random _random = new();
 	private int _currentShakePriority;
-	private static EffectsManager Instance { get; set; }
+
+	public static void ShakeScreen(double shakeLength, float shakePower)
+	{
+		Instance._ShakeScreen(shakeLength, shakePower);
+	}
 
 	public override void _Notification(int what)
 	{
@@ -39,10 +45,5 @@ public partial class EffectsManager : Node
 	private void _resetCurrentShakePriority()
 	{
 		_currentShakePriority = 0;
-	}
-
-	public static void ShakeScreen(double shakeLength, float shakePower)
-	{
-		Instance._ShakeScreen(shakeLength, shakePower);
 	}
 }

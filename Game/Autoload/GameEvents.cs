@@ -5,6 +5,8 @@ namespace Game.Autoload;
 
 public partial class GameEvents : Node
 {
+	public static GameEvents Instance { get; private set; }
+
 	[Signal]
 	public delegate void CollisionEventHandler(KinematicCollision2D collision2D);
 
@@ -22,13 +24,6 @@ public partial class GameEvents : Node
 
 	[Signal]
 	public delegate void PlayerHitEventHandler(Node2D player, float angle, Vector2 direction);
-
-	public static GameEvents Instance { get; private set; }
-
-	public override void _Notification(int what)
-	{
-		if (what == NotificationEnterTree) Instance = this;
-	}
 
 	public static void EmitElementIntensityMaxed(ElementComponent element)
 	{
@@ -58,5 +53,12 @@ public partial class GameEvents : Node
 	public static void EmitPlayerHit(Node2D player, float angle, Vector2 direction)
 	{
 		Instance.EmitSignal(SignalName.PlayerHit, player, angle, direction);
+	}
+
+	public override void _Notification(int what)
+	{
+		if (what != NotificationEnterTree) return;
+
+		Instance = this;
 	}
 }

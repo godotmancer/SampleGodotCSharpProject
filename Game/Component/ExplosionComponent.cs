@@ -35,7 +35,7 @@ public partial class ExplosionComponent : BaseComponent
 		var shakeIntensity = _CalcShakeIntensity();
 		if (shakeIntensity <= float.Epsilon) return;
 
-		EffectsManager.ShakeScreen(1f, 5 * shakeIntensity);
+		FxManager.ShakeScreen(1f, 5 * shakeIntensity);
 	}
 
 	private float _CalcShakeIntensity()
