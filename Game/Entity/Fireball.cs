@@ -1,11 +1,10 @@
+using Game.Autoload;
+using Game.Component;
+using Game.Component.Element;
 using Godot.Collections;
+using Game.Extension;
 
-using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Component;
-using SampleGodotCSharpProject.Game.Component.Element;
-using SampleGodotCSharpProject.Game.Extension;
-
-namespace SampleGodotCSharpProject.Game.Entity;
+namespace Game.Entity;
 
 public partial class Fireball : StaticBody2D
 {

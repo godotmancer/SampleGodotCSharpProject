@@ -1,6 +1,6 @@
-using SampleGodotCSharpProject.Game.Autoload;
+using Game.Autoload;
 
-namespace SampleGodotCSharpProject.Game.Component;
+namespace Game.Component;
 
 public partial class VelocityComponent : BaseComponent
 {

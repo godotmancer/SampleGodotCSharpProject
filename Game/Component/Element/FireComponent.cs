@@ -1,7 +1,7 @@
-using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Extension;
+using Game.Autoload;
+using Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Component.Element;
+namespace Game.Component.Element;
 
 public partial class FireComponent : ElementComponent
 {

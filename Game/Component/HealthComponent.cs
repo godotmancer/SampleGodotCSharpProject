@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.Game.Component;
+namespace Game.Component;
 
 public partial class HealthComponent : BaseComponent
 {

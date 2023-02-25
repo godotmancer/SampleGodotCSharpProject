@@ -3,13 +3,12 @@ global using GodotUtilities;
 global using GodotUtilities.Logic;
 global using System;
 
-namespace SampleGodotCSharpProject.Game.Autoload;
+namespace Game.Autoload;
 
 public partial class Global : Node
 {
 	public Camera2D Camera2D;
 	public CanvasLayer Hud;
-	public Marker2D ScorePosition;
 
 	public static Global Instance { get; private set; }
 

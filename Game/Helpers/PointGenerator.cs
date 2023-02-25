@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.Helpers;
+namespace Game.Helpers;
 
 internal class PointGenerator
 {

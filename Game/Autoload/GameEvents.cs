@@ -1,7 +1,7 @@
-using SampleGodotCSharpProject.Game.Component.Element;
-using SampleGodotCSharpProject.Game.Entity.Enemy;
+using Game.Component.Element;
+using Game.Entity.Enemy;
 
-namespace SampleGodotCSharpProject.Game.Autoload;
+namespace Game.Autoload;
 
 public partial class GameEvents : Node
 {

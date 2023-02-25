@@ -1,6 +1,6 @@
-using SampleGodotCSharpProject.Game.Autoload;
+using Game.Autoload;
 
-namespace SampleGodotCSharpProject.UI;
+namespace Game.UI;
 
 public partial class ZombieCounter : Label
 {

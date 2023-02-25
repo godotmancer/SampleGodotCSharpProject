@@ -1,8 +1,8 @@
-using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Component;
-using SampleGodotCSharpProject.Game.Extension;
+using Game.Autoload;
+using Game.Component;
+using Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Entity.Enemy;
+namespace Game.Entity.Enemy;
 
 public partial class Zombie : BaseEnemy
 {

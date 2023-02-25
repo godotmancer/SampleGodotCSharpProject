@@ -1,5 +1,5 @@
-using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Component;
+using Game.Autoload;
+using Game.Component;
 using Vector2 = Godot.Vector2;
 
 public partial class ScoreAttractorComponent : BaseComponent

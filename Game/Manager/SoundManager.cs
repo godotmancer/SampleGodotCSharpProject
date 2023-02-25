@@ -1,6 +1,6 @@
-using SampleGodotCSharpProject.Game.Autoload;
+using Game.Autoload;
 
-namespace SampleGodotCSharpProject.Game.Manager
+namespace Game.Manager
 {
 	public partial class SoundManager : Node
 	{

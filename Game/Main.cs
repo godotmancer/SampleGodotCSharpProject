@@ -1,8 +1,8 @@
-using SampleGodotCSharpProject.Game.Autoload;
-using SampleGodotCSharpProject.Game.Entity.Enemy;
-using SampleGodotCSharpProject.Helpers;
+using Game.Autoload;
+using Game.Entity.Enemy;
+using Game.Helpers;
 
-namespace SampleGodotCSharpProject.Game;
+namespace Game;
 
 public partial class Main : Node2D
 {

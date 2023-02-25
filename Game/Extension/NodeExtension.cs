@@ -1,6 +1,6 @@
-using SampleGodotCSharpProject.Game.Component;
+using Game.Component;
 
-namespace SampleGodotCSharpProject.Game.Extension;
+namespace Game.Extension;
 
 public static class NodeExtension
 {

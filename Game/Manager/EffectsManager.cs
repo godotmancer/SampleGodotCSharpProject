@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.Game.Manager;
+namespace Game.Manager;
 
 public partial class EffectsManager : Node
 {

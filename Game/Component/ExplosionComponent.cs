@@ -1,8 +1,8 @@
-using SampleGodotCSharpProject.Game.Entity.Enemy;
-using SampleGodotCSharpProject.Game.Extension;
-using SampleGodotCSharpProject.Game.Manager;
+using Game.Entity.Enemy;
+using Game.Manager;
+using Game.Extension;
 
-namespace SampleGodotCSharpProject.Game.Component;
+namespace Game.Component;
 
 public partial class ExplosionComponent : BaseComponent
 {

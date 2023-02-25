@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.Game.Component.Element;
+namespace Game.Component.Element;
 
 public partial class ElementComponent : BaseComponent
 {

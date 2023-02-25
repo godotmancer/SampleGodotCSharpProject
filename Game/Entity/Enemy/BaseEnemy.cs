@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.Game.Entity.Enemy;
+namespace Game.Entity.Enemy;
 
 public partial class BaseEnemy : CharacterBody2D
 {

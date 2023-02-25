@@ -1,4 +1,4 @@
-namespace SampleGodotCSharpProject.UI;
+namespace Game.UI;
 
 public partial class Fps : Label
 {
