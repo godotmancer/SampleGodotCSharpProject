@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://5ld58ejk72v8"]
 
-[ext_resource type="PackedScene" uid="uid://b0bjf2txmyjoh" path="res://Game/Component/ExplosionComponent.tscn" id="2_24y3x"]
+[ext_resource type="PackedScene" uid="uid://bdyiyimjj56sf" path="res://Game/Component/ExplosionComponent.tscn" id="2_24y3x"]
 [ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="2_768rq"]
-[ext_resource type="PackedScene" uid="uid://pha677g0a1rr" path="res://Game/Component/Element/FireComponent.tscn" id="2_e2rwb"]
-[ext_resource type="PackedScene" uid="uid://cqjjl78og3k1m" path="res://Game/Entity/Fireball.tscn" id="3_s3qei"]
+[ext_resource type="PackedScene" uid="uid://b6bslvhpbudfc" path="res://Game/Component/Element/FireComponent.tscn" id="2_e2rwb"]
+[ext_resource type="PackedScene" uid="uid://b814smhskm17d" path="res://Game/Entity/Fireball.tscn" id="3_s3qei"]
 [ext_resource type="PackedScene" uid="uid://cd5pq55pjfs8y" path="res://Game/Component/FollowMouseComponent.tscn" id="4_nxoh2"]
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="5_jc15n"]
-[ext_resource type="PackedScene" uid="uid://blsep5yr0s04n" path="res://Game/Entity/Enemy/Zombie.tscn" id="6_3vm86"]
+[ext_resource type="PackedScene" uid="uid://cu0cho0yka273" path="res://Game/Entity/Enemy/Zombie.tscn" id="6_3vm86"]
 [ext_resource type="PackedScene" uid="uid://dgvrlux56u8r" path="res://Game/Component/ScoreAttractorComponent.tscn" id="6_n6wy4"]
 
 [node name="RsPreloader" type="ResourcePreloader"]

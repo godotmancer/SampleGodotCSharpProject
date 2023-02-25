@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqjjl78og3k1m"]
+[gd_scene load_steps=11 format=3 uid="uid://b814smhskm17d"]
 
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_athld"]
 [ext_resource type="Script" path="res://Game/Entity/Fireball.cs" id="1_wsqe4"]
 [ext_resource type="PackedScene" uid="uid://cd5pq55pjfs8y" path="res://Game/Component/FollowMouseComponent.tscn" id="2_iv1x6"]
-[ext_resource type="Texture2D" uid="uid://ndeuju5mm1x" path="res://Assets/Skulls/skull1.png" id="4_a16po"]
+[ext_resource type="Texture2D" uid="uid://ndeuju5mm1x" path="res://Game/Assets/Skulls/skull1.png" id="4_1otds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hc3n0"]
 radius = 74.0608
@@ -102,4 +102,4 @@ hue_variation_max = 1.0
 unique_name_in_owner = true
 z_index = 3
 scale = Vector2(0.346, 0.346)
-texture = ExtResource("4_a16po")
+texture = ExtResource("4_1otds")

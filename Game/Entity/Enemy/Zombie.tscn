@@ -1,22 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://blsep5yr0s04n"]
+[gd_scene load_steps=11 format=3 uid="uid://cu0cho0yka273"]
 
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_tkmm1"]
 [ext_resource type="Script" path="res://Game/Entity/Enemy/Zombie.cs" id="1_uyh6b"]
 [ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="2_31ob2"]
 [ext_resource type="PackedScene" uid="uid://udkfo3veimlm" path="res://Game/Component/HealthComponent.tscn" id="2_l5geu"]
 [ext_resource type="PackedScene" uid="uid://b5koicly7djf5" path="res://Game/Component/FollowPlayerComponent.tscn" id="3_15m1n"]
-[ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Assets/Zombie/1.png" id="4_h0u6j"]
-[ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Assets/Zombie/2.png" id="5_jf8lo"]
+[ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Game/Assets/Zombie/1.png" id="7_6gvi0"]
 [ext_resource type="PackedScene" uid="uid://dsfwe0jfckbyj" path="res://Game/Component/QueueFreeComponent.tscn" id="7_wvx8j"]
+[ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Game/Assets/Zombie/2.png" id="8_e2wem"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gbfpe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_h0u6j")
+"texture": ExtResource("7_6gvi0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jf8lo")
+"texture": ExtResource("8_e2wem")
 }],
 "loop": true,
 "name": &"walk",

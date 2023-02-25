@@ -1,23 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckdhfy8knydeo"]
+[gd_scene load_steps=5 format=3 uid="uid://dyxakolt14kln"]
 
 [ext_resource type="Script" path="res://Game/Manager/SoundManager.cs" id="1_i4nu1"]
-[ext_resource type="AudioStream" uid="uid://b0q7v0wqeeyyc" path="res://Assets/Sounds/SND36351.wav" id="2_spsuy"]
-[ext_resource type="AudioStream" uid="uid://ckd4h7y5t3hih" path="res://Assets/Sounds/chipsHandle3.ogg" id="3_5xuw2"]
-[ext_resource type="AudioStream" uid="uid://cfwubuk035v58" path="res://Assets/Sounds/Ambience_Bonfire_Loop.wav" id="4_x825c"]
+[ext_resource type="AudioStream" uid="uid://b0q7v0wqeeyyc" path="res://Game/Assets/Sounds/SND36351.wav" id="2_gpll2"]
+[ext_resource type="AudioStream" uid="uid://ckd4h7y5t3hih" path="res://Game/Assets/Sounds/chipsHandle3.ogg" id="3_t6mi4"]
+[ext_resource type="AudioStream" uid="uid://cfwubuk035v58" path="res://Game/Assets/Sounds/Ambience_Bonfire_Loop.wav" id="4_2bt1m"]
 
 [node name="SoundManager" type="Node"]
 script = ExtResource("1_i4nu1")
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_spsuy")
+stream = ExtResource("2_gpll2")
 volume_db = -10.0
 bus = &"Explosion"
 
 [node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_5xuw2")
+stream = ExtResource("3_t6mi4")
 volume_db = -5.0
 bus = &"PlayerHit"
 
 [node name="Fire" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_x825c")
+stream = ExtResource("4_2bt1m")
 volume_db = -10.0

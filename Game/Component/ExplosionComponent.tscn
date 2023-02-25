@@ -1,104 +1,104 @@
-[gd_scene load_steps=48 format=3 uid="uid://b0bjf2txmyjoh"]
+[gd_scene load_steps=48 format=3 uid="uid://bdyiyimjj56sf"]
 
 [ext_resource type="Script" path="res://Game/Component/ExplosionComponent.cs" id="1_bepyg"]
-[ext_resource type="Texture2D" uid="uid://b3utwf4qpy1vj" path="res://Assets/Explosions/explosion-hd-ss.png" id="1_dt1ob"]
-[ext_resource type="Texture2D" uid="uid://dquuh87t8wwgd" path="res://Assets/Explosions/ParticleExplosion/frame-002.png" id="4_c1no2"]
-[ext_resource type="Texture2D" uid="uid://c3vpuo35d36rc" path="res://Assets/Explosions/ParticleExplosion/frame-003.png" id="5_l8ltu"]
-[ext_resource type="Texture2D" uid="uid://p4ukiqsneei1" path="res://Assets/Explosions/ParticleExplosion/frame-004.png" id="6_c4h2u"]
-[ext_resource type="Texture2D" uid="uid://o334kgdxspd4" path="res://Assets/Explosions/ParticleExplosion/frame-005.png" id="7_a5qu2"]
-[ext_resource type="Texture2D" uid="uid://df7p1t01erm61" path="res://Assets/Explosions/ParticleExplosion/frame-006.png" id="8_20tqn"]
-[ext_resource type="Texture2D" uid="uid://b5xejgs7lblec" path="res://Assets/Explosions/ParticleExplosion/frame-007.png" id="9_4v44p"]
-[ext_resource type="Texture2D" uid="uid://qkau37p30sps" path="res://Assets/Explosions/ParticleExplosion/frame-008.png" id="10_yto6w"]
-[ext_resource type="Texture2D" uid="uid://uxdk3dsatkgx" path="res://Assets/Explosions/ParticleExplosion/frame-009.png" id="11_5biw8"]
-[ext_resource type="Texture2D" uid="uid://dayal2wb77kd7" path="res://Assets/Explosions/ParticleExplosion/frame-010.png" id="12_nh1g5"]
-[ext_resource type="Texture2D" uid="uid://cx33jr44sfcov" path="res://Assets/Explosions/ParticleExplosion/frame-011.png" id="13_3hpk8"]
-[ext_resource type="Texture2D" uid="uid://doy0catm3tywp" path="res://Assets/Explosions/ParticleExplosion/frame-012.png" id="14_ytl15"]
-[ext_resource type="Texture2D" uid="uid://dluep26r3iuxo" path="res://Assets/Explosions/ParticleExplosion/frame-013.png" id="15_chkbk"]
-[ext_resource type="Texture2D" uid="uid://dkumpobpmv1cu" path="res://Assets/Explosions/ParticleExplosion/frame-014.png" id="16_lt1fs"]
-[ext_resource type="Texture2D" uid="uid://dhkuryhjjibwk" path="res://Assets/Explosions/ParticleExplosion/frame-015.png" id="17_h82xv"]
-[ext_resource type="Texture2D" uid="uid://cp6sy045kff4m" path="res://Assets/Explosions/ParticleExplosion/frame-016.png" id="18_vdwvq"]
-[ext_resource type="Texture2D" uid="uid://b1jnj4kgax87p" path="res://Assets/Explosions/ParticleExplosion/frame-017.png" id="19_tna0c"]
-[ext_resource type="Texture2D" uid="uid://0gmwuy6pl6o1" path="res://Assets/Explosions/ParticleExplosion/frame-018.png" id="20_8rwsc"]
-[ext_resource type="Texture2D" uid="uid://diejm3nkgje58" path="res://Assets/Explosions/ParticleExplosion/frame-019.png" id="21_lsfyy"]
-[ext_resource type="Texture2D" uid="uid://b0ljx31l66nt" path="res://Assets/Explosions/ParticleExplosion/frame-020.png" id="22_y0gp8"]
-[ext_resource type="Texture2D" uid="uid://bh2k4npssaajt" path="res://Assets/Explosions/ParticleExplosion/frame-021.png" id="23_h7k8t"]
-[ext_resource type="Texture2D" uid="uid://4mfd0061j4n1" path="res://Assets/Explosions/ParticleExplosion/frame-022.png" id="24_oxvj8"]
-[ext_resource type="Texture2D" uid="uid://bx8nbti6rmsp7" path="res://Assets/Explosions/ParticleExplosion/frame-023.png" id="25_3esg8"]
-[ext_resource type="Texture2D" uid="uid://bs4ia3car3v2s" path="res://Assets/Explosions/ParticleExplosion/frame-024.png" id="26_nb2qo"]
-[ext_resource type="Texture2D" uid="uid://bnqlvd2ok3cnn" path="res://Assets/Explosions/ParticleExplosion/frame-025.png" id="27_has15"]
-[ext_resource type="Texture2D" uid="uid://dxc5icfllvxk6" path="res://Assets/Explosions/ParticleExplosion/frame-026.png" id="28_6frg3"]
-[ext_resource type="Texture2D" uid="uid://dwtsq46g1xq8f" path="res://Assets/Explosions/ParticleExplosion/frame-027.png" id="29_be54d"]
+[ext_resource type="Texture2D" uid="uid://b3utwf4qpy1vj" path="res://Game/Assets/Explosions/explosion-hd-ss.png" id="2_fgvcw"]
+[ext_resource type="Texture2D" uid="uid://dquuh87t8wwgd" path="res://Game/Assets/Explosions/ParticleExplosion/frame-002.png" id="3_0ea2h"]
+[ext_resource type="Texture2D" uid="uid://c3vpuo35d36rc" path="res://Game/Assets/Explosions/ParticleExplosion/frame-003.png" id="4_b0hlu"]
+[ext_resource type="Texture2D" uid="uid://p4ukiqsneei1" path="res://Game/Assets/Explosions/ParticleExplosion/frame-004.png" id="5_tc1od"]
+[ext_resource type="Texture2D" uid="uid://o334kgdxspd4" path="res://Game/Assets/Explosions/ParticleExplosion/frame-005.png" id="6_jg8f0"]
+[ext_resource type="Texture2D" uid="uid://df7p1t01erm61" path="res://Game/Assets/Explosions/ParticleExplosion/frame-006.png" id="7_h0wtn"]
+[ext_resource type="Texture2D" uid="uid://b5xejgs7lblec" path="res://Game/Assets/Explosions/ParticleExplosion/frame-007.png" id="8_oxgv5"]
+[ext_resource type="Texture2D" uid="uid://qkau37p30sps" path="res://Game/Assets/Explosions/ParticleExplosion/frame-008.png" id="9_ppmil"]
+[ext_resource type="Texture2D" uid="uid://uxdk3dsatkgx" path="res://Game/Assets/Explosions/ParticleExplosion/frame-009.png" id="10_tfe7f"]
+[ext_resource type="Texture2D" uid="uid://dayal2wb77kd7" path="res://Game/Assets/Explosions/ParticleExplosion/frame-010.png" id="11_d8jvu"]
+[ext_resource type="Texture2D" uid="uid://cx33jr44sfcov" path="res://Game/Assets/Explosions/ParticleExplosion/frame-011.png" id="12_ip6m6"]
+[ext_resource type="Texture2D" uid="uid://doy0catm3tywp" path="res://Game/Assets/Explosions/ParticleExplosion/frame-012.png" id="13_qohlq"]
+[ext_resource type="Texture2D" uid="uid://dluep26r3iuxo" path="res://Game/Assets/Explosions/ParticleExplosion/frame-013.png" id="14_2lkq5"]
+[ext_resource type="Texture2D" uid="uid://dkumpobpmv1cu" path="res://Game/Assets/Explosions/ParticleExplosion/frame-014.png" id="15_kauga"]
+[ext_resource type="Texture2D" uid="uid://dhkuryhjjibwk" path="res://Game/Assets/Explosions/ParticleExplosion/frame-015.png" id="16_jthjv"]
+[ext_resource type="Texture2D" uid="uid://cp6sy045kff4m" path="res://Game/Assets/Explosions/ParticleExplosion/frame-016.png" id="17_quenw"]
+[ext_resource type="Texture2D" uid="uid://b1jnj4kgax87p" path="res://Game/Assets/Explosions/ParticleExplosion/frame-017.png" id="18_048fr"]
+[ext_resource type="Texture2D" uid="uid://0gmwuy6pl6o1" path="res://Game/Assets/Explosions/ParticleExplosion/frame-018.png" id="19_f55l6"]
+[ext_resource type="Texture2D" uid="uid://diejm3nkgje58" path="res://Game/Assets/Explosions/ParticleExplosion/frame-019.png" id="20_xkqps"]
+[ext_resource type="Texture2D" uid="uid://b0ljx31l66nt" path="res://Game/Assets/Explosions/ParticleExplosion/frame-020.png" id="21_2ikk6"]
+[ext_resource type="Texture2D" uid="uid://bh2k4npssaajt" path="res://Game/Assets/Explosions/ParticleExplosion/frame-021.png" id="22_7txml"]
+[ext_resource type="Texture2D" uid="uid://4mfd0061j4n1" path="res://Game/Assets/Explosions/ParticleExplosion/frame-022.png" id="23_guyur"]
+[ext_resource type="Texture2D" uid="uid://bx8nbti6rmsp7" path="res://Game/Assets/Explosions/ParticleExplosion/frame-023.png" id="24_apuxg"]
+[ext_resource type="Texture2D" uid="uid://bs4ia3car3v2s" path="res://Game/Assets/Explosions/ParticleExplosion/frame-024.png" id="25_sh1le"]
+[ext_resource type="Texture2D" uid="uid://bnqlvd2ok3cnn" path="res://Game/Assets/Explosions/ParticleExplosion/frame-025.png" id="26_ku53u"]
+[ext_resource type="Texture2D" uid="uid://dxc5icfllvxk6" path="res://Game/Assets/Explosions/ParticleExplosion/frame-026.png" id="27_dyqcu"]
+[ext_resource type="Texture2D" uid="uid://dwtsq46g1xq8f" path="res://Game/Assets/Explosions/ParticleExplosion/frame-027.png" id="28_mnuis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0k4qh"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rt3x"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_or6av"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcwt0"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8t6rc"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqhc3"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5ll2"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(512, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2sd3"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(576, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdtjr"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wmfxv"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mvsm"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(128, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08ajy"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(192, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quju3"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(256, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdi7v"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(320, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pya83"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(576, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohvqa"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(512, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unl3d"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(448, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyfr8"]
-atlas = ExtResource("1_dt1ob")
+atlas = ExtResource("2_fgvcw")
 region = Rect2(384, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iu2w2"]
@@ -164,82 +164,82 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_c1no2")
+"texture": ExtResource("3_0ea2h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_l8ltu")
+"texture": ExtResource("4_b0hlu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_c4h2u")
+"texture": ExtResource("5_tc1od")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_a5qu2")
+"texture": ExtResource("6_jg8f0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_20tqn")
+"texture": ExtResource("7_h0wtn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_4v44p")
+"texture": ExtResource("8_oxgv5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_yto6w")
+"texture": ExtResource("9_ppmil")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_5biw8")
+"texture": ExtResource("10_tfe7f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_nh1g5")
+"texture": ExtResource("11_d8jvu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_3hpk8")
+"texture": ExtResource("12_ip6m6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_ytl15")
+"texture": ExtResource("13_qohlq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_chkbk")
+"texture": ExtResource("14_2lkq5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_lt1fs")
+"texture": ExtResource("15_kauga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_h82xv")
+"texture": ExtResource("16_jthjv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_vdwvq")
+"texture": ExtResource("17_quenw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_tna0c")
+"texture": ExtResource("18_048fr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_8rwsc")
+"texture": ExtResource("19_f55l6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_lsfyy")
+"texture": ExtResource("20_xkqps")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_y0gp8")
+"texture": ExtResource("21_2ikk6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_h7k8t")
+"texture": ExtResource("22_7txml")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_oxvj8")
+"texture": ExtResource("23_guyur")
 }, {
 "duration": 1.0,
-"texture": ExtResource("25_3esg8")
+"texture": ExtResource("24_apuxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("26_nb2qo")
+"texture": ExtResource("25_sh1le")
 }, {
 "duration": 1.0,
-"texture": ExtResource("27_has15")
+"texture": ExtResource("26_ku53u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("28_6frg3")
+"texture": ExtResource("27_dyqcu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("29_be54d")
+"texture": ExtResource("28_mnuis")
 }],
 "loop": false,
 "name": &"particle",
