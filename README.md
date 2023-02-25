@@ -24,18 +24,39 @@ Look around, improve and feedback welcome.
 
 ## Editor formatting and plugins
 
-In order to keep the source formatting consistent between IntelliJ Rider and VSCode please make sure your VSCode OmniSharp settings are configured as shown below:
+In order to keep the source formatting consistent between JetBrains Rider and VSCode please make sure your VSCode OmniSharp settings are configured as shown below:
 
 ![vscode-formatting-settings.png](Screenshots%2Fvscode-formatting-settings.png)
 
 
-Install the following VSCode plugins for a better experience:
+Install the following **VSCode** plugins for a better experience:
 
 [Godot Tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)
 
 [C# Tools for Godot](https://marketplace.visualstudio.com/items?itemName=neikeq.godot-csharp-vscode)
 
 [EditorConfig Support](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+
+
+Install the following **JetBrains Rider** plugins:
+
+[Godot Support](https://plugins.jetbrains.com/plugin/13882-godot-support)
+
+[GDScript Support](https://plugins.jetbrains.com/plugin/13107-gdscript)
+
+## Godot Editor and JetBrains Rider Screen Layouts
+
+I have found that the following screen layout works optimally when developing Godot games with C#:
+
+### Godot Editor Layout
+
+All editor sections/tabs are to the right.
+
+![godot-editor-layout.png](Screenshots%2Fgodot-editor-layout.png)
+
+### JetBrains Rider
+
+![jetbrains-rider-layout.png](Screenshots%2Fjetbrains-rider-layout.png)
 
 
 ## Screenshots
