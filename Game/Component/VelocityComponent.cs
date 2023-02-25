@@ -7,8 +7,6 @@ public partial class VelocityComponent : BaseComponent
 	[Signal]
 	public delegate void CollidedEventHandler(KinematicCollision2D collision2D);
 
-	private Vector2 _lastPosition = Vector2.Zero;
-
 	[Export]
 	public CollisionShape2D CollisionShape2D;
 
@@ -18,15 +16,15 @@ public partial class VelocityComponent : BaseComponent
 	[Export]
 	public Vector2 Gravity = new(0f, 0f);
 
-	[Node]
-	public Label Label;
-
 	[Export]
 	public Vector2 Velocity = Vector2.Zero;
 
 	public bool Falling { get; private set; }
 
+
 	public float Speed { get; private set; }
+
+	private Vector2 _lastPosition = Vector2.Zero;
 
 	public override void _EnterTree()
 	{
@@ -42,8 +40,6 @@ public partial class VelocityComponent : BaseComponent
 	{
 		Speed = (_lastPosition - GlobalPosition).LengthSquared();
 		_lastPosition = GlobalPosition;
-		if (Label.Visible)
-			Label.Text = $"{Falling} - {CollisionShape2D?.Disabled} - {Speed}/s";
 	}
 
 	private KinematicCollision2D _CalculateSpeed(Func<KinematicCollision2D> action)
