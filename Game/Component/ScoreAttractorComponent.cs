@@ -1,5 +1,6 @@
 using Game.Autoload;
 using Game.Component;
+using Game.Extension;
 using Vector2 = Godot.Vector2;
 
 public partial class ScoreAttractorComponent : BaseComponent
@@ -17,8 +18,12 @@ public partial class ScoreAttractorComponent : BaseComponent
 
 	public override void _Ready()
 	{
-		_node = (Node2D)GetParent();
+		_node = GetParent<Node2D>();
 		_nodeInitialGlobalPos = _node.GlobalPosition;
+
+		_node.EnableComponent<FacingComponent>(false);
+		_node.EnableComponent<FollowPlayerComponent>(false);
+		_node.EnableComponent<VelocityComponent>(false);
 
 		var tween = CreateTween();
 		tween.TweenProperty(

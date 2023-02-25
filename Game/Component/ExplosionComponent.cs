@@ -1,3 +1,4 @@
+using Game.Autoload;
 using Game.Entity.Enemy;
 using Game.Manager;
 using Game.Extension;
@@ -27,9 +28,6 @@ public partial class ExplosionComponent : BaseComponent
 		{
 			node.ZIndex = 2;
 			node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
-			node.EnableComponent<FacingComponent>(false);
-			node.EnableComponent<FollowPlayerComponent>(false);
-			node.EnableComponent<VelocityComponent>(false);
 		}
 
 		var shakeIntensity = _CalcShakeIntensity();
@@ -40,8 +38,7 @@ public partial class ExplosionComponent : BaseComponent
 
 	private float _CalcShakeIntensity()
 	{
-		var camera = GetTree().GetFirstNodeInGroup<Camera2D>();
-		var shakeIntensity = Mathf.Remap(GlobalPosition.DistanceTo(camera.GlobalPosition), 0, 500f, 1.0f, 0.0f);
+		var shakeIntensity = Mathf.Remap(GlobalPosition.DistanceTo(Global.Instance.Camera2D.GlobalPosition), 0, 500f, 1.0f, 0.0f);
 		return shakeIntensity;
 	}
 }
