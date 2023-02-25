@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_a1d5q"]
 [ext_resource type="PackedScene" uid="uid://cu0cho0yka273" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_n8u82"]
-[ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/EffectsManager.tscn" id="3_b265l"]
+[ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/FxManager.tscn" id="3_b265l"]
 [ext_resource type="PackedScene" uid="uid://dyxakolt14kln" path="res://Game/Manager/SoundManager.tscn" id="4_6v2nd"]
 [ext_resource type="PackedScene" uid="uid://b814smhskm17d" path="res://Game/Entity/Fireball.tscn" id="5_3oww0"]
 [ext_resource type="PackedScene" path="res://Game/UI/Fps.tscn" id="6_xr8q0"]
@@ -53,7 +53,7 @@ drag_bottom_margin = 0.3
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="EffectsManager" parent="." instance=ExtResource("3_b265l")]
+[node name="FxManager" parent="." instance=ExtResource("3_b265l")]
 
 [node name="SoundManager" parent="." instance=ExtResource("4_6v2nd")]
 

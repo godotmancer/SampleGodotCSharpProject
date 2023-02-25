@@ -27,9 +27,9 @@ public partial class ExplosionComponent : BaseComponent
 		{
 			node.ZIndex = 2;
 			node.Modulate = this.IntensifyColor(Colors.DarkMagenta, 2.3f);
-			node.GetFirstNodeOfType<FacingComponent>()?.SetEnabled(false);
-			node.GetFirstNodeOfType<FollowPlayerComponent>()?.SetEnabled(false);
-			node.GetFirstNodeOfType<VelocityComponent>()?.SetEnabled(false);
+			node.EnableComponent<FacingComponent>(false);
+			node.EnableComponent<FollowPlayerComponent>(false);
+			node.EnableComponent<VelocityComponent>(false);
 		}
 
 		var shakeIntensity = _CalcShakeIntensity();

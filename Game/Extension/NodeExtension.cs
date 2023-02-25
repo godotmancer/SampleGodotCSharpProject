@@ -49,4 +49,16 @@ public static class NodeExtension
 	{
 		node.AddResourceDeferredWithAction<T>(node.AddNodeToQueueFreeComponent);
 	}
+
+	/// <summary>
+	/// Enables or disables the specified child component type - does nothing if component not found.
+	/// </summary>
+	/// <typeparam name="T">The type of component to enable or disable. Must be a subclass of BaseComponent.</typeparam>
+	/// <param name="node">The node to search for its component.</param>
+	/// <param name="enabled">Whether to enable or disable the component.</param>
+	public static void EnableComponent<T>(this Node node, bool enabled) where T : BaseComponent
+	{
+		node.GetFirstNodeOfType<T>()?.SetEnabled(enabled);
+
+	}
 }
