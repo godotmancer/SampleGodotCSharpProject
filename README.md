@@ -6,6 +6,10 @@
 
 A work-in-progress example Godot 4 project written in C# (with .Net 6.0), making use of the awesome utilities and game concepts from [@firebelley](https://github.com/firebelley)
 
+Shout-out to [@valkyrienyanko](https://github.com/Valks-Games) for being the first to contribute and clean-up the C#
+code - since this is my first attempt at programming in C#, [@valkyrienyanko](https://github.com/Valks-Games) Github
+[Wiki](https://github.com/Valks-Games/sankari/wiki/Code-Style) has been very helpful.
+
 ## Purpose of this project
 
 Develop game mechanics and patterns for Godot 4 using C#.
