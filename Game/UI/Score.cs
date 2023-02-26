@@ -14,13 +14,17 @@ public partial class Score : Label
 		GameEvents.Instance.PlayerHit += (_, _, _) =>
 		{
 			_totalScore += 1;
-			Text = $"Score: {_totalScore.ToString()}";
+			Text = $"Score: {_totalScore}";
 
 			_pivot.X = Size.X;
 			PivotOffset = _pivot;
 
 			var tween = CreateTween();
-			tween.TweenProperty(this, "scale", Vector2.One, 0.25f)
+			tween.TweenProperty(
+					this,
+					Node2D.PropertyName.Scale.ToString(),
+					Vector2.One,
+					0.25f)
 				.From(Vector2.One * 1.8f);
 		};
 	}
