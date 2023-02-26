@@ -66,7 +66,7 @@ public partial class VelocityComponent : BaseComponent
 
 	public void DisableCollisionCheck(bool flag)
 	{
-		CollisionShape2D?.CallDeferred("set_disabled", flag);
+		CollisionShape2D?.CallDeferred(CollisionShape2D.MethodName.SetDisabled, flag);
 	}
 
 	public KinematicCollision2D MoveAndCollide(PhysicsBody2D node, double delta)

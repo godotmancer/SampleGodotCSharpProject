@@ -22,6 +22,9 @@ public partial class Zombie : BaseEnemy
 	public VelocityComponent VelocityComponent;
 
 	[Node]
+	public FacingComponent FacingComponent;
+
+	[Node]
 	public Node2D Visuals;
 
 	private DelegateStateMachine _stateMachine = new();
@@ -105,6 +108,7 @@ public partial class Zombie : BaseEnemy
 		var delta = GetPhysicsProcessDeltaTime();
 		FollowPlayerComponent?.Follow(delta);
 		VelocityComponent.MoveAndCollide(this, delta);
+		FacingComponent.Update(delta);
 
 		_CheckHealth();
 		_CheckSpeed();
@@ -120,6 +124,7 @@ public partial class Zombie : BaseEnemy
 		var delta = GetPhysicsProcessDeltaTime();
 		FollowPlayerComponent?.Follow(delta);
 		VelocityComponent.MoveAndCollide(this, delta);
+		FacingComponent.Update(delta);
 
 		_CheckHealth();
 		_CheckSpeed();

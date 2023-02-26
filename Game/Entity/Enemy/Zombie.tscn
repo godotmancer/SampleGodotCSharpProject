@@ -39,8 +39,8 @@ Health = 1.0
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("CollisionShape2D") instance=ExtResource("1_tkmm1")]
 CollisionShape2D = NodePath("../CollisionShape2D")
 
-[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToFace", "VelocityComponent") instance=ExtResource("2_31ob2")]
-Node2DToFace = NodePath("../Visuals")
+[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToRotate", "VelocityComponent") instance=ExtResource("2_31ob2")]
+Node2DToRotate = NodePath("../Visuals")
 VelocityComponent = NodePath("../VelocityComponent")
 
 [node name="FollowPlayerComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("3_15m1n")]
