@@ -24,6 +24,5 @@ public partial class FollowMouseComponent : BaseComponent
 		var distance = GlobalPosition.DistanceTo(GetGlobalMousePosition());
 		var newVelocity = mouseDir * Speed * distance;
 		VelocityComponent.Velocity = newVelocity;
-		VelocityComponent.MoveAndCollide(_parent, delta);
 	}
 }

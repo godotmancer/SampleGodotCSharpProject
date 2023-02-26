@@ -26,6 +26,5 @@ public partial class FollowPlayerComponent : BaseComponent
 		var distance = GlobalPosition.DistanceTo(_player.GlobalPosition);
 		var newVelocity = playerDir * Speed * distance;
 		VelocityComponent.Velocity = newVelocity;
-		VelocityComponent.MoveAndCollide(_parent, delta);
 	}
 }

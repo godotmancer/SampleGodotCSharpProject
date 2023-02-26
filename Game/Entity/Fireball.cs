@@ -18,6 +18,9 @@ public partial class Fireball : StaticBody2D
 	public FollowMouseComponent FollowMouseComponent;
 
 	[Node]
+	public VelocityComponent VelocityComponent;
+
+	[Node]
 	public Area2D HotZone;
 
 	[Node]
@@ -60,6 +63,7 @@ public partial class Fireball : StaticBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		FollowMouseComponent.Follow(delta);
+		VelocityComponent.MoveAndCollide(this, delta);
 	}
 
 	private void _EnteredHotZone(Node2D body)
