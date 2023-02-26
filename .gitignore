@@ -15,7 +15,6 @@ data_*/
 .vscode/
 
 #GodotUtilities - include Firebelley's code into this project for easier consumption.
-*.editorconfig
 *.import
 *.user
 
