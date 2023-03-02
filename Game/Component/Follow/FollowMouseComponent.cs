@@ -1,6 +1,8 @@
+using Game.Component.Follow;
+
 namespace Game.Component;
 
-public partial class FollowMouseComponent : BaseComponent
+public partial class FollowMouseComponent : BaseComponent, IFollowComponent
 {
 	private PhysicsBody2D _parent;
 
@@ -16,7 +18,7 @@ public partial class FollowMouseComponent : BaseComponent
 		_parent = GetParent<PhysicsBody2D>();
 	}
 
-	public void Follow(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!Enabled) return;
 

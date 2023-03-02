@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ht3rbkacq8nf"]
+[gd_scene load_steps=17 format=3 uid="uid://ht3rbkacq8nf"]
 
 [ext_resource type="Script" path="res://Game/Main.cs" id="1_a1d5q"]
-[ext_resource type="PackedScene" uid="uid://cu0cho0yka273" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_n8u82"]
+[ext_resource type="PackedScene" uid="uid://cjalmyc66a4bh" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_n8u82"]
 [ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/FxManager.tscn" id="3_b265l"]
 [ext_resource type="PackedScene" uid="uid://dyxakolt14kln" path="res://Game/Manager/SoundManager.tscn" id="4_6v2nd"]
-[ext_resource type="PackedScene" uid="uid://b814smhskm17d" path="res://Game/Entity/Fireball.tscn" id="5_3oww0"]
+[ext_resource type="PackedScene" path="res://Game/Entity/Fireball.tscn" id="5_3oww0"]
+[ext_resource type="PackedScene" uid="uid://blqe5s042oxxj" path="res://Game/Component/Follow/FollowPathComponent.tscn" id="6_q02mi"]
 [ext_resource type="PackedScene" path="res://Game/UI/Fps.tscn" id="6_xr8q0"]
 [ext_resource type="Script" path="res://Game/UI/RateStats.cs" id="7_dovvp"]
 [ext_resource type="Script" path="res://Game/UI/Score.cs" id="8_3ms7h"]
@@ -21,6 +22,14 @@ glow_normalized = true
 glow_intensity = 8.0
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_ufdyh"]
+resource_local_to_scene = true
+bake_interval = 2.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 304, -51, 0, 0, 0, 0, 498, -61, 0, 0, 0, 0, 712, 4, 0, 0, 0, 0, 798, 156, 0, 0, 0, 0, 813, 305, 0, 0, 0, 0, 761, 425, 0, 0, 0, 0, 595, 480, 0, 0, 0, 0, 394, 480, 0, 0, 0, 0, 197, 461, 0, 0, 0, 0, 102, 383, 0, 0, 0, 0, 41, 195, 0, 0, 0, 0, 112, 74, 0, 0, 0, 0, 160, 0)
+}
+point_count = 14
 
 [sub_resource type="SystemFont" id="SystemFont_8kl1n"]
 
@@ -59,11 +68,39 @@ editor_draw_drag_margin = true
 
 [node name="FireBall" parent="." instance=ExtResource("5_3oww0")]
 position = Vector2(576, 324)
+collision_mask = 4
 
 [node name="RemoteTransform2D" parent="FireBall" index="0"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Zombies" type="CanvasGroup" parent="."]
+
+[node name="ZombieFollowPath" parent="." instance=ExtResource("2_n8u82")]
+modulate = Color(0.18, 2.5, 0.22, 1)
+position = Vector2(208, 131)
+collision_layer = 5
+
+[node name="HealthComponent" parent="ZombieFollowPath" index="0"]
+Enabled = false
+
+[node name="VelocityComponent" parent="ZombieFollowPath" index="1"]
+JustMove = true
+
+[node name="FollowComponent" parent="ZombieFollowPath" index="3"]
+Enabled = false
+
+[node name="FollowPathComponent" parent="ZombieFollowPath" node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("6_q02mi")]
+position = Vector2(160, 113)
+FollowSpeed = 3.0
+PathSpeed = 0.3
+VelocityComponent = NodePath("../VelocityComponent")
+
+[node name="Path2D" parent="ZombieFollowPath/FollowPathComponent" index="0"]
+curve = SubResource("Curve2D_ufdyh")
+
+[node name="PathFollow2D" parent="ZombieFollowPath/FollowPathComponent/Path2D" index="0"]
+position = Vector2(160, 0)
+rotation = -0.340382
 
 [node name="Hud" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -130,3 +167,5 @@ texture = ExtResource("10_iumaq")
 centered = false
 
 [editable path="FireBall"]
+[editable path="ZombieFollowPath"]
+[editable path="ZombieFollowPath/FollowPathComponent"]

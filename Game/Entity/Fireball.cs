@@ -62,7 +62,6 @@ public partial class Fireball : StaticBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		FollowMouseComponent.Follow(delta);
 		VelocityComponent.MoveAndCollide(this, delta);
 	}
 

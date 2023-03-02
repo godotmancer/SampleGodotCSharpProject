@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Component/HealthComponent.cs" id="1_h2daq"]
 
 [sub_resource type="Gradient" id="Gradient_1s0qp"]
-offsets = PackedFloat32Array(0, 0.734908, 0.897638, 1)
+offsets = PackedFloat32Array(0, 0.0997375, 0.897638, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.869707, 0.939869, 1, 0.969098, 0, 1, 1, 0.812278, 0, 0.704802, 1)
 
 [node name="HealthComponent" type="Node2D"]

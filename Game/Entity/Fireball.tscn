@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b814smhskm17d"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_athld"]
 [ext_resource type="Script" path="res://Game/Entity/Fireball.cs" id="1_wsqe4"]
-[ext_resource type="PackedScene" uid="uid://cd5pq55pjfs8y" path="res://Game/Component/FollowMouseComponent.tscn" id="2_iv1x6"]
+[ext_resource type="PackedScene" path="res://Game/Component/Follow/FollowMouseComponent.tscn" id="2_iv1x6"]
 [ext_resource type="Texture2D" uid="uid://ndeuju5mm1x" path="res://Game/Assets/Skulls/skull1.png" id="4_1otds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hc3n0"]

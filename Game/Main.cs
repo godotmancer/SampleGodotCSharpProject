@@ -75,6 +75,7 @@ public partial class Main : Node2D
 	{
 		var zombie = ZombieScene.Instantiate<Zombie>();
 		zombie.GlobalPosition = point;
+		zombie.Scale *= (float)GD.RandRange(0.15, 0.45);
 
 		Zombies.AddChild(zombie);
 	}

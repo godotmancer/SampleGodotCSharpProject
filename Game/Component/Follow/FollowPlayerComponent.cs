@@ -1,6 +1,8 @@
+using Game.Component.Follow;
+
 namespace Game.Component;
 
-public partial class FollowPlayerComponent : BaseComponent
+public partial class FollowPlayerComponent : BaseComponent, IFollowComponent
 {
 	private PhysicsBody2D _parent;
 	private Node2D _player;
@@ -18,7 +20,7 @@ public partial class FollowPlayerComponent : BaseComponent
 		_player = GetTree().GetFirstNodeInGroup("Player") as Node2D;
 	}
 
-	public void Follow(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!Enabled) return;
 
