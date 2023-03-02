@@ -29,6 +29,8 @@ public partial class HealthComponent : BaseComponent
 
 	public float DecreaseHealth(float damage)
 	{
+		if (!Enabled) return Health;
+
 		var oldHealth = Health;
 		Health -= damage;
 		_UpdateVisuals();
@@ -38,6 +40,8 @@ public partial class HealthComponent : BaseComponent
 
 	public float IncreaseHealth(float damage)
 	{
+		if (!Enabled) return Health;
+
 		var oldHealth = Health;
 		Health += damage;
 		_UpdateVisuals();
