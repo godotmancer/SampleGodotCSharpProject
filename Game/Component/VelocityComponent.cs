@@ -19,6 +19,9 @@ public partial class VelocityComponent : BaseComponent
 	[Export]
 	public Vector2 Velocity = Vector2.Zero;
 
+	[Export]
+	public bool JustMove;
+
 	public bool Falling { get; private set; }
 
 
@@ -75,7 +78,15 @@ public partial class VelocityComponent : BaseComponent
 
 		Velocity += Gravity;
 
-		var collision2D = _CalculateSpeed(() => node.MoveAndCollide(Velocity * (float)delta));
+		var collision2D = _CalculateSpeed( () =>
+		{
+			if (JustMove)
+			{
+				node.GlobalPosition += Velocity * (float)delta;
+				return null;
+			}
+			return node.MoveAndCollide(Velocity * (float)delta);
+		});
 		if (collision2D == null) return null;
 
 		_EmitCollision(collision2D);
@@ -89,7 +100,16 @@ public partial class VelocityComponent : BaseComponent
 
 		Velocity += Gravity;
 		node.Velocity = Velocity;
-		var collided = _CalculateSpeed(node.MoveAndSlide);
+		var collided = _CalculateSpeed( () =>
+		{
+			if (JustMove)
+			{
+				node.GlobalPosition += Velocity;
+				return false;
+			}
+			return node.MoveAndSlide();
+		});
+
 		if (!collided) return;
 
 		var collision2D = node.GetLastSlideCollision();
