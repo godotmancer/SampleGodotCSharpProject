@@ -8,7 +8,7 @@ public partial class FacingComponent : BaseComponent
 	[Export]
 	public VelocityComponent VelocityComponent;
 
-	public void Update(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!Enabled) return;
 

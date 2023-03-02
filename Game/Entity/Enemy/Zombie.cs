@@ -14,9 +14,6 @@ public partial class Zombie : BaseEnemy
 	public CollisionShape2D CollisionShape2D;
 
 	[Node]
-	public IFollowComponent FollowComponent;
-
-	[Node]
 	public HealthComponent HealthComponent;
 
 	[Node]
@@ -104,9 +101,8 @@ public partial class Zombie : BaseEnemy
 	private void StateIdle()
 	{
 		var delta = GetPhysicsProcessDeltaTime();
-		// FollowComponent?.Follow(delta);
+
 		VelocityComponent.MoveAndCollide(this, delta);
-		FacingComponent.Update(delta);
 
 		_CheckHealth();
 		_CheckSpeed();
@@ -120,9 +116,8 @@ public partial class Zombie : BaseEnemy
 	private void StateWalk()
 	{
 		var delta = GetPhysicsProcessDeltaTime();
-		// FollowComponent?.Follow(delta);
+
 		VelocityComponent.MoveAndCollide(this, delta);
-		FacingComponent.Update(delta);
 
 		_CheckHealth();
 		_CheckSpeed();
