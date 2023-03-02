@@ -13,6 +13,4 @@ curve = SubResource("Curve2D_tqggc")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(397, -43)
-rotation = -0.0558079
 rotates = false
