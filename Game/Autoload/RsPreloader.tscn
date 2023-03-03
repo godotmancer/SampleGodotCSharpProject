@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bdyiyimjj56sf" path="res://Game/Component/ExplosionComponent.tscn" id="2_24y3x"]
 [ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="2_768rq"]
 [ext_resource type="PackedScene" uid="uid://b6bslvhpbudfc" path="res://Game/Component/Element/FireComponent.tscn" id="2_e2rwb"]
-[ext_resource type="PackedScene" path="res://Game/Entity/Fireball.tscn" id="3_s3qei"]
+[ext_resource type="PackedScene" uid="uid://h6cpojqhxl87" path="res://Game/Entity/Fireball.tscn" id="3_s3qei"]
 [ext_resource type="PackedScene" path="res://Game/Component/Follow/FollowMouseComponent.tscn" id="5_hxvkl"]
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="5_jc15n"]
 [ext_resource type="PackedScene" uid="uid://cjalmyc66a4bh" path="res://Game/Entity/Enemy/Zombie.tscn" id="6_3vm86"]

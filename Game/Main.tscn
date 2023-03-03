@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cjalmyc66a4bh" path="res://Game/Entity/Enemy/Zombie.tscn" id="2_n8u82"]
 [ext_resource type="PackedScene" uid="uid://jihm1oy8rd03" path="res://Game/Manager/FxManager.tscn" id="3_b265l"]
 [ext_resource type="PackedScene" uid="uid://dyxakolt14kln" path="res://Game/Manager/SoundManager.tscn" id="4_6v2nd"]
-[ext_resource type="PackedScene" path="res://Game/Entity/Fireball.tscn" id="5_3oww0"]
+[ext_resource type="PackedScene" uid="uid://h6cpojqhxl87" path="res://Game/Entity/Fireball.tscn" id="5_3oww0"]
 [ext_resource type="PackedScene" uid="uid://blqe5s042oxxj" path="res://Game/Component/Follow/FollowPathComponent.tscn" id="6_q02mi"]
 [ext_resource type="PackedScene" path="res://Game/UI/Fps.tscn" id="6_xr8q0"]
 [ext_resource type="Script" path="res://Game/UI/RateStats.cs" id="7_dovvp"]
@@ -85,9 +85,6 @@ Enabled = false
 
 [node name="VelocityComponent" parent="ZombieFollowPath" index="1"]
 JustMove = true
-
-[node name="FollowComponent" parent="ZombieFollowPath" index="3"]
-Enabled = false
 
 [node name="FollowPathComponent" parent="ZombieFollowPath" node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("6_q02mi")]
 position = Vector2(160, 113)
