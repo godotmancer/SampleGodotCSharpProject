@@ -39,34 +39,6 @@ public partial class VelocityComponent : BaseComponent
 		SetPhysicsProcess(false);
 	}
 
-	private void _UpdateSpeed()
-	{
-		Speed = (_lastPosition - GlobalPosition).LengthSquared();
-		_lastPosition = GlobalPosition;
-	}
-
-	private KinematicCollision2D _CalculateSpeed(Func<KinematicCollision2D> action)
-	{
-		var result = action.Invoke();
-		_UpdateSpeed();
-		return result;
-	}
-
-	private bool _CalculateSpeed(Func<bool> action)
-	{
-		var result = action.Invoke();
-		_UpdateSpeed();
-		return result;
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		if (!Enabled) return;
-
-		MoveAndCollide(ContinuousProcess, delta);
-		Falling = Gravity.LengthSquared() > 0.0f;
-	}
-
 	public void DisableCollisionCheck(bool flag)
 	{
 		CollisionShape2D?.CallDeferred(CollisionShape2D.MethodName.SetDisabled, flag);
@@ -116,12 +88,6 @@ public partial class VelocityComponent : BaseComponent
 		_EmitCollision(collision2D);
 	}
 
-	private void _EmitCollision(KinematicCollision2D collision2D)
-	{
-		EmitSignal(SignalName.Collided, collision2D);
-		GameEvents.EmitCollision(collision2D);
-	}
-
 	public void EnablePhysics(bool flag)
 	{
 		SetPhysicsProcess(flag);
@@ -137,5 +103,39 @@ public partial class VelocityComponent : BaseComponent
 		Gravity = gravity;
 		ContinuousProcess = node as PhysicsBody2D;
 		SetPhysicsProcess(true);
+	}
+
+	private void _EmitCollision(KinematicCollision2D collision2D)
+	{
+		EmitSignal(SignalName.Collided, collision2D);
+		GameEvents.EmitCollision(collision2D);
+	}
+
+	private void _UpdateSpeed()
+	{
+		Speed = (_lastPosition - GlobalPosition).LengthSquared();
+		_lastPosition = GlobalPosition;
+	}
+
+	private KinematicCollision2D _CalculateSpeed(Func<KinematicCollision2D> action)
+	{
+		var result = action.Invoke();
+		_UpdateSpeed();
+		return result;
+	}
+
+	private bool _CalculateSpeed(Func<bool> action)
+	{
+		var result = action.Invoke();
+		_UpdateSpeed();
+		return result;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		if (!Enabled) return;
+
+		MoveAndCollide(ContinuousProcess, delta);
+		Falling = Gravity.LengthSquared() > 0.0f;
 	}
 }

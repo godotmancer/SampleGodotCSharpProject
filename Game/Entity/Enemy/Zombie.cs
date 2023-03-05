@@ -100,9 +100,7 @@ public partial class Zombie : BaseEnemy
 
 	private void StateIdle()
 	{
-		var delta = GetPhysicsProcessDeltaTime();
-
-		VelocityComponent.MoveAndCollide(this, delta);
+		VelocityComponent.MoveAndSlide(this);
 
 		_CheckHealth();
 		_CheckSpeed();
@@ -115,9 +113,7 @@ public partial class Zombie : BaseEnemy
 
 	private void StateWalk()
 	{
-		var delta = GetPhysicsProcessDeltaTime();
-
-		VelocityComponent.MoveAndCollide(this, delta);
+		VelocityComponent.MoveAndSlide(this);
 
 		_CheckHealth();
 		_CheckSpeed();
