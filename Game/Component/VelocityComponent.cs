@@ -50,7 +50,7 @@ public partial class VelocityComponent : BaseComponent
 
 		Velocity += Gravity;
 
-		var collision2D = _CalculateSpeed( () =>
+		var collision2D = _CalculateSpeed(() =>
 		{
 			if (JustMove)
 			{
@@ -72,11 +72,11 @@ public partial class VelocityComponent : BaseComponent
 
 		Velocity += Gravity;
 		node.Velocity = Velocity;
-		var collided = _CalculateSpeed( () =>
+		var collided = _CalculateSpeed(() =>
 		{
 			if (JustMove)
 			{
-				node.GlobalPosition += Velocity;
+				node.GlobalPosition += Velocity * (float)GetPhysicsProcessDeltaTime();
 				return false;
 			}
 			return node.MoveAndSlide();
