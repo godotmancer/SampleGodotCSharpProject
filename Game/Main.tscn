@@ -66,36 +66,41 @@ editor_draw_drag_margin = true
 
 [node name="SoundManager" parent="." instance=ExtResource("4_6v2nd")]
 
-[node name="FireBall" parent="." instance=ExtResource("5_3oww0")]
+[node name="Entities" type="CanvasGroup" parent="."]
+y_sort_enabled = true
+
+[node name="FireBall" parent="Entities" instance=ExtResource("5_3oww0")]
+unique_name_in_owner = true
 position = Vector2(576, 324)
 collision_mask = 4
 
-[node name="RemoteTransform2D" parent="FireBall" index="0"]
-remote_path = NodePath("../../Camera2D")
+[node name="RemoteTransform2D" parent="Entities/FireBall" index="0"]
+remote_path = NodePath("../../../Camera2D")
 
-[node name="Zombies" type="CanvasGroup" parent="."]
-
-[node name="ZombieFollowPath" parent="." instance=ExtResource("2_n8u82")]
+[node name="ZombieFollowPath" parent="Entities" instance=ExtResource("2_n8u82")]
 modulate = Color(0.18, 2.5, 0.22, 1)
 position = Vector2(208, 131)
 collision_layer = 5
 
-[node name="HealthComponent" parent="ZombieFollowPath" index="0"]
+[node name="HealthComponent" parent="Entities/ZombieFollowPath" index="0"]
 Enabled = false
 
-[node name="VelocityComponent" parent="ZombieFollowPath" index="1"]
+[node name="VelocityComponent" parent="Entities/ZombieFollowPath" index="1"]
 JustMove = true
 
-[node name="FollowPathComponent" parent="ZombieFollowPath" node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("6_q02mi")]
+[node name="FollowComponent" parent="Entities/ZombieFollowPath" index="3"]
+Enabled = false
+
+[node name="FollowPathComponent" parent="Entities/ZombieFollowPath" node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("6_q02mi")]
 position = Vector2(160, 113)
 FollowSpeed = 3.0
 PathSpeed = 0.3
 VelocityComponent = NodePath("../VelocityComponent")
 
-[node name="Path2D" parent="ZombieFollowPath/FollowPathComponent" index="0"]
+[node name="Path2D" parent="Entities/ZombieFollowPath/FollowPathComponent" index="0"]
 curve = SubResource("Curve2D_ufdyh")
 
-[node name="PathFollow2D" parent="ZombieFollowPath/FollowPathComponent/Path2D" index="0"]
+[node name="PathFollow2D" parent="Entities/ZombieFollowPath/FollowPathComponent/Path2D" index="0"]
 position = Vector2(160, 0)
 rotation = -0.340382
 
@@ -163,6 +168,6 @@ modulate = Color(0.0235294, 0.176471, 0.25098, 0.858824)
 texture = ExtResource("10_iumaq")
 centered = false
 
-[editable path="FireBall"]
-[editable path="ZombieFollowPath"]
-[editable path="ZombieFollowPath/FollowPathComponent"]
+[editable path="Entities/FireBall"]
+[editable path="Entities/ZombieFollowPath"]
+[editable path="Entities/ZombieFollowPath/FollowPathComponent"]
