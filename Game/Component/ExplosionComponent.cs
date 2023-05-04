@@ -22,7 +22,7 @@ public partial class ExplosionComponent : BaseComponent
 	{
 		AnimatedSprite2D.AnimationFinished += QueueFree;
 
-		Visuals.Rotation = (float)GD.Randfn(Mathf.Pi * 2, Mathf.Pi);
+		Visuals.Rotation = (float)GD.Randfn(Mathf.Tau, Mathf.Pi);
 
 		if (GetParent() is Zombie node)
 		{

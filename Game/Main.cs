@@ -16,7 +16,7 @@ public partial class Main : Node2D
 	public Camera2D Camera2D;
 
 	[Node]
-	public Node2D Fireball;
+	public Node2D FireBall;
 
 	[Node]
 	public CanvasLayer Hud;
@@ -25,7 +25,7 @@ public partial class Main : Node2D
 	public int TotalZombies = 500;
 
 	[Node]
-	public CanvasGroup Zombies;
+	public CanvasGroup Entities;
 
 	[Export]
 	public PackedScene ZombieScene;
@@ -43,7 +43,7 @@ public partial class Main : Node2D
 		_random.Seed = 1234L;
 		_screenSize = GetViewportRect().Size;
 
-		Fireball.GlobalPosition = _screenSize / 2;
+		FireBall.GlobalPosition = _screenSize / 2;
 
 		_pointGenerator = new PointGenerator(
 			_screenSize / 2.0f,
@@ -75,7 +75,8 @@ public partial class Main : Node2D
 	{
 		var zombie = ZombieScene.Instantiate<Zombie>();
 		zombie.GlobalPosition = point;
+		zombie.Scale *= (float)GD.RandRange(0.15, 0.45);
 
-		Zombies.AddChild(zombie);
+		Entities.AddChild(zombie);
 	}
 }

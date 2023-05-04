@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://brwsuei3e6h40"]
-
-[ext_resource type="Script" path="res://Game/Component/FollowMouseGDComponent.gd" id="1_nusbv"]
-
-[node name="FollowMouseGDComponent" type="Node2D"]
-script = ExtResource("1_nusbv")

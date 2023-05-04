@@ -3,7 +3,7 @@ namespace Game.Component;
 public partial class FacingComponent : BaseComponent
 {
 	[Export]
-	public Node2D Node2DToFace;
+	public Node2D Node2DToRotate;
 
 	[Export]
 	public VelocityComponent VelocityComponent;
@@ -12,9 +12,6 @@ public partial class FacingComponent : BaseComponent
 	{
 		if (!Enabled) return;
 
-		if (VelocityComponent != null && Node2DToFace != null)
-		{
-			Node2DToFace.Rotation = VelocityComponent.Velocity.Normalized().Angle();
-		}
+		Node2DToRotate.Rotation = VelocityComponent.Velocity.Normalized().Angle();
 	}
 }

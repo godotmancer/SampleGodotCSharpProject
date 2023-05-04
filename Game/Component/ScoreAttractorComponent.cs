@@ -36,7 +36,7 @@ public partial class ScoreAttractorComponent : BaseComponent
 
 		tween.Parallel().TweenProperty(
 				_node,
-				"rotation",
+				Node2D.PropertyName.Rotation.ToString(),
 				Mathf.Pi * 7.0,
 				Duration)
 			.SetTrans(Tween.TransitionType.Expo)

@@ -11,13 +11,13 @@ public partial class ZombieCounter : Label
 		GameEvents.Instance.ZombieSpawned += _ =>
 		{
 			_totalZombies += 1;
-			Text = $"Zombies: {_totalZombies.ToString()}";
+			Text = $"Zombies: {_totalZombies}";
 		};
 
 		GameEvents.Instance.ZombieKilled += _ =>
 		{
 			_totalZombies -= 1;
-			Text = $"Zombies: {_totalZombies.ToString()}";
+			Text = $"Zombies: {_totalZombies}";
 		};
 	}
 }

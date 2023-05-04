@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu0cho0yka273"]
+[gd_scene load_steps=11 format=3 uid="uid://cjalmyc66a4bh"]
 
 [ext_resource type="PackedScene" uid="uid://dfcjblk01lnsf" path="res://Game/Component/VelocityComponent.tscn" id="1_tkmm1"]
 [ext_resource type="Script" path="res://Game/Entity/Enemy/Zombie.cs" id="1_uyh6b"]
 [ext_resource type="PackedScene" uid="uid://bxqxjytua5jb2" path="res://Game/Component/FacingComponent.tscn" id="2_31ob2"]
 [ext_resource type="PackedScene" uid="uid://udkfo3veimlm" path="res://Game/Component/HealthComponent.tscn" id="2_l5geu"]
-[ext_resource type="PackedScene" uid="uid://b5koicly7djf5" path="res://Game/Component/FollowPlayerComponent.tscn" id="3_15m1n"]
+[ext_resource type="PackedScene" path="res://Game/Component/Follow/FollowPlayerComponent.tscn" id="3_15m1n"]
 [ext_resource type="Texture2D" uid="uid://c258ccybjyo5" path="res://Game/Assets/Zombie/1.png" id="7_6gvi0"]
 [ext_resource type="PackedScene" uid="uid://dsfwe0jfckbyj" path="res://Game/Component/QueueFreeComponent.tscn" id="7_wvx8j"]
 [ext_resource type="Texture2D" uid="uid://7mob3wh4prxh" path="res://Game/Assets/Zombie/2.png" id="8_e2wem"]
@@ -39,11 +39,11 @@ Health = 1.0
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("CollisionShape2D") instance=ExtResource("1_tkmm1")]
 CollisionShape2D = NodePath("../CollisionShape2D")
 
-[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToFace", "VelocityComponent") instance=ExtResource("2_31ob2")]
-Node2DToFace = NodePath("../Visuals")
+[node name="FacingComponent" parent="." node_paths=PackedStringArray("Node2DToRotate", "VelocityComponent") instance=ExtResource("2_31ob2")]
+Node2DToRotate = NodePath("../Visuals")
 VelocityComponent = NodePath("../VelocityComponent")
 
-[node name="FollowPlayerComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("3_15m1n")]
+[node name="FollowComponent" parent="." node_paths=PackedStringArray("VelocityComponent") instance=ExtResource("3_15m1n")]
 VelocityComponent = NodePath("../VelocityComponent")
 
 [node name="QueueFreeComponent" parent="." instance=ExtResource("7_wvx8j")]

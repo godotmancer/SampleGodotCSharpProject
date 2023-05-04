@@ -1,6 +1,8 @@
+using Game.Component.Follow;
+
 namespace Game.Component;
 
-public partial class FollowMouseComponent : BaseComponent
+public partial class FollowMouseComponent : BaseComponent, IFollowComponent
 {
 	private PhysicsBody2D _parent;
 
@@ -16,7 +18,7 @@ public partial class FollowMouseComponent : BaseComponent
 		_parent = GetParent<PhysicsBody2D>();
 	}
 
-	public void Follow(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!Enabled) return;
 
@@ -24,6 +26,5 @@ public partial class FollowMouseComponent : BaseComponent
 		var distance = GlobalPosition.DistanceTo(GetGlobalMousePosition());
 		var newVelocity = mouseDir * Speed * distance;
 		VelocityComponent.Velocity = newVelocity;
-		VelocityComponent.MoveAndCollide(_parent, delta);
 	}
 }

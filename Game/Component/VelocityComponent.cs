@@ -19,6 +19,9 @@ public partial class VelocityComponent : BaseComponent
 	[Export]
 	public Vector2 Velocity = Vector2.Zero;
 
+	[Export]
+	public bool JustMove;
+
 	public bool Falling { get; private set; }
 
 
@@ -34,6 +37,78 @@ public partial class VelocityComponent : BaseComponent
 	public override void _Ready()
 	{
 		SetPhysicsProcess(false);
+	}
+
+	public void DisableCollisionCheck(bool flag)
+	{
+		CollisionShape2D?.CallDeferred(CollisionShape2D.MethodName.SetDisabled, flag);
+	}
+
+	public KinematicCollision2D MoveAndCollide(PhysicsBody2D node, double delta)
+	{
+		if (!Enabled) return null;
+
+		Velocity += Gravity;
+
+		var collision2D = _CalculateSpeed(() =>
+		{
+			if (JustMove)
+			{
+				node.GlobalPosition += Velocity * (float)delta;
+				return null;
+			}
+			return node.MoveAndCollide(Velocity * (float)delta);
+		});
+		if (collision2D == null) return null;
+
+		_EmitCollision(collision2D);
+
+		return collision2D;
+	}
+
+	public void MoveAndSlide(CharacterBody2D node)
+	{
+		if (!Enabled) return;
+
+		Velocity += Gravity;
+		node.Velocity = Velocity;
+		var collided = _CalculateSpeed(() =>
+		{
+			if (JustMove)
+			{
+				node.GlobalPosition += Velocity * (float)GetPhysicsProcessDeltaTime();
+				return false;
+			}
+			return node.MoveAndSlide();
+		});
+
+		if (!collided) return;
+
+		var collision2D = node.GetLastSlideCollision();
+		_EmitCollision(collision2D);
+	}
+
+	public void EnablePhysics(bool flag)
+	{
+		SetPhysicsProcess(flag);
+		if (flag == false)
+		{
+			Falling = false;
+		}
+	}
+
+	public void ApplyGravity(Node2D node, Vector2 gravity)
+	{
+		Velocity = Vector2.Zero;
+		Gravity = gravity;
+		ContinuousProcess = node as PhysicsBody2D;
+		SetPhysicsProcess(true);
+	}
+
+	private void _EmitCollision(KinematicCollision2D collision2D)
+	{
+		EmitSignal(SignalName.Collided, collision2D);
+		GameEvents.EmitCollision(collision2D);
 	}
 
 	private void _UpdateSpeed()
@@ -62,60 +137,5 @@ public partial class VelocityComponent : BaseComponent
 
 		MoveAndCollide(ContinuousProcess, delta);
 		Falling = Gravity.LengthSquared() > 0.0f;
-	}
-
-	public void DisableCollisionCheck(bool flag)
-	{
-		CollisionShape2D?.CallDeferred("set_disabled", flag);
-	}
-
-	public KinematicCollision2D MoveAndCollide(PhysicsBody2D node, double delta)
-	{
-		if (!Enabled) return null;
-
-		Velocity += Gravity;
-
-		var collision2D = _CalculateSpeed(() => node.MoveAndCollide(Velocity * (float)delta));
-		if (collision2D == null) return null;
-
-		_EmitCollision(collision2D);
-
-		return collision2D;
-	}
-
-	public void MoveAndSlide(CharacterBody2D node)
-	{
-		if (!Enabled) return;
-
-		Velocity += Gravity;
-		node.Velocity = Velocity;
-		var collided = _CalculateSpeed(node.MoveAndSlide);
-		if (!collided) return;
-
-		var collision2D = node.GetLastSlideCollision();
-		_EmitCollision(collision2D);
-	}
-
-	private void _EmitCollision(KinematicCollision2D collision2D)
-	{
-		EmitSignal(SignalName.Collided, collision2D);
-		GameEvents.EmitCollision(collision2D);
-	}
-
-	public void EnablePhysics(bool flag)
-	{
-		SetPhysicsProcess(flag);
-		if (flag == false)
-		{
-			Falling = false;
-		}
-	}
-
-	public void ApplyGravity(Node2D node, Vector2 gravity)
-	{
-		Velocity = Vector2.Zero;
-		Gravity = gravity;
-		ContinuousProcess = node as PhysicsBody2D;
-		SetPhysicsProcess(true);
 	}
 }

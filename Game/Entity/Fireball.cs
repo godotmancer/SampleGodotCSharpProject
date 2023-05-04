@@ -18,6 +18,9 @@ public partial class Fireball : StaticBody2D
 	public FollowMouseComponent FollowMouseComponent;
 
 	[Node]
+	public VelocityComponent VelocityComponent;
+
+	[Node]
 	public Area2D HotZone;
 
 	[Node]
@@ -31,6 +34,9 @@ public partial class Fireball : StaticBody2D
 
 	[Node]
 	public CpuParticles2D SwirlingParticles;
+
+	[Node]
+	public CpuParticles2D HitParticles;
 
 	private Dictionary<string, FireComponent> _nodesInsideHotZone = new();
 	private Vector2 _screenSize;
@@ -59,7 +65,7 @@ public partial class Fireball : StaticBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		FollowMouseComponent.Follow(delta);
+		VelocityComponent.MoveAndCollide(this, delta);
 	}
 
 	private void _EnteredHotZone(Node2D body)
@@ -86,6 +92,12 @@ public partial class Fireball : StaticBody2D
 	private void _hit(Node2D player, float angle, Vector2 direction)
 	{
 		var tween = CreateTween();
+
+		if (!HitParticles.Emitting)
+		{
+			HitParticles.Emitting = true;
+			HitParticles.Gravity = Vector2.One * direction * -1000.0f;
+		}
 		tween.TweenProperty(
 				Skull,
 				CanvasItem.PropertyName.Modulate.ToString(),
@@ -94,7 +106,9 @@ public partial class Fireball : StaticBody2D
 			.From(this.IntensifyColor(Colors.Magenta, 2.3f))
 			.SetTrans(Tween.TransitionType.Linear)
 			.SetEase(Tween.EaseType.In);
-		tween.Parallel().TweenProperty(
+
+		tween.SetParallel();
+		tween.TweenProperty(
 				Skull,
 				Node2D.PropertyName.Scale.ToString(),
 				_skullScale,
@@ -102,12 +116,13 @@ public partial class Fireball : StaticBody2D
 			.From(_skullScale * 1.3f)
 			.SetTrans(Tween.TransitionType.Linear)
 			.SetEase(Tween.EaseType.In);
+		tween.TweenProperty(
+			HitParticles,
+			CpuParticles2D.PropertyName.Direction.ToString(),
+			direction,
+			0.25f);
 
-		tween.Parallel().TweenProperty(
-				SwirlingParticles,
-				CpuParticles2D.PropertyName.Gravity.ToString(),
-				Vector2.Zero,
-				0.25f)
-			.From(Vector2.One * direction * 2500.0f);
+		tween.SetParallel(false);
+		tween.TweenCallback(Callable.From(() => HitParticles.Emitting = false));
 	}
 }

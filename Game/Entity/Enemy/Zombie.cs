@@ -1,5 +1,6 @@
 using Game.Autoload;
 using Game.Component;
+using Game.Component.Follow;
 using Game.Extension;
 
 namespace Game.Entity.Enemy;
@@ -13,13 +14,13 @@ public partial class Zombie : BaseEnemy
 	public CollisionShape2D CollisionShape2D;
 
 	[Node]
-	public FollowPlayerComponent FollowPlayerComponent;
-
-	[Node]
 	public HealthComponent HealthComponent;
 
 	[Node]
 	public VelocityComponent VelocityComponent;
+
+	[Node]
+	public FacingComponent FacingComponent;
 
 	[Node]
 	public Node2D Visuals;
@@ -34,9 +35,6 @@ public partial class Zombie : BaseEnemy
 
 	public override void _Ready()
 	{
-		// Entity Initialisations
-		Scale *= (float)GD.RandRange(0.15, 0.45);
-
 		// State Machine States
 		_stateMachine.AddStates(StateIdle, EnterStateIdle);
 		_stateMachine.AddStates(StateWalk, EnterStateWalk);
@@ -102,7 +100,7 @@ public partial class Zombie : BaseEnemy
 
 	private void StateIdle()
 	{
-		FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
+		VelocityComponent.MoveAndSlide(this);
 
 		_CheckHealth();
 		_CheckSpeed();
@@ -115,7 +113,8 @@ public partial class Zombie : BaseEnemy
 
 	private void StateWalk()
 	{
-		FollowPlayerComponent?.Follow(GetPhysicsProcessDeltaTime());
+		VelocityComponent.MoveAndSlide(this);
+
 		_CheckHealth();
 		_CheckSpeed();
 	}

@@ -8,6 +8,7 @@ radius = 103.005
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5hltt"]
 blend_mode = 1
+light_mode = 1
 particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
