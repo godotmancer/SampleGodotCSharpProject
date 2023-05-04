@@ -1,6 +1,6 @@
-using Game.Autoload;
-
 namespace Game.Component;
+
+using Game.Autoload;
 
 public partial class VelocityComponent : BaseComponent
 {

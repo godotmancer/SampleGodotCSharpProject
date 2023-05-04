@@ -1,6 +1,6 @@
-using Game.Component;
-
 namespace Game.Extension;
+
+using Game.Component;
 
 public static class NodeExtension
 {

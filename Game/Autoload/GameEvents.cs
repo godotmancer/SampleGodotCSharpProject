@@ -1,7 +1,7 @@
+namespace Game.Autoload;
+
 using Game.Component.Element;
 using Game.Entity.Enemy;
-
-namespace Game.Autoload;
 
 public partial class GameEvents : Node
 {

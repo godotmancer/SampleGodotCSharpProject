@@ -1,9 +1,9 @@
+namespace Game.Entity.Enemy;
+
 using Game.Autoload;
 using Game.Component;
 using Game.Component.Follow;
 using Game.Extension;
-
-namespace Game.Entity.Enemy;
 
 public partial class Zombie : BaseEnemy
 {
