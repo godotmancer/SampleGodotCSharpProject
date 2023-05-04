@@ -93,10 +93,7 @@ public partial class Zombie : BaseEnemy
 		}
 	}
 
-	private void EnterStateIdle()
-	{
-		AnimatedSprite2D.Pause();
-	}
+	private void EnterStateIdle() => AnimatedSprite2D.Pause();
 
 	private void StateIdle()
 	{
@@ -106,10 +103,7 @@ public partial class Zombie : BaseEnemy
 		_CheckSpeed();
 	}
 
-	private void EnterStateWalk()
-	{
-		AnimatedSprite2D.Play("walk");
-	}
+	private void EnterStateWalk() => AnimatedSprite2D.Play("walk");
 
 	private void StateWalk()
 	{

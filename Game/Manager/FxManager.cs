@@ -7,10 +7,8 @@ public partial class FxManager : Node
 	private readonly Random _random = new();
 	private int _currentShakePriority;
 
-	public static void ShakeScreen(double shakeLength, float shakePower)
-	{
+	public static void ShakeScreen(double shakeLength, float shakePower) =>
 		Instance._ShakeScreen(shakeLength, shakePower);
-	}
 
 	public override void _Notification(int what)
 	{
@@ -19,10 +17,8 @@ public partial class FxManager : Node
 		Instance = this;
 	}
 
-	private float _RandRange(float min, float max)
-	{
-		return (float)_random.NextDouble() * (max - min) + min;
-	}
+	private float _RandRange(float min, float max) =>
+		(float)_random.NextDouble() * (max - min) + min;
 
 	private void _MoveCamera(Vector2 move)
 	{
@@ -42,8 +38,5 @@ public partial class FxManager : Node
 			.SetEase(Tween.EaseType.Out);
 	}
 
-	private void _resetCurrentShakePriority()
-	{
-		_currentShakePriority = 0;
-	}
+	private void _resetCurrentShakePriority() => _currentShakePriority = 0;
 }

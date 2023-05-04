@@ -22,8 +22,5 @@ public partial class ElementComponent : BaseComponent
 		return oldEnergy;
 	}
 
-	public float GetEnergy()
-	{
-		return Energy;
-	}
+	public float GetEnergy() => Energy;
 }
