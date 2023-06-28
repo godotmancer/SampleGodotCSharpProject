@@ -1,6 +1,6 @@
-using Game.Autoload;
-
 namespace Game.UI;
+
+using Game.Autoload;
 
 public partial class Score : Label
 {

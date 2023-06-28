@@ -1,9 +1,9 @@
+namespace Game.Entity.Enemy;
+
 using Game.Autoload;
 using Game.Component;
 using Game.Component.Follow;
 using Game.Extension;
-
-namespace Game.Entity.Enemy;
 
 public partial class Zombie : BaseEnemy
 {
@@ -93,10 +93,7 @@ public partial class Zombie : BaseEnemy
 		}
 	}
 
-	private void EnterStateIdle()
-	{
-		AnimatedSprite2D.Pause();
-	}
+	private void EnterStateIdle() => AnimatedSprite2D.Pause();
 
 	private void StateIdle()
 	{
@@ -106,10 +103,7 @@ public partial class Zombie : BaseEnemy
 		_CheckSpeed();
 	}
 
-	private void EnterStateWalk()
-	{
-		AnimatedSprite2D.Play("walk");
-	}
+	private void EnterStateWalk() => AnimatedSprite2D.Play("walk");
 
 	private void StateWalk()
 	{

@@ -1,8 +1,8 @@
+namespace Game;
+
 using Game.Autoload;
 using Game.Entity.Enemy;
 using Game.Helpers;
-
-namespace Game;
 
 public partial class Main : Node2D
 {

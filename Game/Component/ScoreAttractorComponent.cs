@@ -1,3 +1,5 @@
+namespace Game.Component;
+
 using Game.Autoload;
 using Game.Component;
 using Game.Extension;

@@ -1,10 +1,10 @@
+namespace Game.Entity;
+
 using Game.Autoload;
 using Game.Component;
 using Game.Component.Element;
 using Game.Extension;
 using Godot.Collections;
-
-namespace Game.Entity;
 
 public partial class Fireball : StaticBody2D
 {

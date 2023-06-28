@@ -1,7 +1,7 @@
+namespace Game.Component.Element;
+
 using Game.Autoload;
 using Game.Extension;
-
-namespace Game.Component.Element;
 
 public partial class FireComponent : ElementComponent
 {

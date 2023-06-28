@@ -1,60 +1,59 @@
+namespace Game.Manager;
+
 using Game.Autoload;
 
-namespace Game.Manager
+public partial class SoundManager : Node
 {
-	public partial class SoundManager : Node
+	[Export]
+	public bool Enabled = true;
+
+	[Node]
+	public AudioStreamPlayer2D Explosion;
+
+	[Node]
+	public AudioStreamPlayer2D PlayerHit;
+
+	[Node]
+	public AudioStreamPlayer Fire;
+
+	private float _fireIntensity;
+
+	public override void _EnterTree()
 	{
-		[Export]
-		public bool Enabled = true;
+		this.WireNodes();
+	}
 
-		[Node]
-		public AudioStreamPlayer2D Explosion;
-
-		[Node]
-		public AudioStreamPlayer2D PlayerHit;
-
-		[Node]
-		public AudioStreamPlayer Fire;
-
-		private float _fireIntensity;
-
-		public override void _EnterTree()
+	public override void _Ready()
+	{
+		GameEvents.Instance.PlayerHit += (player, _, _) =>
 		{
-			this.WireNodes();
-		}
+			if (!Enabled) return;
+			PlayerHit.GlobalPosition = player.GlobalPosition;
+			PlayerHit.PlayWithPitch((float)GD.RandRange(0.8f, 1.1f));
+		};
 
-		public override void _Ready()
+		GameEvents.Instance.ZombieKilled += zombie =>
 		{
-			GameEvents.Instance.PlayerHit += (player, _, _) =>
-			{
-				if (!Enabled) return;
-				PlayerHit.GlobalPosition = player.GlobalPosition;
-				PlayerHit.PlayWithPitch((float)GD.RandRange(0.8f, 1.1f));
-			};
+			if (!Enabled) return;
+			Explosion.GlobalPosition = zombie.GlobalPosition;
+			Explosion.PlayWithPitch((float)GD.RandRange(0.6f, 1.4f));
+		};
 
-			GameEvents.Instance.ZombieKilled += zombie =>
+		GameEvents.Instance.ElementIntensityDepleted += _ =>
+		{
+			if (!Enabled) return;
+			_fireIntensity = Mathf.Max(_fireIntensity - 1.0f, 0.0f);
+			if (_fireIntensity <= 0.0f)
 			{
-				if (!Enabled) return;
-				Explosion.GlobalPosition = zombie.GlobalPosition;
-				Explosion.PlayWithPitch((float)GD.RandRange(0.6f, 1.4f));
-			};
+				if (Fire.Playing) Fire.Stop();
+			}
+		};
 
-			GameEvents.Instance.ElementIntensityDepleted += _ =>
-			{
-				if (!Enabled) return;
-				_fireIntensity = Mathf.Max(_fireIntensity - 1.0f, 0.0f);
-				if (_fireIntensity <= 0.0f)
-				{
-					if (Fire.Playing) Fire.Stop();
-				}
-			};
-
-			GameEvents.Instance.ElementIntensityMaxed += _ =>
-			{
-				if (!Enabled) return;
-				_fireIntensity += 1.0f;
-				if (!Fire.Playing) Fire.Play();
-			};
-		}
+		GameEvents.Instance.ElementIntensityMaxed += _ =>
+		{
+			if (!Enabled) return;
+			_fireIntensity += 1.0f;
+			if (!Fire.Playing) Fire.Play();
+		};
 	}
 }

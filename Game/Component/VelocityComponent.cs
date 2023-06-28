@@ -1,6 +1,6 @@
-using Game.Autoload;
-
 namespace Game.Component;
+
+using Game.Autoload;
 
 public partial class VelocityComponent : BaseComponent
 {
@@ -39,10 +39,8 @@ public partial class VelocityComponent : BaseComponent
 		SetPhysicsProcess(false);
 	}
 
-	public void DisableCollisionCheck(bool flag)
-	{
+	public void DisableCollisionCheck(bool flag) =>
 		CollisionShape2D?.CallDeferred(CollisionShape2D.MethodName.SetDisabled, flag);
-	}
 
 	public KinematicCollision2D MoveAndCollide(PhysicsBody2D node, double delta)
 	{

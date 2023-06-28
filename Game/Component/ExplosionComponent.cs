@@ -1,9 +1,9 @@
+namespace Game.Component;
+
 using Game.Autoload;
 using Game.Entity.Enemy;
 using Game.Manager;
 using Game.Extension;
-
-namespace Game.Component;
 
 public partial class ExplosionComponent : BaseComponent
 {

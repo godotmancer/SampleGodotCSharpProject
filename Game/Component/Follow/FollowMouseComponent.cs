@@ -1,6 +1,6 @@
-using Game.Component.Follow;
-
 namespace Game.Component;
+
+using Game.Component.Follow;
 
 public partial class FollowMouseComponent : BaseComponent, IFollowComponent
 {
